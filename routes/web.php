@@ -42,3 +42,7 @@ Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+
+Route::get('/listUser', function() {
+    return view('listUser');
+});
