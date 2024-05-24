@@ -13,6 +13,7 @@ class CreatePenggunasTable extends Migration
             $table->string('password');
             $table->string('email');
             $table->string('role');
+            $table->string('status');
             $table->timestamps();
         });
     }
