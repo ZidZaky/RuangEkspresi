@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',function () {
-    return view('landingPage');
+    return view('pages.index');
 });
 
 Route::get('/dashboard', function () {
@@ -32,8 +32,8 @@ Route::get('/dashboard', function () {
     return view('dashboard',['karyas' => $karya]);
 });
 
-Route::get('/register', [AccountController::class,'AccountRegister']);
-Route::get('/login', [AccountController::class,'Accountlogin']);
+Route::get('/register', [AccountController::class,'AccountRegister'])->name('showRegister');
+Route::get('/login', [AccountController::class,'Accountlogin'])->name('showLogin');
 Route::post('/login', [AccountController::class,'login']);
 Route::get('/logout', [AccountController::class, 'logout']);
 

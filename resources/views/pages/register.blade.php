@@ -68,7 +68,6 @@ Register
             }
         }
     </style>
-
 </head>
 
 <body>

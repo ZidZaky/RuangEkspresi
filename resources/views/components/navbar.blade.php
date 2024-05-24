@@ -32,24 +32,31 @@
                 <img src="/assets/images/logo.png" alt="">
             </a>
 
-            <div class="button-group">
-                <a href="{{ route('showLogin') }}">Sign In</a>
-                <a href="{{ route('showRegister') }}">Sign Up</a>
-            </div>
 
-            <!-- <div class="profile dropdown">
+            <!-- ketika user udah login -->
+            @auth
+            <div class="profile dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/assets/images/profile.png" alt="">
-                Cahyo Gurih
+                    Cahyo Gurih
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">My Account</a></li>
                     <li><a class="dropdown-item" href="#">Sign Out</a></li>
                 </ul>
-            </div> -->
+            </div>
+            @endauth
+
+            <!-- ketika user belum login -->
+            @guest
+            <div class="button-group">
+                <a href="{{ route('showLogin') }}">Sign In</a>
+                <a href="{{ route('showRegister') }}">Sign Up</a>
+            </div>
+            @endguest
         </div>
     </nav>
-    
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
