@@ -4,7 +4,7 @@
 
    <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
- Add New komunitas
+ Edit Data komunitas
 </button>
 
 <!-- Modal -->
@@ -19,7 +19,7 @@
 
       <div class="modal-body">
          <div class="mb-3">
-           <h1 class="modal-title fs-5" id="exampleModalLabel">Add New komunitas</h1>
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data komunitas</h1>
          </div>
 
          <div class="mb-3">
