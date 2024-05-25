@@ -10,9 +10,9 @@ class CreateKaryasTable extends Migration
         Schema::create('karyas', function (Blueprint $table) {
             $table->id('id_karya');
             $table->foreignId('pengguna_id')->constrained('penggunas');
-            $table->string('judul_karya');
-            $table->text('deskripsi_karya');
-            $table->date('tanggal');
+            $table->string('judulKarya');
+            $table->text('deskripsi');
+            $table->string('tema');
             $table->timestamps();
         });
     }

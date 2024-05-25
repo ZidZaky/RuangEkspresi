@@ -14,7 +14,7 @@ class Account extends Model
     ];
 
     // Specify the table name if it's different from the default 'accounts' table
-     protected $table = 'accounts';
+     protected $table = 'penggunas';
 
     // Specify the primary key column if it's different from the default 'id' column
     protected $primaryKey = 'id';
