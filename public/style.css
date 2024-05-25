@@ -25,4 +25,26 @@
     /* Sizing */
     --p-md:12px;
 }
+/* CSS untuk tombol secondary */
+.btn-secondary {
+    background-color: #708FFF; /* Ganti dengan warna yang diinginkan */
+    border-color: #708FFF; /* Ganti dengan warna yang diinginkan */
+    color: #fff; /* Warna teks, ganti jika diperlukan */
+}
 
+.btn-secondary:hover {
+    background-color: #708FFF; /* Ganti dengan warna yang diinginkan untuk efek hover */
+    border-color: #708FFF; /* Ganti dengan warna yang diinginkan untuk efek hover */
+}
+
+/* CSS untuk tombol primary */
+.btn-primary {
+    background-color: #FF4242; /* Ganti dengan warna yang diinginkan */
+    border-color: #FF4242; /* Ganti dengan warna yang diinginkan */
+    color: #fff; /* Warna teks, ganti jika diperlukan */
+}
+
+.btn-primary:hover {
+    background-color: #FF4242; /* Ganti dengan warna yang diinginkan untuk efek hover */
+    border-color: #FF4242; /* Ganti dengan warna yang diinginkan untuk efek hover */
+}

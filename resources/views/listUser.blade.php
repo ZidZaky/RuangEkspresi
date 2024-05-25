@@ -20,6 +20,9 @@ $users = [
     ],
 ];
 ?>
+<?php
+$opsi = array("Aktif", "Non aktif");
+?>
 
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -91,6 +94,11 @@ $users = [
                             <div class="user-info">
                                 <img src="{{ $user['image'] }}" alt="{{ $user['name'] }}" class="profile-pic">
                                 <div class="username">{{ $user['name'] }}<br><small>{{ $user['profession'] }}</small></div>
+                                <select name="pilihan" id="pilihan">
+                                <?php foreach($opsi as $status): ?>
+                                    <option value="<?php echo strtolower($status); ?>"><?php echo $status; ?></option>
+                                <?php endforeach; ?>
+                                </select>
                             </div>
                             <p class="card-text mt-2">{{ $user['description'] }}</p>
                         </div>

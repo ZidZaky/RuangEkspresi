@@ -45,6 +45,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     @include('components.navbar')
 <<<<<<< HEAD
     @include('components.popup')
@@ -67,6 +68,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 =======
+=======
+>>>>>>> 810cdf187d4fa89a1a19330b36c0e5eeadc45c76
 
     @yield('content')
 
@@ -77,7 +80,6 @@
         integrity="sha384-pzjw8f+ua7Kw1TIqMWBXxIpKfn2AOQZZs25KPSjGRw5HEzF6NLGh2P6WnKEKTn2w" crossorigin="anonymous">
     </script>
 
-@include('components.botbar')
 
 >>>>>>> 29453c39d1f09bbf668206a02609a312af3ccbe5
 </body>

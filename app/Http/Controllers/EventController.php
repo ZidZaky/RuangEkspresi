@@ -26,6 +26,8 @@ class EventController extends Controller
 
     function store(Request $request)
     {
+        
+
         $event = new Event;
         $event->nama_event = $request->nama_event;
         $event->tanggal_mulai = $request->tanggal_mulai;

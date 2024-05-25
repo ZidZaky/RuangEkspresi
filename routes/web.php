@@ -32,8 +32,29 @@ Route::get('/dashboard', function () {
     return view('dashboard',['karyas' => $karya]);
 });
 
+<<<<<<< HEAD
 Route::get('/register', [AccountController::class,'AccountRegister'])->name('showRegister');
 Route::get('/login', [AccountController::class,'Accountlogin'])->name('showLogin');
+=======
+//event
+
+Route::get('/update-event', function () {
+    return view('update-event');
+});
+
+//komunitas
+
+Route::get('/createKomunitas', function () {
+    return view('createKomunitas');
+});
+Route::get('/editKomunitas', function () {
+    return view('editKomunitas');
+});
+
+
+Route::get('/register', [AccountController::class,'AccountRegister']);
+Route::get('/login', [AccountController::class,'Accountlogin']);
+>>>>>>> 810cdf187d4fa89a1a19330b36c0e5eeadc45c76
 Route::post('/login', [AccountController::class,'login']);
 Route::get('/logout', [AccountController::class, 'logout']);
 

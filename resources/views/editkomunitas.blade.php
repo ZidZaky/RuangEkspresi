@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Update Data Event
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Edit Data komunitas
 </button>
 
 <!-- Modal -->
@@ -25,7 +25,7 @@
 
       <div class="modal-body">
          <div class="mb-3">
-           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Event</h1>
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data komunitas</h1>
          </div>
 
          <div class="mb-3">
@@ -38,17 +38,6 @@
                 <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
          </div>
 
-          <div class="col-md-6">
-              <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Mulai</label>
-                  <input type="date" class="form-control" id="tanggal_mulai"
-                name="tanggal_mulai" required>
-               </div>
-              <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Selesai</label>
-                 <input type="date" class="form-control" id="tanggal_selesai"
-                name="tanggal_selesai" required>
-              </div>
       </div>
 
       <div class="modal-footer">
@@ -61,12 +50,12 @@
 </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
 
  
-
-  
