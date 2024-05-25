@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 class AccountController extends Controller
 {
     //Pages
+
+    public function index(){
+        return view('listUser');
+    }
+
     public function AccountRegister()
     {
         return view('pages.register');

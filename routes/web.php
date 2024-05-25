@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',function () {
-    return view('pages.index');
+    return view('landingPage');
 });
 
 Route::get('/dashboard', function () {
@@ -45,5 +45,8 @@ Route::resource('/komentar', EventController::class);
 
 Route::get('/listUser', function() {
     return view('listUser');
+});
+Route::get('/aaa', function() {
+    return view('test');
 });
 
