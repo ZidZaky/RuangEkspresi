@@ -13,7 +13,7 @@ class AccountController extends Controller
     //Pages
     public function AccountRegister()
     {
-        return view('register');
+        return view('pages.register');
     }
 
     //save
@@ -52,7 +52,7 @@ class AccountController extends Controller
     }
 
     public function Accountlogin(){
-        return view('login');
+        return view('pages.login');
     }
 
     public function login(Request $request)

@@ -46,3 +46,4 @@ Route::resource('/komentar', EventController::class);
 Route::get('/listUser', function() {
     return view('listUser');
 });
+

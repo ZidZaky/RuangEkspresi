@@ -9,14 +9,38 @@
 
     <style>
         body {
-
             .navbar {
-                .container-fluid {
-                    padding: 12px 50px;
+                background-color: var(--white);
 
-                    .navbar-brand {
-                        img {
-                            height: 36px;
+                .container-fluid {
+                    padding: 8px 50px;
+
+                    .d-flex {
+                        gap: 160px;
+                        .navbar-brand {
+
+                            img {
+                                height: 36px;
+                            }
+                        }
+
+                        form{
+                            input{
+                                background-color: #f2f2f2;
+                            }
+                        }
+                    }
+
+
+                    .button-group {
+
+                        .login {
+                            border: 1px solid var(--accent);
+                            color: var(--accent);
+                        }
+
+                        .register {
+                            background-color: var(--accent);
                         }
                     }
                 }
@@ -26,12 +50,17 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid justify-between">
-            <a class="navbar-brand" href="/">
-                <img src="/assets/images/logo.png" alt="">
-            </a>
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/logo.png" alt="">
+                </a>
 
+                <form action="">
+                    <input type="text" name="" id="" class="form-control" placeholder="Search" >
+                </form>
+            </div>
 
             <!-- ketika user udah login -->
             @auth
@@ -49,9 +78,9 @@
 
             <!-- ketika user belum login -->
             @guest
-            <div class="button-group">
-                <a href="{{ route('showLogin') }}">Sign In</a>
-                <a href="{{ route('showRegister') }}">Sign Up</a>
+            <div class="button-group d-flex gap-2">
+                <a class="login btn" href="{{ route('showLogin') }}">Sign In</a>
+                <a class="register btn text-light" href="{{ route('showRegister') }}">Sign Up</a>
             </div>
             @endguest
         </div>

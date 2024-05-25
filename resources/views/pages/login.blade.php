@@ -72,7 +72,7 @@ Login
 </head>
 
 <body>
-    <form action="" method="post" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
+    <form action="/register" method="post" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
         @csrf
         <h1 class="text-center">Sign In</h1>
         <div class="field-set mt-4">
