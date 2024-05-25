@@ -37,9 +37,10 @@ class EventController extends Controller
         return redirect('/event');
     }
 
-    function show()
+    function show($id)
     {
-
+        $event = Event::find($id);
+        return view('');
     }
 
     function edit()
