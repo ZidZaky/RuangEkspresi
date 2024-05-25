@@ -33,8 +33,8 @@
             </a>
 
             <div class="button-group">
-                <a href="{{ route('showLogin') }}">Sign In</a>
-                <a href="{{ route('showRegister') }}">Sign Up</a>
+                <a href="/login">Sign In</a>
+                <a href="/register">Sign Up</a>
             </div>
 
             <!-- <div class="profile dropdown">
@@ -49,7 +49,7 @@
             </div> -->
         </div>
     </nav>
-    
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

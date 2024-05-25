@@ -12,7 +12,6 @@ class Komunitas extends Model
         'nama_komunitas',
         'deskripsi',
         'id_pengguna',
-        'id_permohonan',
     ];
 
     // Relasi dengan model Pengguna (User)
@@ -22,8 +21,5 @@ class Komunitas extends Model
     }
 
     // Relasi dengan model PermohonanKomunitas
-    public function permohonan()
-    {
-        return $this->belongsTo(Permohonan::class, 'id_permohonan', 'id_permohonan');
-    }
+
 }
