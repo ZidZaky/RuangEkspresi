@@ -32,6 +32,22 @@ Route::get('/dashboard', function () {
     return view('dashboard',['karyas' => $karya]);
 });
 
+//event
+
+Route::get('/update-event', function () {
+    return view('update-event');
+});
+
+//komunitas
+
+Route::get('/createKomunitas', function () {
+    return view('createKomunitas');
+});
+Route::get('/editKomunitas', function () {
+    return view('editKomunitas');
+});
+
+
 Route::get('/register', [AccountController::class,'AccountRegister']);
 Route::get('/login', [AccountController::class,'Accountlogin']);
 Route::post('/login', [AccountController::class,'login']);

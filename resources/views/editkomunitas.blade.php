@@ -4,7 +4,7 @@
 
    <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Update Data Event
+ Add New komunitas
 </button>
 
 <!-- Modal -->
@@ -19,7 +19,7 @@
 
       <div class="modal-body">
          <div class="mb-3">
-           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Event</h1>
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Add New komunitas</h1>
          </div>
 
          <div class="mb-3">
@@ -32,17 +32,6 @@
                 <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
          </div>
 
-          <div class="col-md-6">
-              <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Mulai</label>
-                  <input type="date" class="form-control" id="tanggal_mulai"
-                name="tanggal_mulai" required>
-               </div>
-              <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Selesai</label>
-                 <input type="date" class="form-control" id="tanggal_selesai"
-                name="tanggal_selesai" required>
-              </div>
       </div>
 
       <div class="modal-footer">

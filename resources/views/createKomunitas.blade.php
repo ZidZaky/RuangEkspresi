@@ -1,40 +1,46 @@
 @extends('layouts.layout')
 
-@section('title', 'Edit Karya')
-
 @section('content')
-    <h1>Edit Karya</h1>
-    <form method="POST" action="{{ route('karya.update', $karya->id) }}">
-        @csrf
-        @method('PUT')
 
-        <div class="form-group">
-            <label for="judulKarya">Judul Karya</label>
-            <input type="text" name="judulKarya" id="judulKarya" value="{{ old('judulKarya', $karya->judulKarya) }}" class="form-control">
-            @error('judulKarya')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Add New komunitas
+</button>
 
-        <div class="form-group">
-            <label for="tema">Tema</label>
-            <input type="text" name="tema" id="tema" value="{{ old('tema', $karya->tema) }}" class="form-control">
-            @error('tema')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+<!-- Modal -->
 
-        <div class="form-group">
-            <label for="deskripsi">Deskripsi</label>
-            <input type="text" name="deskripsi" id="deskripsi" value="{{ old('deskripsi', $karya->deskripsi) }}" class="form-control">
-            @error('deskripsi')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <img class="vector" src="../assets/images/Ellipse 25.png">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-        <button type="submit" class="btn btn-primary">Update Data</button>
-    </form>
+      <div class="modal-body">
+         <div class="mb-3">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Add New komunitas</h1>
+         </div>
+
+         <div class="mb-3">
+             <label for="destinasi_awal" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama"
+                name="nama"required>
+         </div>
+         <div class="mb-3">
+            <label for="destinasi_awal" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
+         </div>
+
+      </div>
+
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tambah</button>
+            <button type="submit" class="btn btn-primary">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 @endsection
