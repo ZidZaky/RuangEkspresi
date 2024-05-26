@@ -84,19 +84,19 @@
           <div class="modal-body">
             <form action="/event" method="POST" enctype="multipart/form-data">
                 @csrf
-                    <input type="number" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden>
-                  <!-- input nama -->
-                  <label for="nama_event">Nama</label>
-                  <input class="form-control" type="text" id="nama_event" name="nama_event" placeholder="Tambahkan nama eventmu" required>
-                  <!-- input deskripsi -->
-                  <label for="deskripsi_event">Deskripsi</label>
-                  <textarea class="form-control" id="deskripsi_event" name="deskripsi_event" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
-                  <!-- input start tanggal -->
-                  <label for="tanggal_mulai">Tanggal mulai</label>
-                  <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
-                  <!-- input end tanggal -->
-                  <label for="tanggal_selesai">Tanggal Selesai</label>
-                  <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
+                    {{-- <input type="number" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden> --}}
+                    <!-- input nama -->
+                    <label for="nama_event">Nama</label>
+                    <input class="form-control" type="text" id="nama_event" name="nama_event" placeholder="Tambahkan nama eventmu" required>
+                    <!-- input deskripsi -->
+                    <label for="deskripsi_event">Deskripsi</label>
+                    <textarea class="form-control" id="deskripsi_event" name="deskripsi_event" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
+                    <!-- input start tanggal -->
+                    <label for="tanggal_mulai">Tanggal mulai</label>
+                    <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
+                    <!-- input end tanggal -->
+                    <label for="tanggal_selesai">Tanggal Selesai</label>
+                    <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn-add" data-dismiss="modal">Tambah</button>
