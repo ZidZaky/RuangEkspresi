@@ -76,11 +76,10 @@
     <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <img class="vector" src="../assets/images/Ellipse 25.png">
               <!-- Nama User -->
-              <h2>Zidan Platinum</h2>
+              <h2>Create Event</h2>
               <!-- Tombol Close -->
-              <span class="close-button" data-bs-dismiss="modal" aria-label="Close">&times;</span>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
               <!-- input nama -->
