@@ -4,39 +4,64 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengguna;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PenggunaController extends Controller
 {
     public function index()
     {
-        // Mengambil semua data pengguna
         $penggunas = Pengguna::all();
-
-        // Menampilkan data pengguna di view
         return view('listUser', compact('penggunas'));
+
     }
 
-    public function updateStatus(Request $request, $id)
+    public function create()
     {
-        // Validasi input
-        $request->validate([
-            'status' => 'required|in:aktif,non-aktif',
+        // Method not needed
+    }
+
+    public function store(Request $request)
+    {
+        // Method not needed
+    }
+
+    public function show($id)
+    {
+        $pengguna = Pengguna::findOrFail($id);
+        return view('listUser', ['pengguna' => $pengguna]);
+    }
+
+    public function edit($id)
+    {
+        $pengguna = Pengguna::findOrFail($id);
+        return view('editAccount', ['pengguna' => $pengguna]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
         ]);
 
-        try {
-            // Mencari pengguna berdasarkan id
-            $pengguna = Pengguna::findOrFail($id);
+        $pengguna = Pengguna::findOrFail($id);
+        $pengguna->username = $validatedData['username'];
+        $pengguna->email = $validatedData['email'];
+        $pengguna->role = $validatedData['role'];
+        $pengguna->status = $validatedData['status'];
 
-            // Update status pengguna
-            $pengguna->status = $request->status;
-            $pengguna->save();
+        $berhasil = $pengguna->save();
 
-            return redirect()->back()->with('success', 'Status akun berhasil diperbarui');
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'Pengguna tidak ditemukan');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui status akun');
+        if ($berhasil) {
+            return redirect('penggunas')->with('success', 'Pengguna updated successfully!');
+        } else {
+            return redirect('penggunas')->with('error', 'Update pengguna failed!');
         }
+    }
+
+    public function destroy($id)
+    {
+        // Method not needed
     }
 }

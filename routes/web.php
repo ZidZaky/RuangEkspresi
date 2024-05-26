@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KaryaController;
@@ -60,6 +60,11 @@ Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+
+
+
+Route::resource('penggunas', PenggunaController::class)->except(['create', 'store', 'destroy']);
+
 
 Route::get('/listUser', function() {
     return view('listUser');
