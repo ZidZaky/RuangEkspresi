@@ -76,26 +76,26 @@ Register
         <h1 class="text-center">Sign Up</h1>
         <div class="field-set mt-4">
             <div class="field">
-                <input type="text" name="" id="" class="form-control" placeholder="Username" required>
+                <input type="text" name="username" id="" class="form-control" placeholder="Username" required>
                 <div class="invalid-feedback">
                     Please enter your username!
                 </div>
             </div>
             <div class="field">
-                <input type="email" name="" id="" class="form-control mt-3" placeholder="Email" required>
+                <input type="email" name="email" id="" class="form-control mt-3" placeholder="Email" required>
                 <div class="invalid-feedback">
                     Please enter your email!
                 </div>
             </div>
             <div class="field">
-                <input type="password" name="" id="" class="form-control mt-3" placeholder="Password" required>
+                <input type="password" name="password" id="" class="form-control mt-3" placeholder="Password" required>
                 <div class="invalid-feedback">
                     Please enter your password!
                 </div>
             </div>
         </div>
         <button class="btn mt-3" type="submit">Sign Up</button>
-        <p class="text-secondary mt-5 text-center">Have an account? <a href="{{ route('showLogin') }}" class="text-decoration-none">Sign In Here!</a></p>
+        <p class="text-secondary mt-5 text-center">Have an account? <a href="/login" class="text-decoration-none">Sign In Here!</a></p>
 
     </form>
 

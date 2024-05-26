@@ -24,12 +24,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',function () {
-    return view('pages.index');
+    $karya = Karya::all();
+    return view('pages.index',['karyas' => $karya]);
+
 });
 
 Route::get('/dashboard', function () {
     $karya = Karya::all();
-    return view('dashboard',['karyas' => $karya]);
+    return view('pages.dashboard',['karyas' => $karya]);
 });
 
 //event

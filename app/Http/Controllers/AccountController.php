@@ -42,7 +42,7 @@ class AccountController extends Controller
         $account->password = $valdata['password'];
         $account->email = $valdata['email'];
         // dd($account);
-        $berhasil = DB::insert('INSERT INTO `penggunas` (`id`, `username`, `password`, `email`, `role`, `created_at`, `updated_at`) VALUES (NULL, ?, ?, ?, "User", ?,?);', [
+        $berhasil = DB::insert('INSERT INTO `penggunas` (`id`, `username`, `password`, `email`, `role`,`status`, `created_at`, `updated_at`) VALUES (NULL, ?, ?, ?, "User","Active", ?,?);', [
             $account->username,
             $account->password,
             $account->email,

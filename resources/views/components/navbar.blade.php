@@ -64,26 +64,26 @@
             </div>
 
             <!-- ketika user udah login -->
-            @auth
+            @if (session('account'))
             <div class="profile dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/assets/images/profile.png" alt="">
-                    Cahyo Gurih
+                    <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+                    {{session('account')['username']}}
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">My Account</a></li>
-                    <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                 </ul>
             </div>
-            @endauth
+            @else
 
             <!-- ketika user belum login -->
-            @guest
+
             <div class="button-group d-flex gap-2">
                 <a class="login btn" href="/login">Sign In</a>
                 <a class="register btn text-light" href="/register">Sign Up</a>
             </div>
-            @endguest
+            @endif
         </div>
     </nav>
 
