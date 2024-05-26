@@ -53,12 +53,13 @@
                  <input type="date" class="form-control" id="tanggal_selesai"
                 name="tanggal_selesai" value="{{ $eventList->tanggal_selesai }}">
               </div>
-      </div>
+          </div>
 
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Update</button>
             <button type="submit" class="btn btn-primary">Cancel</button>
       </div>
+    </form>
 
     </div>
   </div>
