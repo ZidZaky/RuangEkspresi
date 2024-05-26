@@ -24,12 +24,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',function () {
-    return view('landingPage');
+    $karya = Karya::all();
+    return view('pages.index',['karyas' => $karya]);
+
 });
 
 Route::get('/dashboard', function () {
     $karya = Karya::all();
-    return view('dashboard',['karyas' => $karya]);
+    return view('pages.dashboard',['karyas' => $karya]);
 });
 
 //event
@@ -58,4 +60,11 @@ Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+
+Route::get('/listUser', function() {
+    return view('listUser');
+});
+Route::get('/aaa', function() {
+    return view('test');
+});
 

@@ -26,49 +26,58 @@ class KaryaController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'idPengguna' => 'required',
-            'judulKarya' => 'required',
-            'tema' => 'required',
-            'deskripsi' => 'required'
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'jenisKarya' => 'required',
+            'karya' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validation for the image
         ]);
+
+        // Handle file upload
+        if ($request->hasFile('karya')) {
+            $file = $request->file('karya');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('images', $filename, 'public');
+        }
 
         // Assuming you have a Karya model
         $karya = new Karya();
         $karya->pengguna_id = $validatedData['idPengguna'];
-        $karya->judulKarya = $validatedData['judulKarya'];
-        $karya->tema = $validatedData['tema'];
+        $karya->judulKarya = $validatedData['judul'];
         $karya->deskripsi = $validatedData['deskripsi'];
+        $karya->jenisKarya = $validatedData['jenisKarya'];
+        $karya->namaFile = $filePath ?? null; // Save the file path to the database
 
         // Save the new Karya to the database
-        $berhasil= $karya->save();
+        $berhasil = $karya->save();
 
         // Redirect to a specific route or return a response
-
         if ($berhasil) {
             return redirect('dashboard')->with('success', 'Karya created successfully!');
         } else {
-            return redirect('karya/create')->with('error', 'buat karya gagal');
+            return redirect('dashboard')->with('error', 'Buat karya gagal');
         }
     }
 
 
+
     // Display the specified resource
     public function show($id)
-{
-    $karya = Karya::findOrFail($id);
-    return view('detailKarya', ['karya' => $karya]);
-}
+    {
+        $karya = Karya::findOrFail($id);
+        return view('detailKarya', ['karya' => $karya]);
+    }
 
     // Show the form for editing the specified resource
     public function edit($id)
     {
         $karya = Karya::findOrFail($id);
-        return view('editKarya',['karya'=>$karya]);
+        return view('editKarya', ['karya' => $karya]);
     }
 
     // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
-        $valdata=$request->validate([
+        $valdata = $request->validate([
             'judulKarya' => 'required|string|max:255',
             'tema' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:1000',

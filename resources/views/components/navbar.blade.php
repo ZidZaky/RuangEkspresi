@@ -9,14 +9,39 @@
 
     <style>
         body {
-
             .navbar {
-                .container-fluid {
-                    padding: 12px 50px;
+                background-color: var(--white);
 
-                    .navbar-brand {
-                        img {
-                            height: 36px;
+                .container-fluid {
+                    padding: 8px 50px;
+
+                    .d-flex {
+                        gap: 160px;
+                        .navbar-brand {
+
+                            img {
+                                height: 36px;
+                            }
+                        }
+
+                        form{
+                            input{
+                                background-color: #f2f2f2;
+                                width: 300px;
+                            }
+                        }
+                    }
+
+
+                    .button-group {
+
+                        .login {
+                            border: 1px solid var(--accent);
+                            color: var(--accent);
+                        }
+
+                        .register {
+                            background-color: var(--accent);
                         }
                     }
                 }
@@ -26,27 +51,39 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid justify-between">
-            <a class="navbar-brand" href="/">
-                <img src="/assets/images/logo.png" alt="">
-            </a>
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/logo.png" alt="">
+                </a>
 
-            <div class="button-group">
-                <a href="/login">Sign In</a>
-                <a href="/register">Sign Up</a>
+                <form action="">
+                    <input type="text" name="" id="" class="form-control" placeholder="Search" >
+                </form>
             </div>
 
-            <!-- <div class="profile dropdown">
+            <!-- ketika user udah login -->
+            @if (session('account'))
+            <div class="profile dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/assets/images/profile.png" alt="">
-                Cahyo Gurih
+                    <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+                    {{session('account')['username']}}
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">My Account</a></li>
-                    <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                 </ul>
-            </div> -->
+            </div>
+            @else
+
+            <!-- ketika user belum login -->
+
+            <div class="button-group d-flex gap-2">
+                <a class="login btn" href="/login">Sign In</a>
+                <a class="register btn text-light" href="/register">Sign Up</a>
+            </div>
+            @endif
         </div>
     </nav>
 
