@@ -71,7 +71,7 @@ Register
 </head>
 
 <body>
-    <form action="" method="post" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
+    <form action="/account" method="POST" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
         @csrf
         <h1 class="text-center">Sign Up</h1>
         <div class="field-set mt-4">
@@ -94,7 +94,7 @@ Register
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary mt-3" type="submit">Sign Up</button>
+        <button class="btn mt-3" type="submit">Sign Up</button>
         <p class="text-secondary mt-5 text-center">Have an account? <a href="{{ route('showLogin') }}" class="text-decoration-none">Sign In Here!</a></p>
 
     </form>

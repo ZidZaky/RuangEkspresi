@@ -27,6 +27,7 @@
                         form{
                             input{
                                 background-color: #f2f2f2;
+                                width: 300px;
                             }
                         }
                     }
@@ -57,15 +58,9 @@
                     <img src="/assets/images/logo.png" alt="">
                 </a>
 
-<<<<<<< HEAD
                 <form action="">
                     <input type="text" name="" id="" class="form-control" placeholder="Search" >
                 </form>
-=======
-            <div class="button-group">
-                <a href="/login">Sign In</a>
-                <a href="/register">Sign Up</a>
->>>>>>> 29453c39d1f09bbf668206a02609a312af3ccbe5
             </div>
 
             <!-- ketika user udah login -->
@@ -85,8 +80,8 @@
             <!-- ketika user belum login -->
             @guest
             <div class="button-group d-flex gap-2">
-                <a class="login btn" href="{{ route('showLogin') }}">Sign In</a>
-                <a class="register btn text-light" href="{{ route('showRegister') }}">Sign Up</a>
+                <a class="login btn" href="/login">Sign In</a>
+                <a class="register btn text-light" href="/register">Sign Up</a>
             </div>
             @endguest
         </div>

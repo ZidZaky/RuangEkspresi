@@ -77,9 +77,9 @@ Login
         <h1 class="text-center">Sign In</h1>
         <div class="field-set mt-4">
             <div class="field">
-                <input type="text" name="" id="" class="form-control" placeholder="Email or Username" required>
+                <input type="text" name="" id="" class="form-control" placeholder="Username" required>
                 <div class="invalid-feedback">
-                    Please enter your email or username!
+                    Please enter your username!
                 </div>
             </div>
             <div class="field">
@@ -89,7 +89,7 @@ Login
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary mt-3" type="submit">Sign In</button>
+        <button class="btn mt-3" type="submit">Sign In</button>
         <p class="text-secondary mt-5 text-center">Don't have an account? <a href="{{ route('showRegister') }}" class="text-decoration-none">Sign Up Here!</a></p>
 
     </form>

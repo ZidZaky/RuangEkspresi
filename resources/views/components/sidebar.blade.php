@@ -12,11 +12,19 @@
 
             .preview {
                 width: auto;
-                height: 100px;
+                height: fit-content;
                 background-color: var(--white);
-                margin-bottom: 12px;
-                border-radius: var(--br-md);
+                border-radius: var(--br-sm);
                 padding: 16px;
+
+                .preview-body{
+                    background-color: #f2f2f2;
+                    
+                    img{
+                        width: 52px;
+                        height: 52px;
+                    }
+                }
 
             }
 
@@ -24,8 +32,11 @@
                 width: auto;
                 height: fit-content;
                 background-color: var(--white);
-                border-radius: var(--br-md);
                 padding: 16px;
+
+                .text-white{
+                    background-color: var(--accent);
+                }
 
                 a {
                     display: flex;
@@ -45,14 +56,17 @@
 </head>
 
 <body>
-    <div class="preview">
-        <p>Bingung guys</p>
+    <div class="preview mb-3">
+        <div class="preview-body p-4 rounded items-center d-flex flex-column align-items-center text-center">
+            <img src="/assets/images/profile.png" alt="" class="mb-2">
+                <h5 class="m-0">Kevin Aluminium</h5>
+                <small class="text-secondary">@Kevin_Aluminium</small>
+        </div>
     </div>
-    <div class="menu d-flex flex-column ">
-        <a href="" class="text-secondary"><i class="fi fi-rr-home"></i>Home</a>
-        <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#karya"><i class="fi fi-rr-paint-brush"></i>Karya</a>
+    <div class="menu d-flex flex-column rounded">
+        <a href="" class="text-white active"><i class="fi fi-rr-home"></i>Home</a>
         <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a>
-        <a href="" class="text-secondary"><i class="fi fi-rr-users"></i>Community</a>
+        <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#community"><i class="fi fi-rr-users"></i>Community</a>
     </div>
 </body>
 
