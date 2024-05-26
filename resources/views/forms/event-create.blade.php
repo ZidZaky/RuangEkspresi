@@ -98,7 +98,6 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn-add" data-dismiss="modal">Tambah</button>
-              <button type="submit" class="btn-cancel">Cancel</button>
           </div>
       </div>
     </div>
