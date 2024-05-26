@@ -1,56 +1,116 @@
-<style>
-    .modal-backdrop {
-        opacity: 0.1 !important;
-    }
+@extends('layouts.layout')
 
-    .modal {
-        .modal-dialog {
-            .modal-content {
-                .header-modal {
-                    img {
-                        height: 52px;
-                    }
-                }
-
-                .modal-body {
-                    form {
-
-                        textarea,
-                        input {
-                            background-color: #f2f2f2;
-                        }
-
-                        button {
-                            background-color: var(--accent);
-                            width: 100%;
-                        }
-                    }
-                }
-            }
+@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Data Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
         }
-    }
-</style>
-
-<!-- Modal Event -->
-<div class="modal fade" id="event" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Event</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- form -->
-                <form action="" method="post" class="d-flex flex-column gap-3">
-                    <input type="text" name="" id="" placeholder="Event name" class="form-control">
-                    <textarea name="" id="" placeholder="Description" rows="4" class="form-control"></textarea>
-                    <div class="container d-flex gap-3 justify-content-between p-0 mb-2">
-                        <input type="date" name="" id="" class="form-control">
-                        <input type="date" name="" id="" class="form-control">
-                    </div>
-                    <button type="submit" class="btn p-2 d-block text-white">Send</button>
-                </form>
-            </div>
+        .modal-content {
+            width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .modal-header img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .modal-header h2 {
+            font-size: 24px;
+            margin: 0 10px;
+            flex-grow: 1;
+        }
+        .close-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .modal-body label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .modal-body input, .modal-body textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal-body textarea {
+            resize: none;
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .modal-footer button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-add {
+            background-color: #8ba4ff;
+            color: white;
+        }
+        .btn-cancel {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img class="vector" src="../assets/images/Ellipse 25.png">
+            <!-- Nama User -->
+            <h2>Zidan Platinum</h2>
+            <!-- Tombol Close -->
+            <span class="close-button" data-bs-dismiss="modal" aria-label="Close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <!-- input nama -->
+            <label for="event-name">Nama</label>
+            <input class="form-control" type="text" id="event-name" placeholder="Tambahkan nama eventmu" required>
+            <!-- input deskripsi -->
+            <label for="event-description">Deskripsi</label>
+            <textarea class="form-control" id="event-description" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
+            <!-- input start tanggal -->
+            <label for="start-date">Tanggal mulai</label>
+            <input type="date" class="form-control" id="start-date" required>
+            <!-- input end tanggal -->
+            <label for="end-date">Tanggal Selesai</label>
+            <input type="date" class="form-control" id="end-date" required>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-add" data-dismiss="modal">Tambah</button>
+            <button type="submit" class="btn-cancel">Cancel</button>
         </div>
     </div>
-</div>
+</body>
+</html>
+
+@endsection
