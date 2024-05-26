@@ -99,7 +99,7 @@
                     <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn-add" data-dismiss="modal">Tambah</button>
+              <button type="submit" class="btn-add" data-dismiss="modal">Tambah</button>
           </div>
             </form>
       </div>
