@@ -1,395 +1,159 @@
 @extends('layouts.layout')
 
-@section('title')
-    Login
+@section('sidebar')
+    @include('components.sidebar')
 @endsection
 
-
 @section('content')
+    @include('forms.karya-create')
+    @include('forms.community-create')
+    @include('forms.event-create')
     <style>
-        body {
-            background-color: #F2F2F2;
+        .post {
+            background-color: #fff;
+            width: auto;
+
+            .input {
+
+                img {
+                    height: 52px;
+                }
+
+                button {
+                    background-color: #f2f2f2;
+                    display: flex;
+                    align-items: center;
+                    flex: 1;
+                }
+            }
+
+            hr {
+                border: var(--line);
+            }
+
+
+            .list-menu {
+
+                button {
+                    i {
+                        display: flex;
+                    }
+                }
+            }
         }
 
-        .container {
-            display: flex;
-            justify-content: space-around;
-            padding-left: 50px;
-            margin: 40px;
-            gap: 50px;
+        .list-post {
+            .profile {
+                img {
+                    height: 44px;
+                }
+            }
+
+            hr {
+                border: var(--line);
+            }
+
+            .post-body {
+
+                img {
+                    width: 100%;
+                    max-height: 500px;
+                }
+
+            }
+
+            .post-footer {
+                i {
+                    height: fit-content;
+
+                }
+            }
         }
-
-        .card {
-            width: 18rem;
-
-        }
-
-        #profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        #card-img-top-only {
-            padding-bottom: 10px;
-            border-radius: 50%;
-            max-width: 100px;
-            max-height: 100px;
-            width: 100px;
-            height: 100px;
-        }
-
-        #for-dropdown {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 250px;
-            padding: 20px
-        }
-
-        .dropdown-center {
-            width: inherit;
-        }
-
-        #dropdown-buttons {
-            width: 250px;
-            height: 50px;
-            padding: 10px;
-            background-color: white;
-            border: none;
-            color: black;
-        }
-
-        #buat-karya {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #card-img-top-search {
-            padding-bottom: 10px;
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-        }
-
-        #inp-karya {
-            border: none;
-            background-color: #F2F2F2;
-            height: 50px;
-            padding: 10px;
-            border-radius: 10px;
-            flex: 1;
-            /* This makes the input take up the remaining space */
-        }
-
-        #lists {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        #horizontal-list {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #horizontal-list li {
-            margin-right: 20px;
-            /* Adjust the spacing between list items */
-        }
-
-        #public-link {
-            margin-left: auto;
-            text-decoration: none;
-            color: #000;
-            background-color: white;
-            border: none;
-            /* Adjust the color as needed */
-        }
-
-        .tengah .card {
-            margin-bottom: 20px;
-        }
-
-        #profile-owner-karya {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #namaprofile {
-            font-weight: bold;
-            padding: 0;
-            margin: 0;
-        }
-
-        #file-karya {
-            max-width: 960px;
-            max-height: 450px;
-            border: black 1px solid;
-            border-radius: 10px;
-        }
-
-        #lists-for-karya {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        #profile-chat {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #events-lists {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
     </style>
-    <div class="container">
-        <div class="kiri">
-            <div class="card" id="profile" style="align-content: center">
-                <div class="wrapper" style="background-color: #F2F2F2; margin:15px; width: 16rem;">
-                    <div class="card-body">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-only" class="card-img-top" alt="...">
-                        <h5 class="card-title" style="padding: 0;margin:0">Profile Name</h5>
-                        <p class="card-text">Profile Username</p>
-                    </div>
+
+    <!-- ini add post -->
+    <div class="post rounded mb-3 p-3">
+        <div class="input d-flex gap-3 align-item-center">
+            <img src="/assets/images/profile.png" alt="">
+            <button type="button" class="btn text-secondary align-items-center d-flex justify-content-between"
+                data-bs-toggle="modal" data-bs-target="#karya">What's new? <i class="fi fi-rr-grin-alt d-flex "></i></button>
+        </div>
+        <hr>
+        <div class="list-menu d-flex gap-4">
+            <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
+                data-bs-target="#event"><i class="fi fi-rr-picture d-flex "></i>Image</button>
+            <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
+                data-bs-target="#event"><i class="fi fi-rr-video-camera-alt d-flex"></i>Video</button>
+            <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
+                data-bs-target="#event"><i class="fi fi-rr-link"></i>Link</button>
+        </div>
+    </div>
+
+
+    <!-- post ini yang di loop -->
+    @foreach ($karyas as $karya)
+    @php
+        $user = App\Models\Account::where('id', $karya->pengguna_id)->first();
+    @endphp
+        <div class="list-post bg-white rounded p-3 mb-3">
+            <div class="profile d-flex gap-3 mb-3">
+                <img src="/assets/images/profile.png" alt="">
+                <div class="text m-0 p-0 ">
+                    <h6 class="p-0 m-0">{{$user->username}}</h6>
+                    <small class="text-secondary m-0 p-0">{{$karya->created_at}}</small>
                 </div>
             </div>
-            <div class="card" id="for-dropdown">
-                <button class="btn btn-secondary" type="button" id="dropdown-buttons"
-                    style="background-color: #708FFF; color:white">
-                    Home
-                </button>
-                <div class="dropdown-center">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" id="dropdown-buttons">
-                        Karya
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Action two</a></li>
-                        <li><a class="dropdown-item" href="#">Action three</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown-center">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" id="dropdown-buttons">
-                        Event
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Action two</a></li>
-                        <li><a class="dropdown-item" href="#">Action three</a></li>
-                    </ul>
-                </div>
-                <button class="btn btn-secondary" type="button" id="dropdown-buttons">
-                    Community
-                </button>
+            <div class="post-body">
+                <p>{{$karya->judulKarya}}</p>
+                <img src="storage/{{$karya->namaFile}}" alt="">
+                <p>{{$karya->deskripsi}}</p>
+                <p>{{$karya->jenisKarya}}</p>
+            </div>
+            <hr>
+            <div class="post-footer d-flex p-0 m-0 align-items-center">
+                <i class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary">1.355 Comment</i>
             </div>
         </div>
-        <div class="tengah">
-            <div class="card" style="width: 1000px">
-                <div class="card-body">
-                    <div id="buat-karya">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <input type="text" name="buatkarya" id="inp-karya" placeholder="Apa karyamu hari ini ?">
-                    </div>
-                    <hr>
-                    <div id="lists">
-                        <ul id="horizontal-list">
-                            <li>Image</li>
-                            <li>Image/Video</li>
-                            <li>Image/Video</li>
-                        </ul>
-                        <div class="dropdown">
-                            <button id="public-link" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Public
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Public</a></li>
-                                <li><a class="dropdown-item" href="#">Private</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    @endforeach
+@endsection
 
-                </div>
-            </div>
-            <div class="card" id="karya" style="width: 1000px">
-                <div class="card-body">
-                    <div id="profile-owner-karya">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                            <p>22 august at 05:40 pm</p>
-                        </div>
-                    </div>
-                    <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg" id="file-karya"
-                        class="card-img-top" alt="...">
-                    <hr>
-                    <div id="lists-for-karya">
-                        <ul id="horizontal-list">
-                            <li>Likes</li>
-                            <li>Comments</li>
-                        </ul>
-                        <div class="dropdown" style="display: none">
-                            <button id="public-link" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Public
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Public</a></li>
-                                <li><a class="dropdown-item" href="#">Private</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="karya" style="width: 1000px">
-                <div class="card-body">
-                    <div id="profile-owner-karya">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                            <p>22 august at 05:40 pm</p>
-                        </div>
-                    </div>
-                    <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg" id="file-karya"
-                        class="card-img-top" alt="...">
-                    <hr>
-                    <div id="lists-for-karya">
-                        <ul id="horizontal-list">
-                            <li>Likes</li>
-                            <li>Comments</li>
-                        </ul>
-                        <div class="dropdown" style="display: none">
-                            <button id="public-link" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Public
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Public</a></li>
-                                <li><a class="dropdown-item" href="#">Private</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="karya" style="width: 1000px">
-                <div class="card-body">
-                    <div id="profile-owner-karya">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                            <p>22 august at 05:40 pm</p>
-                        </div>
-                    </div>
-                    <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg" id="file-karya"
-                        class="card-img-top" alt="...">
-                    <hr>
-                    <div id="lists-for-karya">
-                        <ul id="horizontal-list">
-                            <li>Likes</li>
-                            <li>Comments</li>
-                        </ul>
-                        <div class="dropdown" style="display: none">
-                            <button id="public-link" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Public
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Public</a></li>
-                                <li><a class="dropdown-item" href="#">Private</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@section('aside')
+    <style>
+        .ranking {
+            hr {
+                border: var(--line);
+            }
 
-        </div>
-        <div class="kanan">
-            <div class="card" id="messages" style="margin-bottom: 15px; ">
-                <div class="card-body">
-                    <h5 class="card-title">Messages</h5>
-                    <hr>
-                    <div id="profile-chat">
-                        <img src="https://i.pinimg.com/236x/8b/e5/f5/8be5f5dcfc443bb0314c03208a687ea7.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                            <p>Infokan Link Github</p>
-                        </div>
-                    </div>
-                    <div id="profile-chat">
-                        <img src="https://i.pinimg.com/236x/ed/4a/c1/ed4ac1776bb1b0d46f8e002e59d85995.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Bagas Tambal Ban</p>
-                            <p>Masuk Saudara</p>
-                        </div>
-                    </div>
-                    <div id="profile-chat">
-                        <img src="https://i.pinimg.com/236x/e5/39/dd/e539dd27797a7687757ba7d70e219ab9.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Dimas ukin</p>
-                            <p>gas saudaraku</p>
-                        </div>
-                    </div>
-                    <div id="profile-chat">
-                        <img src="https://i.pinimg.com/236x/28/f6/79/28f6790a12a9fd78e7df1804cb44da9b.jpg"
-                            id="card-img-top-search" class="card-img-top" alt="...">
-                        <div>
-                            <p id="namaprofile" style="">Deo Dribble</p>
-                            <p>Infokan Basketan</p>
-                        </div>
-                    </div>
-                </div>
+            .list-people {
+                img {
+                    height: 40px;
+                }
 
+                .text {
+                    small {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    </style>
+    <div class="ranking bg-white p-3 rounded">
+        <h5>Top Influencers</h5>
+        <hr>
+        <div class="list-people d-flex flex-column gap-2">
+            <div class="people d-flex gap-3 align-items-center">
+                <img src="/assets/images/profile.png" alt="">
+                <p class="fw-medium m-0 align-items-center">Zidan Platinum</p>
             </div>
-            <div class="card" id="events">
-                <div class="card-body">
-                    <h5 class="card-title">Events</h5>
-                    <hr>
-                    <div id="events-lists">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                        </div>
-                    </div>
-                    <div id="events-lists">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                        </div>
-                    </div>
-                    <div id="events-lists">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                        </div>
-                    </div>
-                    <div id="events-lists">
-                        <div>
-                            <p id="namaprofile" style="">Kevin Alumunium</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="people d-flex gap-3 align-items-center">
+                <img src="/assets/images/profile.png" alt="">
+                <p class="fw-medium m-0 align-items-center">Deo Silver</p>
+            </div>
+            <div class="people d-flex gap-3 align-items-center">
+                <img src="/assets/images/profile.png" alt="">
+                <p class="fw-medium m-0 align-items-center">Kevin Aluminium</p>
             </div>
         </div>
-    @endsection
+
+    </div>
+@endsection

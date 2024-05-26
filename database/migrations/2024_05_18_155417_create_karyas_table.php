@@ -12,7 +12,8 @@ class CreateKaryasTable extends Migration
             $table->foreignId('pengguna_id')->constrained('penggunas');
             $table->string('judulKarya');
             $table->text('deskripsi');
-            $table->string('tema');
+            $table->string('jenisKarya');
+            $table->string('namaFile');
             $table->timestamps();
         });
     }

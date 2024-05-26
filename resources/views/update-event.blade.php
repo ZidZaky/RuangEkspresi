@@ -1,40 +1,72 @@
-@extends('layouts.layout')
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Update Data Event
+</button>
 
-@section('title', 'Edit Karya')
+<!-- Modal -->
 
-@section('content')
-    <h1>Edit Karya</h1>
-    <form method="POST" action="{{ route('karya.update', $karya->id) }}">
-        @csrf
-        @method('PUT')
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <img class="vector" src="../assets/images/Ellipse 25.png">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-        <div class="form-group">
-            <label for="judulKarya">Judul Karya</label>
-            <input type="text" name="judulKarya" id="judulKarya" value="{{ old('judulKarya', $karya->judulKarya) }}" class="form-control">
-            @error('judulKarya')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+      <div class="modal-body">
+         <div class="mb-3">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Event</h1>
+         </div>
 
-        <div class="form-group">
-            <label for="tema">Tema</label>
-            <input type="text" name="tema" id="tema" value="{{ old('tema', $karya->tema) }}" class="form-control">
-            @error('tema')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+         <div class="mb-3">
+             <label for="destinasi_awal" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama"
+                name="nama"required>
+         </div>
+         <div class="mb-3">
+            <label for="destinasi_awal" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
+         </div>
 
-        <div class="form-group">
-            <label for="deskripsi">Deskripsi</label>
-            <input type="text" name="deskripsi" id="deskripsi" value="{{ old('deskripsi', $karya->deskripsi) }}" class="form-control">
-            @error('deskripsi')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+          <div class="col-md-6">
+              <div class="mb-3">
+                <label for="hari_berangkat" class="form-label">Tanggal Mulai</label>
+                  <input type="date" class="form-control" id="tanggal_mulai"
+                name="tanggal_mulai" required>
+               </div>
+              <div class="mb-3">
+                <label for="hari_berangkat" class="form-label">Tanggal Selesai</label>
+                 <input type="date" class="form-control" id="tanggal_selesai"
+                name="tanggal_selesai" required>
+              </div>
+      </div>
 
-        <button type="submit" class="btn btn-primary">Update Data</button>
-    </form>
-@endsection
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Update</button>
+            <button type="submit" class="btn btn-primary">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+ 
+
+  

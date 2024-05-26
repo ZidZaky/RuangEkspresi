@@ -26,6 +26,8 @@ class EventController extends Controller
 
     function store(Request $request)
     {
+        
+
         $event = new Event;
         $event->nama_event = $request->nama_event;
         $event->tanggal_mulai = $request->tanggal_mulai;
@@ -37,9 +39,10 @@ class EventController extends Controller
         return redirect('/event');
     }
 
-    function show()
+    function show($id)
     {
-
+        $event = Event::find($id);
+        return view('');
     }
 
     function edit()

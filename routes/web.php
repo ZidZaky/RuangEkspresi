@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KaryaController;
@@ -24,13 +24,31 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',function () {
-    return view('landingPage');
+    $karya = Karya::all();
+    return view('pages.index',['karyas' => $karya]);
+
 });
 
 Route::get('/dashboard', function () {
     $karya = Karya::all();
-    return view('dashboard',['karyas' => $karya]);
+    return view('pages.dashboard',['karyas' => $karya]);
 });
+
+//event
+
+Route::get('/update-event', function () {
+    return view('update-event');
+});
+
+//komunitas
+
+Route::get('/createKomunitas', function () {
+    return view('createKomunitas');
+});
+Route::get('/editKomunitas', function () {
+    return view('editKomunitas');
+});
+
 
 Route::get('/register', [AccountController::class,'AccountRegister']);
 Route::get('/login', [AccountController::class,'Accountlogin']);
@@ -42,4 +60,16 @@ Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+
+
+
+Route::resource('penggunas', PenggunaController::class)->except(['create', 'store', 'destroy']);
+
+
+Route::get('/listUser', function() {
+    return view('listUser');
+});
+Route::get('/aaa', function() {
+    return view('test');
+});
 

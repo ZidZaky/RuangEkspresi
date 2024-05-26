@@ -1,44 +1,57 @@
 @extends('layouts.layout')
 
-@section('title')
-    Create Event
-@endsection
-
 @section('content')
 
-    <h1>Create Event</h1>
-    <form action="/event" method="POST">
-            @csrf
-            <label for="nama_event" class="form-label">Nama Event</label>
-            <br>
-            <input class="form-control form-control-sm" type="string" name="nama_event" id="nama_event" required aria-label=".form-control-sm">
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Update Data Event
+</button>
 
-            <div class="row form-group">
-                <label for="tanggal_mulai" class="">Tanggal Mulai</label>
-                <div class="col-sm-7">
-                    <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control">
-                </div>
-            </div>
+<!-- Modal -->
 
-            <div class="row form-group">
-                <label for="tanggal_selesai" class="">Tanggal Selesai</label>
-                <div class="col-sm-7">
-                    <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control">
-                </div>
-            </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <img class="vector" src="../assets/images/Ellipse 25.png">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-            <label for="deskripsi_event" class="form-label">Description Event</label>
-            <br>
-            <textarea class="form-control" type="text" name="deskripsi_event" id="deskripsi_event" required rows="3"></textarea>
+      <div class="modal-body">
+         <div class="mb-3">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Event</h1>
+         </div>
 
-            <button type="submit">Create</button>
-            <a href="/"> <button>Cancel</button> </a>
-            
-    </form>
+         <div class="mb-3">
+             <label for="destinasi_awal" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama"
+                name="nama"required>
+         </div>
+         <div class="mb-3">
+            <label for="destinasi_awal" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
+         </div>
 
-    <script type="text/javascript">
-        $(function() {
-            $('#datepicker').datepicker();
-        });
-    </script>
+          <div class="col-md-6">
+              <div class="mb-3">
+                <label for="hari_berangkat" class="form-label">Tanggal Mulai</label>
+                  <input type="date" class="form-control" id="tanggal_mulai"
+                name="tanggal_mulai" required>
+               </div>
+              <div class="mb-3">
+                <label for="hari_berangkat" class="form-label">Tanggal Selesai</label>
+                 <input type="date" class="form-control" id="tanggal_selesai"
+                name="tanggal_selesai" required>
+              </div>
+      </div>
+
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Update</button>
+            <button type="submit" class="btn btn-primary">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 @endsection

@@ -98,20 +98,34 @@
         <div class="profile">
             <!-- foto profil -->
             <img src="profile-picture.png" alt="Profile Picture">
-            <div class="name">Kevin Aluminium</div>
+            <div class="name">{{ $pengguna->username }}</div>
             <button class="edit-photo">Ubah Foto</button>
         </div>
-        <div class="input-group">
-            <!-- Input username -->
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Username">
-        </div>
-        <div class="input-group">
-            <!-- Input Password -->
-            <label for="password">Kata Sandi</label>
-            <input type="password" id="password" placeholder="Kata Sandi">
-        </div>
-        <button class="submit-btn">Ubah</button>
+        <form action="{{ route('penggunas.update', $pengguna->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="input-group">
+                <!-- Input username -->
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="{{ $pengguna->username }}" required>
+            </div>
+            <div class="input-group">
+                <!-- Input email -->
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ $pengguna->email }}" required>
+            </div>
+            <div class="input-group">
+                <!-- Input role -->
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" value="{{ $pengguna->role }}" required>
+            </div>
+            <div class="input-group">
+                <!-- Input status -->
+                <label for="status">Status</label>
+                <input type="text" id="status" name="status" value="{{ $pengguna->status }}" required>
+            </div>
+            <button type="submit" class="submit-btn">Ubah</button>
+        </form>
     </div>
 </body>
 </html>
