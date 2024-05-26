@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    @include('components.navbar')
 
     @yield('content')
 
@@ -23,7 +22,6 @@
         integrity="sha384-pzjw8f+ua7Kw1TIqMWBXxIpKfn2AOQZZs25KPSjGRw5HEzF6NLGh2P6WnKEKTn2w" crossorigin="anonymous">
     </script>
 
-@include('components.botbar')
 
 </body>
 
