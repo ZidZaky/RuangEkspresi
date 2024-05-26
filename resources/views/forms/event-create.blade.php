@@ -82,22 +82,25 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <!-- input nama -->
-              <label for="event-name">Nama</label>
-              <input class="form-control" type="text" id="event-name" placeholder="Tambahkan nama eventmu" required>
-              <!-- input deskripsi -->
-              <label for="event-description">Deskripsi</label>
-              <textarea class="form-control" id="event-description" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
-              <!-- input start tanggal -->
-              <label for="start-date">Tanggal mulai</label>
-              <input type="date" class="form-control" id="start-date" required>
-              <!-- input end tanggal -->
-              <label for="end-date">Tanggal Selesai</label>
-              <input type="date" class="form-control" id="end-date" required>
+            <form action="/event" method="POST" enctype="multipart/form-data">
+                @csrf
+                  <!-- input nama -->
+                  <label for="nama_event">Nama</label>
+                  <input class="form-control" type="text" id="nama_event" name="nama_event" placeholder="Tambahkan nama eventmu" required>
+                  <!-- input deskripsi -->
+                  <label for="deskripsi_event">Deskripsi</label>
+                  <textarea class="form-control" id="deskripsi_event" name="deskripsi_event" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
+                  <!-- input start tanggal -->
+                  <label for="tanggal_mulai">Tanggal mulai</label>
+                  <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
+                  <!-- input end tanggal -->
+                  <label for="tanggal_selesai">Tanggal Selesai</label>
+                  <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn-add" data-dismiss="modal">Tambah</button>
           </div>
+            </form>
       </div>
     </div>
 </div>
