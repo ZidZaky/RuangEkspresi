@@ -1,40 +1,90 @@
-@extends('layouts.layout')
+<!DOCTYPE html>
+<html>
 
-@section('title', 'Edit Karya')
+<head>
+  <title>Undangan Komunitas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-@section('content')
-    <h1>Edit Karya</h1>
-    <form method="POST" action="{{ route('karya.update', $karya->id) }}">
-        @csrf
-        @method('PUT')
+    .container {
+      width: 600px;
+      margin: 200px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        <div class="form-group">
-            <label for="judulKarya">Judul Karya</label>
-            <input type="text" name="judulKarya" id="judulKarya" value="{{ old('judulKarya', $karya->judulKarya) }}" class="form-control">
-            @error('judulKarya')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        <div class="form-group">
-            <label for="tema">Tema</label>
-            <input type="text" name="tema" id="tema" value="{{ old('tema', $karya->tema) }}" class="form-control">
-            @error('tema')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+    .search-bar {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
 
-        <div class="form-group">
-            <label for="deskripsi">Deskripsi</label>
-            <input type="text" name="deskripsi" id="deskripsi" value="{{ old('deskripsi', $karya->deskripsi) }}" class="form-control">
-            @error('deskripsi')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
+    .search-bar input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
 
-        <button type="submit" class="btn btn-primary">Update Data</button>
+    .search-bar i {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #ccc;
+    }
+
+    .search-button {
+      padding: 10px 20px;
+      background-color: #6969ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .kirim-button {
+      background-color: #6969ff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .kirim-button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Undangan Komunitas</h1>
+
+    <form class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Cari Berdasarkan Email">
+      <button class="search-button">Cari</button>
     </form>
-@endsection
+
+    <button class="kirim-button">Kirim Undangan Masuk Komunitas</button>
+  </div>
+</body>
+
+</html>
