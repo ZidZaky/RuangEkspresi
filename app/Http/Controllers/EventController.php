@@ -13,10 +13,10 @@ class EventController extends Controller
     }
 
     function search(Request $request) {
-        // $event = Event::all();
-        // $search = $request->search;
-        // $event = event::where('name_event', 'LIKE', '%'.$search.'%')->get();
-        // return view('event/index', ['eventList' => $event]);
+        $event = Event::all();
+        $search = $request->search;
+        $event = event::where('name_event', 'LIKE', '%'.$search.'%')->get();
+        return view('event/index', ['eventList' => $event]);
     }
 
     function create()
@@ -26,14 +26,12 @@ class EventController extends Controller
 
     function store(Request $request)
     {
-        
-
         $event = new Event;
         $event->nama_event = $request->nama_event;
         $event->tanggal_mulai = $request->tanggal_mulai;
         $event->tanggal_selesai = $request->tanggal_selesai;
         $event->deskripsi_event = $request->deskripsi_event;
-        $event->id_pengguna = 1;
+        $event->id_pengguna = $request->id_pengguna;
         $event->id_komunitas = 1;
         $event->save();
         return redirect('/event');
@@ -45,14 +43,34 @@ class EventController extends Controller
         return view('');
     }
 
-    function edit()
+    function edit(Event $event)
     {
-
+        return view('update-event', [
+            'eventList' => $event
+        ]);
     }
 
-    function update()
+    function update(Request $request, Event $event)
     {
-        
+        $validateData = $request->validate([
+            'nama_event' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'deskripsi_event' => 'required',
+            'id_pengguna' => 'required',
+            'id_komunitas' => 'required'
+        ]);
+
+        $event->update([
+            'nama_event' => $request->nama_event,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'deskripsi_event' => $request->deskripsi_event,
+            'id_pengguna' => $request->id_pengguna,
+            'id_komunitas' => $request->id_komunitas
+        ]);
+
+        return redirect('/event');
     }
 
     function destroy(Event $event) {
