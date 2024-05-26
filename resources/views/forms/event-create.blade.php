@@ -84,6 +84,7 @@
           <div class="modal-body">
             <form action="/event" method="POST" enctype="multipart/form-data">
                 @csrf
+                    <input type="number" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden>
                   <!-- input nama -->
                   <label for="nama_event">Nama</label>
                   <input class="form-control" type="text" id="nama_event" name="nama_event" placeholder="Tambahkan nama eventmu" required>
