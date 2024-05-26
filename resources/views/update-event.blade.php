@@ -28,26 +28,30 @@
            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Event</h1>
          </div>
 
+         <form action="/event/{{ $eventList->id }}" method="GET" enctype="multipart/form-data">
+          @csrf
+          @method('put')
+
          <div class="mb-3">
-             <label for="destinasi_awal" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama"
-                name="nama"required>
+             <label for="nama_event" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama_event"
+                name="nama_event" value="{{ $eventList->nama_event }}">
          </div>
          <div class="mb-3">
-            <label for="destinasi_awal" class="form-label">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
+            <label for="deskripsi_event" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi_event" name="deskripsi_event" value="{{ $eventList->deskripsi_event }}"></textarea>
          </div>
 
           <div class="col-md-6">
               <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Mulai</label>
+                <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
                   <input type="date" class="form-control" id="tanggal_mulai"
-                name="tanggal_mulai" required>
+                name="tanggal_mulai" value="{{ $eventList->tanggal_mulai }}">
                </div>
               <div class="mb-3">
-                <label for="hari_berangkat" class="form-label">Tanggal Selesai</label>
+                <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
                  <input type="date" class="form-control" id="tanggal_selesai"
-                name="tanggal_selesai" required>
+                name="tanggal_selesai" value="{{ $eventList->tanggal_selesai }}">
               </div>
       </div>
 
