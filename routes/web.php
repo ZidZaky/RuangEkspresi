@@ -57,7 +57,7 @@ Route::get('/logout', [AccountController::class, 'logout']);
 
 Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
-Route::resource('/komunitas', KomunitasController::class);
+// Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
 
