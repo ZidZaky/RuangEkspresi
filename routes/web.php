@@ -73,3 +73,12 @@ Route::get('/aaa', function() {
     return view('test');
 });
 
+//Bagian Kalender
+Route::get('/adelcalender', function() {
+    return view('calendar');
+});
+
+//bagian show event
+Route::get('/show-event', function() {
+    return view('show-event');
+});
