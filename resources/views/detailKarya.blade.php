@@ -1,4 +1,4 @@
-<!-- @extends('layouts.layout')
+{{-- <!-- @extends('layouts.layout')
 
 @section('title', 'Detail Karya')
 
@@ -11,7 +11,7 @@
             <p class="card-text">Deskripsi: {{ $karya->deskripsi }}</p>
         </div>
     </div>
-@endsection -->
+@endsection --> --}}
 
 <!DOCTYPE html>
 <html lang="en">

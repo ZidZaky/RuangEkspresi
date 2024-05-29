@@ -19,7 +19,7 @@
 
                 .preview-body{
                     background-color: #f2f2f2;
-                    
+
                     img{
                         width: 52px;
                         height: 52px;
@@ -65,7 +65,8 @@
     </div>
     <div class="menu d-flex flex-column rounded">
         <a href="" class="text-white active"><i class="fi fi-rr-home"></i>Home</a>
-        <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a>
+        {{-- <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a> --}}
+        <a href="/event"><i class="fi fi-rr-calendar-day"></i>Event</a>
         <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#community"><i class="fi fi-rr-users"></i>Community</a>
     </div>
 </body>

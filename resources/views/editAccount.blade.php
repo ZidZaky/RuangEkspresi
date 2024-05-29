@@ -122,34 +122,40 @@
             <img src="profile-picture.png" alt="Profile Picture">
             <div class="name">{{ $pengguna->username }}</div>
             <button class="edit-photo">Ubah Foto</button>
-        </div> --}}
-        <form action="{{ route('penggunas.update', $pengguna->id) }}" method="POST">
+        </div> {{ route('penggunas.update', $pengguna->id) }}
+        value="{{ $pengguna->username }}"
+{{ $pengguna->role }}
+{{ $pengguna->email }}
+{{ $pengguna->email }}
+ {{ $pengguna->status == 'Nonaktif' ? 'selected' : '' }} {{ $pengguna->status == 'Aktif' ? 'selected' : '' }}
+        --}}
+        <form action="" method="POST">
             @csrf
             @method('PUT')
             <div class="input-group">
                 <!-- Input username -->
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" value="{{ $pengguna->username }}" required>
+                <input type="text" id="username" name="username"  required>
             </div>
             <div class="input-group">
                 <!-- Input email -->
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="{{ $pengguna->email }}" required>
+                <input type="email" id="email" name="email" value="" required>
             </div>
             <div class="input-group">
                 <!-- Input role -->
                 <label for="role">Role</label>
-                <input type="text" id="role" name="role" value="{{ $pengguna->role }}" required>
+                <input type="text" id="role" name="role" value="" required>
             </div>
             <div class="input-group">
                 <!-- Input status -->
                 <label for="status">Status</label>
                 <select id="status" name="status" required>
-                    <option value="Aktif" {{ $pengguna->status == 'Aktif' ? 'selected' : '' }}>Aktif</option>
-                    <option value="Nonaktif" {{ $pengguna->status == 'Nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                    <option value="Aktif" >Aktif</option>
+                    <option value="Nonaktif">Nonaktif</option>
                 </select>
             </div>
-            
+
             <button type="submit" class="submit-btn">Ubah</button>
         </form>
     </div>

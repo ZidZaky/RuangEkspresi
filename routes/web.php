@@ -26,11 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function () {
     $karya = Karya::all();
     return view('pages.index',['karyas' => $karya]);
-
 });
 
 Route::get('/dashboard', function () {
-    $karya = Karya::all();
+    $karya = Karya::orderBy('created_at', 'desc')->get();
     return view('pages.dashboard',['karyas' => $karya]);
 });
 
@@ -73,4 +72,40 @@ Route::get('/aaa', function() {
     return view('test');
 });
 
-
+//pages belom fix :
+Route::get('/calendar', function() {
+    return view('calendar');
+});
+Route::get('/createKomunitas', function() {
+    return view('createKomunitas');
+});
+Route::get('/detailKarya', function() {
+    return view('detailKarya');
+});
+Route::get('/editAccount', function() {
+    return view('editAccount');
+});
+Route::get('/editKarya', function() {
+    return view('editKarya');
+});
+Route::get('/editKomunitas', function() {
+    return view('editKomunitas');
+});
+Route::get('/inviteKomunitas', function() {
+    return view('editKarya');
+});
+Route::get('/manage-event', function() {
+    return view('manage-event');
+});
+Route::get('/manageAnggotaKomunitas', function() {
+    return view('manageAnggotaKomunitas');
+});
+Route::get('/search', function() {
+    return view('search');
+});
+Route::get('/update-event', function() {
+    return view('update-event');
+});
+Route::get('/show-event', function() {
+    return view('show-event');
+});
