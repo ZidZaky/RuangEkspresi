@@ -16,7 +16,7 @@ class AccountController extends Controller
     {
         $pengguna = Account::all();
 
-        return view('listUser', ['penggunas' => $pengguna]);
+        return view('pages.listUser', ['penggunas' => $pengguna]);
     }
 
     public function AccountRegister()
@@ -119,17 +119,12 @@ class AccountController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($id);
         $validatedData = $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'role' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
 
         $pengguna = Account::findOrFail($id);
-        $pengguna->username = $validatedData['username'];
-        $pengguna->email = $validatedData['email'];
-        $pengguna->role = $validatedData['role'];
         $pengguna->status = $validatedData['status'];
 
         $berhasil = $pengguna->save();

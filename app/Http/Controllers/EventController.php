@@ -14,7 +14,7 @@ class EventController extends Controller
 
     function search(Request $request) {
         $event = Event::all();
-        $search = $request->search;
+        $search =  $request->search;
         $event = event::where('name_event', 'LIKE', '%'.$search.'%')->get();
         return view('event/index', ['eventList' => $event]);
     }
@@ -31,8 +31,8 @@ class EventController extends Controller
         $event->tanggal_mulai = $request->tanggal_mulai;
         $event->tanggal_selesai = $request->tanggal_selesai;
         $event->deskripsi_event = $request->deskripsi_event;
-        // $event->id_pengguna = $request->id_pengguna;
-        $event->id_pengguna = 1;
+        $event->id_pengguna = $request->id_pengguna;
+        // $event->id_pengguna = 1;
         $event->id_komunitas = 1;
         $event->save();
         return redirect('/event');
