@@ -18,6 +18,7 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
     h1 {
@@ -70,11 +71,22 @@
     .kirim-button:hover {
       opacity: 0.9;
     }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="notification">
+    <button class="close-button" onclick="closeNotification()">&times;</button>
     <h1>Undangan Komunitas</h1>
 
     <form class="search-bar">
@@ -85,6 +97,13 @@
 
     <button class="kirim-button">Kirim Undangan Masuk Komunitas</button>
   </div>
+
+  <script>
+    function closeNotification() {
+      var notification = document.getElementById("notification");
+      notification.style.display = "none";
+    }
+  </script>
 </body>
 
 </html>
