@@ -6,6 +6,7 @@
 
 @section('content')
     @include ('forms.komunitas-create')
+    
     <div class="container mt-5">
         {{-- <a href="/komunitas/create" class="btn btn-primary mb-3">Create New Komunitas</a> --}}
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
