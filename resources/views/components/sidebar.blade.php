@@ -17,10 +17,10 @@
                 border-radius: var(--br-sm);
                 padding: 16px;
 
-                .preview-body{
+                .preview-body {
                     background-color: #f2f2f2;
 
-                    img{
+                    img {
                         width: 52px;
                         height: 52px;
                     }
@@ -34,7 +34,7 @@
                 background-color: var(--white);
                 padding: 16px;
 
-                .text-white{
+                .text-white {
                     background-color: var(--accent);
                 }
 
@@ -58,9 +58,13 @@
 <body>
     <div class="preview mb-3">
         <div class="preview-body p-4 rounded items-center d-flex flex-column align-items-center text-center">
+            @if (session('account') != null)
+            <img src="/storage/{{ session('account')['id'] }}" alt="" class="mb-2">
+            @else
             <img src="/assets/images/profile.png" alt="" class="mb-2">
-                <h5 class="m-0">Kevin Aluminium</h5>
-                <small class="text-secondary">@Kevin_Aluminium</small>
+            @endif
+            <h5 class="m-0">Kevin Aluminium</h5>
+            <small class="text-secondary">@Kevin_Aluminium</small>
         </div>
     </div>
     <div class="menu d-flex flex-column rounded">
