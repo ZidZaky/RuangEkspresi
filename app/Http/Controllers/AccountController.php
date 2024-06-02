@@ -12,9 +12,10 @@ class AccountController extends Controller
 {
     //Pages
 
-    public function index(){
+    public function index()
+    {
         $pengguna = Account::all();
-        return view('listUser', ['penggunas' => $pengguna]);
+        return view('pages.listUser', ['penggunas' => $pengguna]);
     }
 
     public function AccountRegister()
@@ -43,21 +44,22 @@ class AccountController extends Controller
         $account->password = $valdata['password'];
         $account->email = $valdata['email'];
         // dd($account);
-        $berhasil = DB::insert('INSERT INTO `penggunas` (`id`, `username`, `password`, `email`, `role`,`status`, `created_at`, `updated_at`) VALUES (NULL, ?, ?, ?, "User","Active", ?,?);', [
+        $berhasil = DB::insert('INSERT INTO `penggunas` (`id`, `username`, `password`, `email`, `role`,`status`,`profile`, `created_at`, `updated_at`) VALUES (NULL, ?, ?, ?, "User","Active",NULL, ?,?);', [
             $account->username,
             $account->password,
             $account->email,
             now(),
             now()
         ]);
-        if($berhasil){
+        if ($berhasil) {
             return redirect('/login');
         } else {
             return redirect('/regist')->with('error', 'regist gagal');
         }
     }
 
-    public function Accountlogin(){
+    public function Accountlogin()
+    {
         return view('pages.login');
     }
 
@@ -102,6 +104,66 @@ class AccountController extends Controller
         return Account::where('username', $username)->first();
     }
 
+    public function show($id)
+    {
+        $pengguna = Account::findOrFail($id);
+        return view('listUser', ['pengguna' => $pengguna]);
+    }
+
+    // public function edit($id)
+    // {
+    //     $pengguna = Account::findOrFail($id);
+    //     return view('form.editAccount', ['pengguna' => $pengguna]);
+    // }
+
+    public function update(Request $request, $id)
+    {
+        // dd($id);
+        $validatedData = $request->validate([
+            'status' => 'required|string|max:255',
+        ]);
+
+        $pengguna = Account::findOrFail($id);
+        $pengguna->status = $validatedData['status'];
+
+        $berhasil = $pengguna->save();
+
+        if ($berhasil) {
+            return redirect('account')->with('success', 'Pengguna updated successfully!');
+        } else {
+            return redirect('account')->with('error', 'Update pengguna failed!');
+        }
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        // dd($request);
+        $validatedData = $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'profile' => 'nullable'
+        ]);
+        // dd($validatedData);
+
+        $pengguna = Account::findOrFail($id);
+        $pengguna->username = $validatedData['username'];
+        $pengguna->email = $validatedData['email'];
+        if ($request->hasFile('profile')) {
+            $file = $request->file('profile');
+            $filename = $validatedData['username'] . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('profile', $filename, 'public');
+            $pengguna->profile = $filePath;
+        }
+
+        $berhasil = $pengguna->save();
+        session(['account' => $pengguna]);
+        if ($berhasil) {
+            return redirect('/account/' . $id . '/detailProfile')->with('success', 'Pengguna updated successfully!');
+        } else {
+            return redirect('/account/' . $id . '/detailProfile')->with('error', 'Update pengguna failed!');
+        }
+    }
+
 
 
     public function logout()
@@ -110,5 +172,11 @@ class AccountController extends Controller
             session()->flush();
         }
         return redirect('/');
+    }
+
+    public function detail($id)
+    {
+        $pengguna = Account::findOrFail($id);
+        return view('read.detailProfile', ['pengguna' => $pengguna]);
     }
 }

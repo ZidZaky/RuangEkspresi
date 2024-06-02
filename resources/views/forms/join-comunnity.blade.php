@@ -5,6 +5,7 @@
     <style>
         body {
             font-family: sans-serif;
+            background-color: #f4f4f4;
         }
 
         .container {
@@ -13,6 +14,9 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: #fff;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .user-profile {
@@ -35,7 +39,7 @@
         }
 
         .label {
-            display: 10;
+            display: block;
             margin-bottom: 5px;
         }
 
@@ -50,15 +54,15 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             resize: none;
-            /* Add this to disable textarea resizing */
         }
 
         button {
             padding: 10px 20px;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
+            margin-left: 5px;
         }
 
         .send-button {
@@ -78,12 +82,23 @@
         .button-container {
             text-align: right;
         }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container" id="notification">
+        <button class="close-button" onclick="closeNotification()">&times;</button>
         <div class="user-profile">
             <img src="https://picsum.photos/50/50" alt="User Profile">
             <span>Dhanu W</span>
@@ -101,6 +116,13 @@
             <button class="cancel-button">Cancel</button>
         </div>
     </div>
+
+    <script>
+        function closeNotification() {
+            var notification = document.getElementById("notification");
+            notification.style.display = "none";
+        }
+    </script>
 
 </body>
 
