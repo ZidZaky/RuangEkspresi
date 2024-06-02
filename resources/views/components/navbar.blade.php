@@ -12,6 +12,7 @@
         body {
             .navbar {
                 background-color: var(--white);
+                border-bottom: var(--line);
 
                 .container-fluid {
                     padding: 8px 50px;
@@ -32,6 +33,10 @@
                                 width: 300px;
                             }
                         }
+                    }
+
+                    .profile{
+                        width: fit-content;
                     }
 
 
@@ -74,9 +79,9 @@
             <!-- ketika user udah login -->
             @if (session('account'))
                 <div class="profile dropdown">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/assets/images/profile.png" alt="" style="max-width:50px">
-                        {{ session('account')['username'] }}
+                    <button class="btn dropdown-toggle p-0 d-flex m-0 align-items-center gap-2 fw-medium fs-6" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/assets/images/profile.png" alt="" style="max-width:36px">    
+                        Hallo, {{ session('account')['username'] }}!
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">My Account</a></li>

@@ -106,6 +106,11 @@ Route::get('/search', function() {
 Route::get('/update-event', function() {
     return view('update-event');
 });
+
 Route::get('/show-event', function() {
     return view('show-event');
+});
+
+Route::get('/profile', function() {
+    return view('pages.profile');
 });
