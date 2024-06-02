@@ -75,11 +75,11 @@
             @if (session('account'))
                 <div class="profile dropdown">
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+                        <img src="/storage/{{session('account')['profile']}}" alt="" style="max-width:50px">
                         {{ session('account')['username'] }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                        <li><a class="dropdown-item" href="/account/{{session('account')['id']}}/detailProfile">My Account</a></li>
                         <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                         @if (session('account')['role'] == 'Admin')
                             <li><a class="dropdown-item" href="/account">Manage User</a></li>
