@@ -3,7 +3,7 @@
 @section('title', 'Detail Profile')
 
 @section('content')
-@include('forms.editAccount')
+    @include('forms.editAccount')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -127,13 +127,16 @@
         <div><a href="/dashboard" class="keluar"> Keluar</a></div>
         <div>Detail Profile</div>
         <div><button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
-            data-bs-target="#editProfile"><i class="fi fi-rr-picture d-flex "></i>Edit</button></div>
+                data-bs-target="#editProfile"><i class="fi fi-rr-picture d-flex "></i>Edit</button></div>
     </div>
 
     <div class="post">
         <div class="user-info">
-            <img src="/storage/{{$pengguna->profile}}" alt="">
-
+            @if (session('account')['profile'] == null)
+                <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+            @else
+                <img src="/storage/{{ session('account')['profile'] }}" alt="" style="max-width:50px">
+            @endif
             <div>
                 <div><strong>{{ $pengguna->username }}</strong></div>
                 <div>Account Created At : {{ $pengguna->created_at }}</div>

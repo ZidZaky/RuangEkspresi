@@ -75,7 +75,11 @@
             @if (session('account'))
                 <div class="profile dropdown">
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if (session('account')['profile'] == null)
+                        <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+                        @else
                         <img src="/storage/{{session('account')['profile']}}" alt="" style="max-width:50px">
+                        @endif
                         {{ session('account')['username'] }}
                     </button>
                     <ul class="dropdown-menu">
