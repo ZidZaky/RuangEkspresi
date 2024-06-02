@@ -26,85 +26,45 @@
                 <p>{{ $event->tanggal_mulai }} - </p> <p>{{ $event->tanggal_selesai }}</p>
             </div>
         </button>
+
     @endforeach
+    <div class="row g-0 text-center-left " style="background-color:#F2F2F2;padding-top:3.5%;padding-bottom:2.5%;border-radius:10px;border-size:10px;border-style: solid;border-color:#666666;">
+        <div class="col" style="margin-left:2.5%;">
+            <h4>Judul</h4>
+            <p>Bulan ini</p>
+        </div>
+    </div>
+    <div class="row g-0 text-center-left " style="background-color:#F2F2F2;padding-top:3.5%;padding-bottom:2.5%;border-radius:10px;border-size:10px;border-style: solid;border-color:#666666;">
+        <div class="col" style="margin-left:2.5%;">
+            <h4>Judul</h4>
+            <p>Bulan ini</p>
+        </div>
+    </div>
+    <h2 class="bulan">Juni</h2>
+    <div class="line"></div>
+    <div class="row g-0 text-center-left " style="background-color:#F2F2F2;padding-top:3.5%;padding-bottom:2.5%;border-radius:10px;border-size:10px;border-style: solid;border-color:#666666;">
+        <div class="col" style="margin-left:2.5%;">
+            <h4>Judul</h4>
+            <p>Juni</p>
+        </div>
+    </div>
+    <h2 class="bulan">Juli</h2>
+    <div class="line"></div>
+    <div class="row g-0 text-center-left " style="background-color:#F2F2F2;padding-top:3.5%;padding-bottom:2.5%;border-radius:10px;border-size:10px;border-style: solid;border-color:#666666;">
+        <div class="col" style="margin-left:2.5%;">
+            <h4>Judul</h4>
+            <p>Juli</p>
+        </div>
+    </div>
 
 <style>
-    .modal-header {
-        position: relative;
+    .row{
+        margin-top:2.5%;margin-bottom:2.5%
     }
-    .modal-title {
-        width: 100%;
-    }
-    .btn-close {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-    }
-    .kalender-container {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
-    .kalender-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    .search-bar {
-        display: flex;
-        align-items: center;
-        position: relative;
-        width: 100%;
-    }
-    .search-input {
-        padding: 8px 36px 8px 28px; /* Adjusted padding for icons */
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-    }
-    .search-icon {
-        position: absolute;
-        left: 8px;
-        font-size: 16px;
-        color: #aaa;
-    }
-    .calendar-button {
-        background: none;
-        border: none;
-        position: absolute;
-        right: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        color: #aaa;
-    }
-    .calendar-icon {
-        font-size: 20px;
-    }
-    h2 {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    .activities-list {
-        display: flex;
-        flex-direction: column;
-    }
-    .activity-item {
-        background-color: #f0f0f0;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-    }
-    .activity-title {
-        margin: 0;
-        font-size: 16px; /* Adjust font size as needed */
-        font-weight: normal; /* Make text not bold */
-    }
-    .activity-date {
-        margin: 0;
-        font-size: 12px; /* Adjust font size as needed */
-        color: #666;
+    .line{
+        width: 15%;
+        border: 3px;
+        border-style:solid;
     }
 </style>
 <!-- Add Font Awesome for icons -->
