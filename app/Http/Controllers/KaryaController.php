@@ -54,7 +54,7 @@ class KaryaController extends Controller
         if ($berhasil) {
             return redirect('dashboard')->with('success', 'Karya created successfully!');
         } else {
-            return redirect('dashboard')->with('error', 'Buat karya gagal');
+            return redirect('dashboard')->with('error', 'Karya created failed');
         }
     }
 

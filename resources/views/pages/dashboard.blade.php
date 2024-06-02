@@ -14,23 +14,11 @@
             width: auto;
 
             .input {
-
-                img {
-                    height: 52px;
-                }
-
                 button {
-                    background-color: #f2f2f2;
-                    display: flex;
-                    align-items: center;
+                    background-color: var(--bg);
                     flex: 1;
                 }
             }
-
-            hr {
-                border: var(--line);
-            }
-
 
             .list-menu {
 
@@ -72,13 +60,13 @@
     </style>
 
     <!-- ini add post -->
-    <div class="post rounded mb-3 p-3">
+    <div class="post rounded-3 mb-3 p-3 border border-secondary border-opacity-25">
         <div class="input d-flex gap-3 align-item-center">
-            <img src="/assets/images/profile.png" alt="">
-            <button type="button" class="btn text-secondary align-items-center d-flex justify-content-between"
+            <img src="/assets/images/profile.png" alt="" style="height:36px;">
+            <button type="button" class="btn text-secondary align-items-center d-flex justify-content-between p-2"
                 data-bs-toggle="modal" data-bs-target="#karya">What's new? <i class="fi fi-rr-grin-alt d-flex "></i></button>
         </div>
-        <hr>
+        <hr class="border border-secondary border-opacity-50">
         <div class="list-menu d-flex gap-4">
             <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
                 data-bs-target="#event"><i class="fi fi-rr-picture d-flex "></i>Image</button>

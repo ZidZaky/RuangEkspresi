@@ -9,6 +9,8 @@
 
     <style>
         body {
+            font-family: 'Inter';
+
             .navbar {
                 background-color: var(--white);
                 border-bottom: var(--line);
@@ -21,7 +23,7 @@
 
                         form {
                             input {
-                                background-color: #f2f2f2;
+                                background-color: var(--bg);
                                 width: 300px;
                             }
                         }
@@ -48,31 +50,26 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid justify-between">
             <div class="d-flex align-items-center">
-                @if (session('account'))
                 <a class="navbar-brand" href="/dashboard">
-                    <img src="/assets/images/logo.png" alt="" class="logo bg-warning" style="height:36px">
+                    <img src="/assets/images/logo.png" alt="" class="logo" style="height:36px">
                 </a>
-                @else
-                <a class="navbar-brand" href="/">
-                    <img src="/assets/images/logo.png" alt="">
-                </a>
-                @endif
 
-                <form action="" class="bg-warning">
+                <form action="" class="">
                     <input type="text" name="" id="" class="form-control" placeholder="Search">
                 </form>
             </div>
 
             <!-- ketika user udah login -->
             @if (session('account'))
-            <div class="profile dropdown bg-warning d-flex" style="width:fit-content">
-                <button class="btn dropdown-toggle bg-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="profile dropdown d-flex">
+                <button class="btn p-0 d-flex gap-2 align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"">
                     @if (session('account')['profile'] == null)
-                    <img src="/assets/images/profile.png" alt="" style="width:36px">
+                    <img src=" /assets/images/profile.png" alt="" style="width:36px" class="rounded-circle">
                     @else
-                    <img src="/storage/{{session('account')['profile']}}" alt="" style="max-width:336px">
+                    <img src="/storage/{{session('account')['profile']}}" alt="" style="width:36px" class="rounded-circle">
                     @endif
-                    {{ session('account')['username'] }}
+                    Hallo, {{ session('account')['username'] }}
+                    <i class="fi fi-rr-angle-small-down d-flex fs-5"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/account/{{session('account')['id']}}/detailProfile">My Account</a></li>
