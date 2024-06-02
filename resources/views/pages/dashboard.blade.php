@@ -1,4 +1,4 @@
-git @extends('layouts.layout')
+@extends('layouts.layout')
 
 @section('sidebar')
     @include('components.sidebar')
