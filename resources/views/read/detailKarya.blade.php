@@ -175,16 +175,32 @@
         color: white;
     }
 </style>
-
+@include('forms.editKarya')
 <!-- Modal Event -->
 <div class="modal fade" id="detailKarya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="header">
-                    <div><a href="/dashboard" class="keluar"> Keluar</a></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                     <div>Detail Karya</div>
-                    <div><a href="/karya/{{ $karya->created_at }}/edit" class="hapus"> Edit Postingan</a></div>
+                    {{-- @php
+                         dd($karya);
+                    @endphp --}}
+                    <div><a type="button" class="btn text-secondary" data-bs-toggle="modal"
+                            data-bs-target="#editKarya"> Edit Postingan</a></div>
+                    @if ($karya->pengguna_id == session('account')['id'])
+                        <div>
+                            <form action="{{ route('karya.destroy', $karya->id_karya) }}" method="POST"
+                                style="width: 100%;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-warning"
+                                    style="width: auto; margin-top: 3px; margin-left: 5px">Delete</button>
+                            </form>
+                        </div>
+                    @endif
 
                 </div>
             </div>
