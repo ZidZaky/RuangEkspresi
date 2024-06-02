@@ -5,45 +5,28 @@
 @endsection
 
 @section('content')
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calendarModal">
-    Launch Calendar Modal
-</button>  
+<h2>Kalender Event</h2>
 
-<!-- Modal -->
-<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h1 class="modal-title fs-5 text-center fw-bold" id="calendarModalLabel">Kalender</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="kalender-container">
-                    <div class="kalender-header">
-                        <div class="search-bar">
-                            <input type="text" placeholder="Search" class="search-input">
-                            <i class="fas fa-search search-icon"></i>
-                            <button class="calendar-button">
-                                <i class="fas fa-calendar-alt calendar-icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <h2>Aktifitas</h2>
-                    <div class="activities-list">
-                        @for($i = 0; $i < 5; $i++)
-                        <div class="activity-item">
-                            <h3 class="activity-title">Festival Budaya</h3>
-                            <p class="activity-date">2 Januari - 2 Januari</p>
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
+<h4>Aktifitas</h4>
+{{-- <div class="activities-list">
+    @for($i = 0; $i < 5; $i++)
+    <div class="activity-item">
+        <h3 class="activity-title">Festival Budaya</h3>
+        <p class="activity-date">2 Januari - 2 Januari</p>
     </div>
-</div>
+    @endfor
+</div> --}}
+
+@foreach ($events as $event)
+        @include('show-event')
+        <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
+            data-bs-target="#show-event">
+            <div class="post-body">
+                <p>{{ $event->nama_event }}</p>
+                <p>{{ $event->tanggal_mulai }} - </p> <p>{{ $event->tanggal_selesai }}</p>
+            </div>
+        </button>
+    @endforeach
 
 <style>
     .modal-header {

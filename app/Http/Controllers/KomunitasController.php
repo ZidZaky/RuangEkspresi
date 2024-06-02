@@ -16,7 +16,7 @@ class KomunitasController extends Controller
     public function index()
     {
         $komunitas = Komunitas::all();
-        return view('showKomunitas', compact('komunitas'));
+        return view('pages.listKomunitas', compact('komunitas'));
     }
     
 
@@ -27,7 +27,7 @@ class KomunitasController extends Controller
      */
     public function create()
     {
-        return view('createKomunitas');
+        return view('forms.komunitas-create');
     }
     /**
      * Menyimpan resource baru ke dalam storage.
@@ -41,6 +41,7 @@ class KomunitasController extends Controller
         $validatedData = $request->validate([
             'nama_komunitas' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'id_pengguna'=>'required|string',
             // 'id_permohonan' => 'exists:permohonan_komunitas,id_permohonan', // Jika menggunakan id_permohonan
         ]);
     
@@ -48,13 +49,13 @@ class KomunitasController extends Controller
         $komunitas = new Komunitas();
         $komunitas->nama_komunitas = $validatedData['nama_komunitas'];
         $komunitas->deskripsi = $validatedData['deskripsi'];
-        $komunitas->id_pengguna = Auth::id(); // Mengambil ID pengguna dari pengguna yang saat ini masuk
+        $komunitas->id_pengguna = $validatedData['id_pengguna']; // Mengambil ID pengguna dari pengguna yang saat ini masuk
         // $komunitas->id_permohonan = $validatedData['id_permohonan']; // Jika menggunakan id_permohonan
         $komunitas->save();
     
-        return response()->json(['pesan' => 'Komunitas berhasil dibuat', 'data' => $komunitas], 201);
+       // Menambahkan flash message dan redirect
+       return redirect()->route('komunitas.index')->with('success', 'Data komunitas  sukses');
     }
-
     /**
      * Menampilkan resource yang ditentukan.
      *
@@ -65,7 +66,7 @@ class KomunitasController extends Controller
     {
         // Mencari komunitas berdasarkan ID
         $komunitas = Komunitas::findOrFail($id);
-        return view('showKomunitas', compact('komunitas'));
+        return view('pages.listKomunitas', compact('komunitas'));
     }
 
     /**
