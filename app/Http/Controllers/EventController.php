@@ -40,8 +40,10 @@ class EventController extends Controller
 
     function show($id)
     {
-        $event = Event::find($id);
-        return view('show-event');
+        $event = Event::where('Id_event', $id)->first();
+        // dd($event);
+
+        return view('show-event',['event'=>$event]);
     }
 
     function edit(Event $event)
