@@ -6,17 +6,34 @@
         margin-right: auto;
     }
 </style>
+@include('forms.editKarya')
 <!-- Modal Event -->
 <div class="modal fade" id="detailKarya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-left: 0;margin-right:120%;">
     <div class="modal-dialog">
-        <div class="modal-content" style="width: 50%;">
-            <div class="modal-header" style="background-color:#708FFF;max-width:100%;">
-                <form class="modal-title" data-bs-dismiss="modal">
-                    <button type="submit" style="background-color:red;border:0;border-radius:10px;">Keluar</button>
-                </form>
-                <form action="/karya/{{ $karya->created_at }}/edit" class="hapus">
-                    <button type="submit" style="background-color: yellow;border:0;border-radius:10px;" >Edit Postingan</button>
-                </form>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div>Detail Karya</div>
+                    {{-- @php
+                         dd($karya);
+                    @endphp --}}
+                    <div><a type="button" class="btn text-secondary" data-bs-toggle="modal"
+                            data-bs-target="#editKarya"> Edit Postingan</a></div>
+                    @if ($karya->pengguna_id == session('account')['id'])
+                        <div>
+                            <form action="{{ route('karya.destroy', $karya->id_karya) }}" method="POST"
+                                style="width: 100%;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-warning"
+                                    style="width: auto; margin-top: 3px; margin-left: 5px">Delete</button>
+                            </form>
+                        </div>
+                    @endif
+
+                </div>
             </div>
             <div class="modal-body"  >
                 {{-- foto profil & Nama --}}

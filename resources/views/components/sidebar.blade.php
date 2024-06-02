@@ -32,6 +32,7 @@
                 border: var(--line);
 
                 .text-white {
+                .text-white {
                     background-color: var(--accent);
                 }
 
@@ -48,6 +49,8 @@
                 }
             }
         }
+    }
+
     </style>
 </head>
 

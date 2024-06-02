@@ -31,7 +31,8 @@
                 <td>{{ $item->deskripsi_event }}</td>
                 <td>
                     <div>
-                        <a class="btn btn-secondary btn-sm" href=''>Edit</a>
+                        <a class="btn btn-secondary btn-sm" href="/event/{{ $item->id_event }}">Show</a>
+                        <a class="btn btn-warning btn-sm" href="/event/{{ $item->id_event }}/edit">Edit</a>
 
                         <form action="/event/{{ $item->id_event }}" method="POST">
                             @csrf
