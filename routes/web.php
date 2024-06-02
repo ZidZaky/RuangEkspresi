@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KomunitasController;
+use App\Models\Event;
 use App\Models\Karya;
 use Illuminate\Support\Facades\Route;
 
@@ -80,8 +81,10 @@ Route::get('/aaa', function() {
 
 //pages belom fix :
 Route::get('/calendar', function() {
-    return view('calendar');
+    $event = Event::orderBy('created_at', 'desc')->get();
+    return view('calendar', ['events'=>$event]);
 });
+
 // Route::get('/createKomunitas', function() {
 //     return view('createKomunitas');
 // });
@@ -100,9 +103,12 @@ Route::get('/editKomunitas', function() {
 Route::get('/inviteKomunitas', function() {
     return view('editKarya');
 });
+
 Route::get('/manage-event', function() {
-    return view('manage-event');
+    $event = Event::all();
+    return view('manage-event', ['eventList'=>$event]);
 });
+
 Route::get('/manageAnggotaKomunitas', function() {
     return view('manageAnggotaKomunitas');
 });

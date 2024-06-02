@@ -18,13 +18,13 @@
         <div class="post-header d-flex align-items-center mb-3">
             <img src="https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556785.jpg?t=st=1716558949~exp=1716562549~hmac=211ee1b1078120088091030a3c58c727926a85b13009c783363c0ae922dd6dd9&w=826" alt="Profile Picture" class="profile-pic">
             <div class="ms-2">
-                <h5 class="mb-0">Kevin Aluminium</h5>
-                <small class="text-muted">24 Mei 2024</small>
+                <h5 class="mb-0">hoax hoax</h5>
+                <small class="text-muted">{{$event->created_ad}}</small>
             </div>
         </div>
         <div class="post-body mb-3">
-            <p><strong>Festival Budaya</strong></p>
-            <p>Hari Raya Nyepi adalah salah satu perayaan paling sakral bagi umat Hindu di Indonesia, khususnya di Bali. Hari Raya Nyepi merupakan hari keheningan dan refleksi, di mana seluruh aktivitas duniawi dihentikan untuk memberikan kesempatan bagi introspeksi dan pembersihan diri.<br>2 Januari - 2 Januari</p>
+            <p><strong>{{$event->nama_event}}</strong></p>
+            <p>{{$event->deskripsi_event}}</p>
             <img src="https://img.freepik.com/free-photo/nyepi-day-celebration-indonesia_23-2151325566.jpg?t=st=1716645509~exp=1716649109~hmac=567e37f2e805154ade7821b0b5545e71e67c464e7a86abec8261ad940969f29a&w=900" alt="Festival Budaya Poster" class="img-fluid mb-3">
             <p><strong>Komentar</strong></p>
         </div>
