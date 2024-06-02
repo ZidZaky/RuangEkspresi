@@ -13,7 +13,8 @@ class AccountController extends Controller
     //Pages
 
     public function index(){
-        return view('listUser');
+        $pengguna = Account::all();
+        return view('listUser', ['penggunas' => $pengguna]);
     }
 
     public function AccountRegister()
