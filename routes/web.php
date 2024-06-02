@@ -103,9 +103,12 @@ Route::get('/editKomunitas', function() {
 Route::get('/inviteKomunitas', function() {
     return view('editKarya');
 });
+
 Route::get('/manage-event', function() {
-    return view('manage-event');
+    $event = Event::all();
+    return view('manage-event', ['eventList'=>$event]);
 });
+
 Route::get('/manageAnggotaKomunitas', function() {
     return view('manageAnggotaKomunitas');
 });
