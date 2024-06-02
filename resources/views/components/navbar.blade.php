@@ -79,12 +79,22 @@
             <!-- ketika user udah login -->
             @if (session('account'))
                 <div class="profile dropdown">
+<<<<<<< HEAD
                     <button class="btn dropdown-toggle p-0 d-flex m-0 align-items-center gap-2 fw-medium fs-6" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="/assets/images/profile.png" alt="" style="max-width:36px">    
                         Hallo, {{ session('account')['username'] }}!
+=======
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if (session('account')['profile'] == null)
+                        <img src="/assets/images/profile.png" alt="" style="max-width:50px">
+                        @else
+                        <img src="/storage/{{session('account')['profile']}}" alt="" style="max-width:50px">
+                        @endif
+                        {{ session('account')['username'] }}
+>>>>>>> 5ff82fac9f630398442743bf84b7fca1e06b68db
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                        <li><a class="dropdown-item" href="/account/{{session('account')['id']}}/detailProfile">My Account</a></li>
                         <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                         @if (session('account')['role'] == 'Admin')
                             <li><a class="dropdown-item" href="/account">Manage User</a></li>

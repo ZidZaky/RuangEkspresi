@@ -56,9 +56,15 @@ Route::get('/logout', [AccountController::class, 'logout']);
 
 Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
-// Route::resource('/komunitas', KomunitasController::class);
+Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
+Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
+
+
+
+
 
 
 
@@ -76,9 +82,9 @@ Route::get('/aaa', function() {
 Route::get('/calendar', function() {
     return view('calendar');
 });
-Route::get('/createKomunitas', function() {
-    return view('createKomunitas');
-});
+// Route::get('/createKomunitas', function() {
+//     return view('createKomunitas');
+// });
 Route::get('/detailKarya', function() {
     return view('detailKarya');
 });
