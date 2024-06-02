@@ -59,6 +59,8 @@ Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
+Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
 
 
 
