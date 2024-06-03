@@ -12,8 +12,11 @@ class AccountController extends Controller
 {
     //Pages
 
-    public function index(){
-        return view('listUser');
+    public function index()
+    {
+        $pengguna = Account::all();
+
+        return view('listUser', ['penggunas' => $pengguna]);
     }
 
     public function AccountRegister()
@@ -49,14 +52,15 @@ class AccountController extends Controller
             now(),
             now()
         ]);
-        if($berhasil){
+        if ($berhasil) {
             return redirect('/login');
         } else {
             return redirect('/regist')->with('error', 'regist gagal');
         }
     }
 
-    public function Accountlogin(){
+    public function Accountlogin()
+    {
         return view('pages.login');
     }
 
@@ -99,6 +103,42 @@ class AccountController extends Controller
     private function getUserByUsername($username)
     {
         return Account::where('username', $username)->first();
+    }
+
+    public function show($id)
+    {
+        $pengguna = Account::findOrFail($id);
+        return view('listUser', ['pengguna' => $pengguna]);
+    }
+
+    public function edit($id)
+    {
+        $pengguna = Account::findOrFail($id);
+        return view('editAccount', ['pengguna' => $pengguna]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+        ]);
+
+        $pengguna = Account::findOrFail($id);
+        $pengguna->username = $validatedData['username'];
+        $pengguna->email = $validatedData['email'];
+        $pengguna->role = $validatedData['role'];
+        $pengguna->status = $validatedData['status'];
+
+        $berhasil = $pengguna->save();
+
+        if ($berhasil) {
+            return redirect('account')->with('success', 'Pengguna updated successfully!');
+        } else {
+            return redirect('account')->with('error', 'Update pengguna failed!');
+        }
     }
 
 

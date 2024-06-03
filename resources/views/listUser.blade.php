@@ -55,6 +55,7 @@
                         <th>Role</th>
                         <th>Status</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,7 @@
                         <td>{{ $pengguna->role }}</td>
                         <td>{{ $pengguna->status }}</td>
                         <td>{{ $pengguna->email }}</td>
+                        <td><button><a href="/account/{{ $pengguna->id }}/edit">Edit</a></button></td>
                     </tr>
                     @endforeach
                 </tbody>

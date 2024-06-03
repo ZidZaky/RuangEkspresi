@@ -57,7 +57,7 @@ Route::get('/logout', [AccountController::class, 'logout']);
 
 Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
-Route::resource('/komunitas', KomunitasController::class);
+// Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
 
@@ -78,7 +78,7 @@ Route::get('/adelcalender', function() {
     return view('calendar');
 });
 
-//bagian show event
+// bagian show event
 Route::get('/show-event', function() {
     return view('show-event');
 });
