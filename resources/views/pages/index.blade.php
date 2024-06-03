@@ -12,6 +12,7 @@
         .post {
             background-color: #fff;
             width: auto;
+            border: var(--line);
 
             .input {
 
@@ -72,7 +73,7 @@
     </style>
 
     <!-- ini add post -->
-    <div class="post rounded mb-3 p-3">
+    <div class="post mb-3 p-3 rounded-3">
         <div class="input d-flex gap-3 align-item-center">
             <img src="/assets/images/profile.png" alt="">
             <button type="button" class="btn text-secondary align-items-center d-flex justify-content-between"

@@ -47,41 +47,20 @@
         </form>
       </div>
 
-      <div class="bus-schedule">
-        <div class="time-place">
-          <div class="time">15.00</div>
-          <div class="place"><span class="dot"></span>Jakarta </div>
-          <div class="terminal">Terminal Pasar Senen</div>
+    <!-- Post -->
+    <div class="post border rounded-0 p-3">
+        <div class="post-header d-flex align-items-center mb-3">
+            <img src="https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556785.jpg?t=st=1716558949~exp=1716562549~hmac=211ee1b1078120088091030a3c58c727926a85b13009c783363c0ae922dd6dd9&w=826" alt="Profile Picture" class="profile-pic">
+            <div class="ms-2">
+                <h5 class="mb-0">hoax hoax</h5>
+                <small class="text-muted">{{$event->created_ad}}</small>
+            </div>
         </div>
-        <div class="duration">8 jam</div>
-        <div class="time-place">
-          <div class="time">22.00</div>
-          <div class="place"><span class="end-dot"></span>Malang</div>
-          <div class="terminal">Terminal Kota Batu</div>
-        </div>
-        <div class="price">Rp500.000</div>
-      </div>
-      <div class="divider"></div>
-      <div class="bus-schedule">
-        <div class="time-place">
-          <div class="time">14.20</div>
-          <div class="place"><span class="dot"></span>Jakarta</div>
-          <div class="terminal">Terminal Tanjung Priok</div>
-        </div>
-        <div class="duration">8 jam</div>
-        <div class="time-place">
-          <div class="time">21.12</div>
-          <div class="place"><span class="end-dot"></span>Malang</div>
-          <div class="terminal">Terminal Landung Sari</div>
-        </div>
-        <div class="price">Rp430.000</div>
-      </div>
-      <div class="divider"></div>
-      <div class="bus-schedule">
-        <div class="time-place">
-          <div class="time">07.00</div>
-          <div class="place"><span class="dot"></span>Jakarta</div>
-          <div class="terminal">Terminal Pasar Baru</div>
+        <div class="post-body mb-3">
+            <p><strong>{{$event->nama_event}}</strong></p>
+            <p>{{$event->deskripsi_event}}</p>
+            <img src="https://img.freepik.com/free-photo/nyepi-day-celebration-indonesia_23-2151325566.jpg?t=st=1716645509~exp=1716649109~hmac=567e37f2e805154ade7821b0b5545e71e67c464e7a86abec8261ad940969f29a&w=900" alt="Festival Budaya Poster" class="img-fluid mb-3">
+            <p><strong>Komentar</strong></p>
         </div>
         <div class="duration">8 jam</div>
         <div class="time-place">

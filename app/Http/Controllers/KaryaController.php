@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \App\Models\Karya;
 
 class KaryaController extends Controller
@@ -54,7 +55,7 @@ class KaryaController extends Controller
         if ($berhasil) {
             return redirect('dashboard')->with('success', 'Karya created successfully!');
         } else {
-            return redirect('dashboard')->with('error', 'Buat karya gagal');
+            return redirect('dashboard')->with('error', 'Karya created failed');
         }
     }
 
@@ -63,15 +64,16 @@ class KaryaController extends Controller
     // Display the specified resource
     public function show($id)
     {
-        $karya = Karya::findOrFail($id);
+        $karya = Karya::where('id_karya', $id)->first();
         return view('detailKarya', ['karya' => $karya]);
     }
 
     // Show the form for editing the specified resource
     public function edit($id)
     {
-        $karya = Karya::findOrFail($id);
-        return view('editKarya', ['karya' => $karya]);
+        // $karya = Karya::findOrFail($id);
+        $karya = Karya::where('id_karya', $id)->first();
+        return view('forms.editKarya', ['karya' => $karya]);
     }
 
     // Update the specified resource in storage.
@@ -79,33 +81,56 @@ class KaryaController extends Controller
     {
         $valdata = $request->validate([
             'judulKarya' => 'required|string|max:255',
-            'tema' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:1000',
+            'jenisKarya' => 'required|string|max:255'
         ]);
 
-        $karya = Karya::findOrFail($id);
-        $karya->judulKarya = $valdata['judulKarya'];
-        $karya->tema = $valdata['tema'];
-        $karya->deskripsi = $valdata['deskripsi'];
-        $berhasil = $karya->save();
-        if ($berhasil) {
-            # code...
-            return redirect('dashboard')->with('success', 'Karya updated successfully!');
+
+        // dd($valdata);
+
+        $karya = Karya::where('id_karya', $id)->first();
+
+        if ($karya) {
+            $berhasil = DB::update(
+                'UPDATE `karyas`
+            SET `judulKarya` = ?, `deskripsi` = ?, `jenisKarya` = ?, `updated_at` = ?
+            WHERE `id_karya` = ?',
+                [$valdata['judulKarya'], $valdata['deskripsi'], $valdata['jenisKarya'], now(), $id]
+            );
+
+            if ($berhasil) {
+                return redirect('/dashboard');
+            } else {
+                return redirect('/dashboard')->with('error', 'Update failed');
+            }
         } else {
-            return redirect('dashboard')->with('error', 'Karya update failed!');
+            return redirect('/dashboard')->with('error', 'Karya not found');
         }
     }
+
 
     // Remove the specified resource from storage
     public function destroy($id)
     {
         // Find the Karya by ID
-        $karya = Karya::findOrFail($id);
+        $karya = Karya::where('id_karya', $id)->first();
 
-        // Delete the Karya
-        $karya->delete();
+        // Check if Karya exists
+        if ($karya) {
+            // Delete the Karya manually using raw SQL
+            $deleted = DB::delete('DELETE FROM `karyas` WHERE `id_karya` = ?', [$id]);
 
-        // Redirect with a success message
-        return redirect('/dashboard')->with('success', 'Karya deleted successfully!');
+            // Check if the deletion was successful
+            if ($deleted) {
+                // Redirect with a success message
+                return redirect('/dashboard')->with('success', 'Karya deleted successfully!');
+            } else {
+                // Redirect with an error message
+                return redirect('/dashboard')->with('error', 'Failed to delete Karya!');
+            }
+        } else {
+            // Redirect with an error message if Karya not found
+            return redirect('/dashboard')->with('error', 'Karya not found!');
+        }
     }
 }

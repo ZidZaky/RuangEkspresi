@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KomunitasController;
+use App\Models\Event;
 use App\Models\Karya;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function () {
     $karya = Karya::all();
     return view('pages.index',['karyas' => $karya]);
-
 });
 
 Route::get('/dashboard', function () {
-    $karya = Karya::all();
+    $karya = Karya::orderBy('created_at', 'desc')->get();
     return view('pages.dashboard',['karyas' => $karya]);
 });
 
@@ -57,9 +57,15 @@ Route::get('/logout', [AccountController::class, 'logout']);
 
 Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
-// Route::resource('/komunitas', KomunitasController::class);
+Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
+Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
+
+
+
+
 
 
 
@@ -73,12 +79,50 @@ Route::get('/aaa', function() {
     return view('test');
 });
 
-//Bagian Kalender
-Route::get('/adelcalender', function() {
-    return view('calendar');
+//pages belom fix :
+Route::get('/calendar', function() {
+    $event = Event::orderBy('created_at', 'desc')->get();
+    return view('calendar', ['events'=>$event]);
 });
 
-// bagian show event
+// Route::get('/createKomunitas', function() {
+//     return view('createKomunitas');
+// });
+Route::get('/detailKarya', function() {
+    return view('detailKarya');
+});
+Route::get('/editAccount', function() {
+    return view('editAccount');
+});
+Route::get('/editKarya', function() {
+    return view('editKarya');
+});
+Route::get('/editKomunitas', function() {
+    return view('editKomunitas');
+});
+Route::get('/inviteKomunitas', function() {
+    return view('editKarya');
+});
+
+Route::get('/manage-event', function() {
+    $event = Event::all();
+    return view('manage-event', ['eventList'=>$event]);
+});
+
+Route::get('/manageAnggotaKomunitas', function() {
+    return view('manageAnggotaKomunitas');
+});
+Route::get('/search', function() {
+    return view('search');
+});
+Route::get('/update-event', function() {
+    return view('update-event');
+});
+
 Route::get('/show-event', function() {
     return view('show-event');
+});
+
+Route::get('/profile', function() {
+    return view('pages.profile');
 });

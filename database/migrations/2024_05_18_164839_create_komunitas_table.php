@@ -12,11 +12,10 @@ class CreateKomunitasTable extends Migration
             $table->string('nama_komunitas');
             $table->text('deskripsi');
             $table->unsignedBigInteger('id_pengguna'); // foreign key dari tabel pengguna
-            $table->unsignedBigInteger('id_permohonan'); // foreign key dari tabel permohonan_komunitas
+            // $table->unsignedBigInteger('id_permohonan'); // foreign key dari tabel permohonan_komunitas
             $table->timestamps();
 
             $table->foreign('id_pengguna')->references('id')->on('penggunas');
-            $table->foreign('id_permohonan')->references('id_permohonan')->on('permohonan_komunitas');
         });
     }
 

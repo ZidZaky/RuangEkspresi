@@ -101,4 +101,40 @@
         color: white;
     }
 </style>
-@endsection
+
+<!-- Modal Event -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <img class="vector" src="../assets/images/Ellipse 25.png">
+              <!-- Nama User -->
+              <h2>Zidan Platinum</h2>
+              <!-- Tombol Close -->
+              <span class="close-button" data-bs-dismiss="modal" aria-label="Close">&times;</span>
+          </div>
+          <div class="modal-body">
+          <form action="/event" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input class="form-control" type="text" id="id_pengguna" name="id_pengguna" value="{{session('account')['id']}}" hidden>
+              <!-- input nama -->
+              <label for="nama_event">Nama</label>
+              <input class="form-control" type="text" id="nama_event" name="nama_event" placeholder="Tambahkan nama eventmu" required>
+              <!-- input deskripsi -->
+              <label for="deskripsi_event">Deskripsi</label>
+              <textarea class="form-control" id="deskripsi_event" name="deskripsi_event" rows="4" placeholder="Tambahkan deskripsi eventmu" required></textarea>
+              <!-- input start tanggal -->
+              <label for="tanggal_mulai">Tanggal mulai</label>
+              <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
+              <!-- input end tanggal -->
+              <label for="tanggal_selesai">Tanggal Selesai</label>
+              <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
+          </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn-add" data-dismiss="modal">Tambah</button>
+              <button type="submit" class="btn-cancel">Cancel</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
