@@ -103,6 +103,7 @@
                     <hr>
                     <div class="post-footer d-flex p-0 m-0 align-items-center">
                         <i class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary">1.355 Comment</i>
+                        <a href="/komentar/create">Komentar</a>
                     </div>
                 </div>
         </button>

@@ -53,7 +53,7 @@
             <img src="https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556785.jpg?t=st=1716558949~exp=1716562549~hmac=211ee1b1078120088091030a3c58c727926a85b13009c783363c0ae922dd6dd9&w=826" alt="Profile Picture" class="profile-pic">
             <div class="ms-2">
                 <h5 class="mb-0">hoax hoax</h5>
-                <small class="text-muted">{{$event->created_ad}}</small>
+                <small class="text-muted">{{$event->created_at}}</small>
             </div>
         </div>
         <div class="post-body mb-3">

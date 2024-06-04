@@ -3,6 +3,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KaryaController;
+use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\AnggotaController;
 use App\Models\Event;
@@ -63,8 +64,7 @@ Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
-Route::resource('/komentar', EventController::class);
-
+// Route::resource('/komentar', EventController::class);
 Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
 Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
 
@@ -111,7 +111,7 @@ Route::get('/inviteKomunitas', function() {
 
 Route::get('/manage-event', function() {
     $event = Event::all();
-    return view('manage-event', ['eventList'=>$event]);
+    return view('pages/manage-event', ['eventList'=>$event]);
 });
 
 Route::get('/manageAnggotaKomunitas', function() {
@@ -121,13 +121,20 @@ Route::get('/search', function() {
     return view('search');
 });
 Route::get('/update-event', function() {
-    return view('update-event');
+    return view('forms/update-event');
 });
 
 Route::get('/show-event', function() {
-    return view('show-event');
+    return view('pages/show-event');
 });
 
 Route::get('/profile', function() {
     return view('pages.profile');
 });
+
+Route::get('/komentar-list', [KomentarController::class, 'index']);
+Route::get('/komentar/create', [KomentarController::class, 'create']);
+Route::post('/komentar', [KomentarController::class, 'store']);
+Route::get('/komentar/{id}', [KomentarController::class, 'destroy']);
+
+
