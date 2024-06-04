@@ -55,11 +55,15 @@ Route::get('/login', [AccountController::class,'Accountlogin']);
 Route::post('/login', [AccountController::class,'login']);
 Route::get('/logout', [AccountController::class, 'logout']);
 
+Route::get('/komunitas/anggota/{id}', [KomunitasController::class, 'showAnggota']);
+
+
 Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/komentar', EventController::class);
+
 Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
 Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
 

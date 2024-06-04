@@ -18,7 +18,7 @@ class CreateUndanganKomunitasTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('komunitas_id');
             $table->unsignedBigInteger('invited_by')->nullable();
-            $table->enum('type', ['request', 'invite']);
+            $table->enum('type', ['request', 'invite', ]);
             $table->enum('status', ['pending', 'accepted', 'rejected']);
             $table->timestamps();
 

@@ -19,7 +19,7 @@
                     <th scope="col">Nama Komunitas</th>
                     <th scope="col">Deskripsi</th>
                     <th scope="col">Edit</th> <!-- Added Edit column header -->
-                </tr>
+         .       </tr>
             </thead>
             <tbody>
                 @foreach($komunitas as $k)
@@ -29,7 +29,6 @@
                     <td>{{ $k->deskripsi }}</td>
                     <td>
                         <a href="/komunitas/{{ $k->id_komunitas }}/edit" class="btn btn-warning">Edit</a> <!-- Added Edit button -->
-                        <a href="/komunitas/anggota/{{ $k->id_komunitas }}" class="btn btn-succses">Show Anggota</a> <!-- Added Edit button -->
                     </td>
                 </tr>
                 @endforeach

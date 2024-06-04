@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Komunitas;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Anggota;
+use Illuminate\Support\Facades\DB;
+
 
 class KomunitasController extends Controller
 {
@@ -41,21 +43,39 @@ class KomunitasController extends Controller
         $validatedData = $request->validate([
             'nama_komunitas' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'id_pengguna'=>'required|string',
+            'id_pengguna' => 'required|string',
             // 'id_permohonan' => 'exists:permohonan_komunitas,id_permohonan', // Jika menggunakan id_permohonan
         ]);
-    
+
         // Membuat komunitas baru
         $komunitas = new Komunitas();
         $komunitas->nama_komunitas = $validatedData['nama_komunitas'];
         $komunitas->deskripsi = $validatedData['deskripsi'];
         $komunitas->id_pengguna = $validatedData['id_pengguna']; // Mengambil ID pengguna dari pengguna yang saat ini masuk
         // $komunitas->id_permohonan = $validatedData['id_permohonan']; // Jika menggunakan id_permohonan
-        $komunitas->save();
-    
-       // Menambahkan flash message dan redirect
-       return redirect()->route('komunitas.index')->with('success', 'Data komunitas  sukses');
+
+        $komunitasBaru = Komunitas::orderBy('id_komunitas', 'desc')->first();
+        $komunitasId = $komunitasBaru->id_komunitas;
+            // Ambil ID komunitas yang baru saja disimpan
+         
+
+            // Debugging: pastikan ID komunitas diambil dengan benar
+            if (is_null($komunitasId)) {
+                return redirect()->route('komunitas.index')->with('error', 'Gagal mengambil ID komunitas yang baru disimpan');
+            }
+
+            // Menyimpan data ke tabel anggota_komunitas
+            DB::table('anggota_komunitas')->insert([
+                'role' => 'owner',
+                'id_pengguna' => $validatedData['id_pengguna'],
+                'komunitas_id' => $komunitasId
+            ]);
+
+            // Menambahkan flash message dan redirect
+            return redirect()->route('komunitas.index')->with('success', 'Data komunitas sukses');
+
     }
+    
     /**
      * Menampilkan resource yang ditentukan.
      *
@@ -75,6 +95,11 @@ class KomunitasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showAnggota($id)
+    {
+        $anggota = Anggota::where('id_komunitas', $id)->first();
+        return view ('pages.listAnggota', compact('anggota'));
+    }
     public function edit($id)
     {
         $komunitas = Komunitas::findOrFail($id);
