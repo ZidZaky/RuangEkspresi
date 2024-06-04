@@ -8,34 +8,52 @@
     @include ('forms.komunitas-create')
     
     <div class="container mt-5">
-        {{-- <a href="/komunitas/create" class="btn btn-primary mb-3">Create New Komunitas</a> --}}
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add New Komunitas
-        </button>
         <table class="table mt-3">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nama Komunitas</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Edit</th> <!-- Added Edit column header -->
-         .       </tr>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Ubah Role</th>
+                    <th scope="col">Action</th>
+                </tr>
             </thead>
             <tbody>
-                @foreach($komunitas as $k)
+                @foreach($anggota as $a)
+                @php 
+                $detail = App\Models\Account::where('id', $a->id_pengguna)->first();
+                @endphp
                 <tr>
-                    <th scope="row">{{ $k->id_komunitas }}</th>
-                    <td>{{ $k->nama_komunitas }}</td>
-                    <td>{{ $k->deskripsi }}</td>
+                    <th scope="row">{{ $detail->username }}</th>
+                    <td>{{ $detail->email }}</td>
+                    <td>{{ $a->role }}</td>
+                    <td>    
+                        <form action="{{ route('anggota.update', $a->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <select name="role" id="role">
+                                <option value="" selected disabled>Pilih peran</option>
+                                <option value="Anggota">Anggota</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <button type="submit" class="btn btn-warning">Oke</button>
+                        </form>
+                    </td>
                     <td>
-                        <a href="/komunitas/{{ $k->id_komunitas }}/edit" class="btn btn-warning">Edit</a> <!-- Added Edit button -->
+                        <form action="{{ route('anggota.destroy', $a->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            @if ($a->role!='owner')
+                                
+                            <button type="submit" class="btn btn-danger">Kick</button>
+                            @endif
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
 @endsection
 
 @section('aside')

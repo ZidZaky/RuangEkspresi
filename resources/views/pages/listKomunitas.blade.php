@@ -4,14 +4,15 @@
     @include('components.sidebar')
 @endsection
 
+
 @section('content')
-    @include ('forms.komunitas-create')
-    
     <div class="container mt-5">
-        {{-- <a href="/komunitas/create" class="btn btn-primary mb-3">Create New Komunitas</a> --}}
+        {{-- Tombol untuk menambah komunitas baru --}}
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add New Komunitas
         </button>
+
+        {{-- Tabel komunitas --}}
         <table class="table mt-3">
             <thead>
                 <tr>
@@ -19,6 +20,7 @@
                     <th scope="col">Nama Komunitas</th>
                     <th scope="col">Deskripsi</th>
                     <th scope="col">Edit</th> <!-- Added Edit column header -->
+                    <th scope="col">Action</th> 
                 </tr>
             </thead>
             <tbody>
@@ -28,15 +30,21 @@
                     <td>{{ $k->nama_komunitas }}</td>
                     <td>{{ $k->deskripsi }}</td>
                     <td>
-                        <a href="/komunitas/{{ $k->id_komunitas }}/edit" class="btn btn-warning">Edit</a> <!-- Added Edit button -->
-                        <a href="/komunitas/anggota/{{ $k->id_komunitas }}" class="btn btn-succses">Show Anggota</a> <!-- Added Edit button -->
+                        <a href="/komunitas/{{ $k->id_komunitas }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/komunitas/anggota/{{ $k->id_komunitas }}" class="btn btn-success">Show Anggota</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('anggota.join', $k->id_komunitas) }}" method="POST">
+                            @csrf
+                            <input type="number" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden>
+                            <button type="submit" class="btn btn-primary">Join</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
 @endsection
 
 @section('aside')

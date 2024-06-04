@@ -53,7 +53,7 @@ class KomunitasController extends Controller
         $komunitas->deskripsi = $validatedData['deskripsi'];
         $komunitas->id_pengguna = $validatedData['id_pengguna']; // Mengambil ID pengguna dari pengguna yang saat ini masuk
         // $komunitas->id_permohonan = $validatedData['id_permohonan']; // Jika menggunakan id_permohonan
-
+        $komunitas->save();
         $komunitasBaru = Komunitas::orderBy('id_komunitas', 'desc')->first();
         $komunitasId = $komunitasBaru->id_komunitas;
             // Ambil ID komunitas yang baru saja disimpan
@@ -97,9 +97,13 @@ class KomunitasController extends Controller
      */
     public function showAnggota($id)
     {
-        $anggota = Anggota::where('id_komunitas', $id)->first();
-        return view ('pages.listAnggota', compact('anggota'));
+        // Mengambil semua anggota yang memiliki komunitas_id sesuai dengan $id
+        $anggota = Anggota::where('komunitas_id', $id)->get();
+    
+        // Mengembalikan view dengan data anggota
+        return view('pages.listAnggota', compact('anggota'));
     }
+    
     public function edit($id)
     {
         $komunitas = Komunitas::findOrFail($id);
