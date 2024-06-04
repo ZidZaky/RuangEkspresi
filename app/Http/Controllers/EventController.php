@@ -9,7 +9,7 @@ class EventController extends Controller
 {
     function index() {
         $event = Event::all();
-        return view('manage-event', ['eventList' => $event]);
+        return view('pages/manage-event', ['eventList' => $event]);
     }
 
     function search(Request $request) {
@@ -21,7 +21,7 @@ class EventController extends Controller
 
     function create()
     {
-        return view('create-event');
+        return view('forms/create-event');
     }
 
     function store(Request $request)
@@ -43,12 +43,12 @@ class EventController extends Controller
         $event = Event::where('Id_event', $id)->first();
         // dd($event);
 
-        return view('show-event',['event'=>$event]);
+        return view('pages/show-event',['event'=>$event]);
     }
 
     function edit(Event $event)
     {
-        return view('update-event', [
+        return view('forms/update-event', [
             'eventList' => $event
         ]);
     }
