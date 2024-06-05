@@ -79,32 +79,41 @@
 
     <!-- post ini yang di loop -->
     @foreach ($karyas as $karya)
+        @include('forms.create-komentar')
         @php
             $user = App\Models\Account::where('id', $karya->pengguna_id)->first();
         @endphp
         @include('read.detailKarya')
         <button type="button" class="btn text-secondary d-flex gap-2 align-items-center p-0" data-bs-toggle="modal"
             data-bs-target="#detailKarya">
-                <div class="list-post bg-white rounded p-3 mb-3">
-                    <div class="profile d-flex gap-3 mb-3">
-                        <img src="/assets/images/profile.png" alt="">
-                        <div class="text m-0 p-0 ">
-                            <h6 class="p-0 m-0">{{ $user->username }}</h6>
-                            <small class="text-secondary m-0 p-0">{{ $karya->created_at }}</small>
-                        </div>
-                    </div>
-                    <div class="post-body">
-                        <p>{{ $karya->judulKarya }}</p>
-                        <img src="storage/{{ $karya->namaFile }}" alt="">
-                        <p>{{ $karya->deskripsi }}</p>
-                        <p>{{ $karya->jenisKarya }}</p>
-                    </div>
-                    <hr>
-                    <div class="post-footer d-flex p-0 m-0 align-items-center">
-                        <i class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary">1.355 Comment</i>
-                        <a href="/komentar/create">Komentar</a>
+            <div class="list-post bg-white rounded p-3 mb-3">
+                <div class="profile d-flex gap-3 mb-3">
+                    <img src="/assets/images/profile.png" alt="">
+                    <div class="text m-0 p-0 ">
+                        <h6 class="p-0 m-0">{{ $user->username }}</h6>
+                        <small class="text-secondary m-0 p-0">{{ $karya->created_at }}</small>
                     </div>
                 </div>
+                <div class="post-body">
+                    <p>{{ $karya->judulKarya }}</p>
+                    <img src="storage/{{ $karya->namaFile }}" alt="">
+                    <p>{{ $karya->deskripsi }}</p>
+                    <p>{{ $karya->jenisKarya }}</p>
+                </div>
+                <hr>
+                <div class="post-footer d-flex p-0 m-0 align-items-center">
+                    @php
+                        $komentar = \App\Models\Komentar::where('karya_id', $karya->id_karya)->get();
+                        // dd($komentar);
+                    @endphp
+                    <i type="button" class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary"  data-bs-toggle="modal"
+                    data-bs-target="#komentar">{{ $komentar->count()}}
+                         </i>
+                    {{-- <a  class="btn text-secondary d-flex gap-2 align-items-center p-0">Komentar</a> --}}
+
+
+                </div>
+            </div>
         </button>
     @endforeach
 @endsection

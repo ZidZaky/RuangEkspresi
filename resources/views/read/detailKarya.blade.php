@@ -1,6 +1,5 @@
-
 <style>
-    .modal-dialog{
+    .modal-dialog {
         max-width: fit-content;
         margin-left: auto;
         margin-right: auto;
@@ -8,7 +7,8 @@
 </style>
 @include('forms.editKarya')
 <!-- Modal Event -->
-<div class="modal fade" id="detailKarya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-left: 0;margin-right:120%;">
+<div class="modal fade" id="detailKarya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="margin-left: 0;margin-right:120%;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -35,9 +35,10 @@
 
                 </div>
             </div>
-            <div class="modal-body"  >
+            <div class="modal-body">
                 {{-- foto profil & Nama --}}
-                <div><strong><img src="user-avatar.png" alt="User Avatar" width="30">{{ $user->username }}</strong></div>
+                <div><strong><img src="user-avatar.png" alt="User Avatar" width="30">{{ $user->username }}</strong>
+                </div>
                 {{-- tanggal upload --}}
                 <div>{{ $karya->created_at }}</div>
                 {{-- Judul --}}
@@ -55,16 +56,36 @@
             </div>
 
             <div>
-                <div class="comments"> <h3>Komentar</h3>
+                <div class="comments">
+                    <h3>Komentar</h3>
+                    @php
+                        $komentar = \App\Models\Komentar::where('karya_id', $karya->id_karya)->get();
+                        // dd($komentar);
+                    @endphp
                     <div class="comment">
-                        <div class="user-info">
-                            {{-- foto profil komentar --}}
-                            <img src="user-avatar.png" alt="User Avatar" width="30">
-                            <br>
-                            {{-- Komentar --}}
-                            <div>Zidan Platinum: I love This</div>
-                            <br>
-                        </div>
+                        @if ($komentar->isEmpty())
+                            <p>Komentar Kosong</p>
+                        @else
+                            @foreach ($komentar as $kom)
+                                <div class="user-info">
+                                    {{-- foto profil komentar --}}
+                                    <img src="user-avatar.png" alt="Foto Orang" width="30">
+                                    <br>
+                                    {{-- Komentar --}}
+                                    <p>{{ $kom->pengguna_id }}: {{ $kom->komentar }}</p><br>
+                                    <p>Tanggal Komentar: {{ $kom->tanggal_komentar }}</p>
+                                    <br>
+                                    @if (session('account')['id'] == $kom->pengguna_id)
+                                        <form action="/komentar/{{ $kom->id }}" method="get"
+                                            style="width: 100%;">
+                                            @csrf
+                                            <button class="btn btn-danger"
+                                                style="width: auto; margin-top: 3px; margin-left: 5px">Delete</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
