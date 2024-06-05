@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Komunitas;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -33,9 +34,10 @@ class EventController extends Controller
         $event->deskripsi_event = $request->deskripsi_event;
         $event->id_pengguna = $request->id_pengguna;
         // $event->id_pengguna = 1;
-        $event->id_komunitas = 1;
+        // $event->id_komunitas = 1;
+        $event->id_komunitas = $request->id_komunitas;
         $event->save();
-        return redirect('/event');
+        return redirect('/komunitas/event/'.$request->id_komunitas);
     }
 
     function show($id)
@@ -44,6 +46,16 @@ class EventController extends Controller
         // dd($event);
 
         return view('pages/show-event',['event'=>$event]);
+    }
+
+    function showEventbyKomunitas($id)
+    {
+        $event = Event::where('id_komunitas', $id)->get();
+        $Komunitas = Komunitas::where('id_komunitas',$id)->first();
+        // $posting = Komunitas::where('id_komunitas',$id)->first();
+        // dd($event);
+
+        return view('pages/list-event-komunitas',['eventList'=>$event, 'komunitas'=>$Komunitas]);
     }
 
     function edit(Event $event)

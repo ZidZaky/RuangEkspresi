@@ -5,11 +5,15 @@
 @endsection
 
 @section('content')
+{{-- @include('forms.create-event') --}}
 <h1>Admin Manage Event Page</h1>
-
-<div class="d-flex ms-auto">
+<!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary d-flex ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create DAta
+</button> --}}
+{{-- <div class="d-flex ms-auto">
     <a href="event/create" class="btn btn-primary">Create Data</a>
-</div>
+</div> --}}
 
 <table class="table bg-light border px-3 evt">
     <thead>
@@ -32,7 +36,6 @@
                 <td>
                     <div>
                         <a class="btn btn-secondary btn-sm" href="/event/{{ $item->id_event }}">Show</a>
-                        <a class="btn btn-warning btn-sm" href="/event/{{ $item->id_event }}/edit">Edit</a>
 
                         <form action="/event/{{ $item->id_event }}" method="POST">
                             @csrf
@@ -42,8 +45,8 @@
                     </div>
                 </td>
             </tr>
-        @endforeach 
+        @endforeach
     </tbody>
 </table>
-    
+
 @endsection

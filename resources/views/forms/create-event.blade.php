@@ -1,15 +1,3 @@
-@extends('layouts.layout')
-
-@section('title')
-    Create Event
-@endsection
-
-@section('content')
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>  
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -25,25 +13,27 @@
                 </div>
             </div>
             <h1 class="modal-title fs-5 ms-3" id="exampleModalLabel">Add Data Event</h1>
-            
+
             <div class="modal-body">
-                <form method="POST" action="/karya">
+                <form method="POST" action="/event">
                     @csrf
+                    <input type="text" name="id_pengguna" id="" value="{{session('account')['id']}}">
+                    <input type="text" name="id_komunitas" id="" value="{{ $komunitas->id_komunitas }}">
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Tambahkan nama eventmu">
+                        <label for="nama" class="form-label">Nama Event</label>
+                        <input type="text" class="form-control" id="nama" name="nama_event" placeholder="Tambahkan nama eventmu">
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Tambahkan deskripsi eventmu"></textarea>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi_event" rows="3" placeholder="Tambahkan deskripsi eventmu"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input type="date" class="form-control" id="tanggalMulai" name="tanggalMulai" placeholder="Tambahkan tanggal mulai eventmu">
+                        <input type="date" class="form-control" id="tanggalMulai" name="tanggal_mulai" placeholder="Tambahkan tanggal mulai eventmu">
                     </div>
                     <div class="mb-3">
                         <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input type="date" class="form-control" id="tanggalSelesai" name="tanggalSelesai" placeholder="Tambahkan tanggal selesai eventmu">
+                        <input type="date" class="form-control" id="tanggalSelesai" name="tanggal_selesai" placeholder="Tambahkan tanggal selesai eventmu">
                     </div>
                     <div class="modal-footer justify-content-end">
                         <button type="submit" class="btn btn-tambah">Tambah</button>
@@ -53,9 +43,6 @@
             </div>
         </div>
     </div>
-</div>
-<div>
-    <h1>Buat Karya</h1>
 </div>
 
 <style>

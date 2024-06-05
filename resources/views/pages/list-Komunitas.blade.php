@@ -8,6 +8,7 @@
 @section('content')
     <div class="container mt-5">
         {{-- Tombol untuk menambah komunitas baru --}}
+        @include('forms.komunitas-create')
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add New Komunitas
         </button>
@@ -20,27 +21,40 @@
                     <th scope="col">Nama Komunitas</th>
                     <th scope="col">Deskripsi</th>
                     <th scope="col">Edit</th> <!-- Added Edit column header -->
-                    <th scope="col">Action</th> 
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($komunitas as $k)
-                <tr>
-                    <th scope="row">{{ $k->id_komunitas }}</th>
-                    <td>{{ $k->nama_komunitas }}</td>
-                    <td>{{ $k->deskripsi }}</td>
-                    <td>
-                        <a href="/komunitas/{{ $k->id_komunitas }}/edit" class="btn btn-warning">Edit</a>
-                        <a href="/komunitas/anggota/{{ $k->id_komunitas }}" class="btn btn-success">Show Anggota</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('anggota.join', $k->id_komunitas) }}" method="POST">
-                            @csrf
-                            <input type="number" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden>
-                            <button type="submit" class="btn btn-primary">Join</button>
-                        </form>
-                    </td>
-                </tr>
+                @foreach ($komunitas as $k)
+                    <tr>
+                        <th scope="row">{{ $k->id_komunitas }}</th>
+                        <td>{{ $k->nama_komunitas }}</td>
+                        <td>{{ $k->deskripsi }}</td>
+                        <td>
+                            <a href="/komunitas/detail/{{ $k->id_komunitas }}" class="btn btn-warning">Show Detail</a>
+                        </td>
+                        <td>
+                            @php
+                                $cek = App\Models\Anggota::where('komunitas_id', $k->id_komunitas)
+                                    ->where('id_pengguna', session('account')['id'])->first();
+                            @endphp
+                            @if ($cek)
+                                <form action="{{ route('anggota.exit', $k->id_komunitas) }}" method="POST">
+                                    @csrf
+                                    <input type="number" name="id_pengguna" id=""
+                                        value="{{ session('account')['id'] }}" hidden>
+                                    <button type="submit" class="btn btn-danger">Exit</button>
+                                </form>
+                            @else
+                                <form action="{{ route('anggota.join', $k->id_komunitas) }}" method="POST">
+                                    @csrf
+                                    <input type="number" name="id_pengguna" id=""
+                                        value="{{ session('account')['id'] }}" hidden>
+                                    <button type="submit" class="btn btn-primary">Join</button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

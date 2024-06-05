@@ -32,29 +32,30 @@
                 border: var(--line);
 
                 .text-white {
-                .text-white {
-                    background-color: var(--accent);
-                }
+                    .text-white {
+                        background-color: var(--accent);
+                    }
 
-                a {
-                    display: flex;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    gap: 12px;
-                    align-items: center;
-
-                    i {
+                    a {
                         display: flex;
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        gap: 12px;
+                        align-items: center;
+
+                        i {
+                            display: flex;
+                        }
                     }
                 }
             }
         }
-    }
-
     </style>
 </head>
 
 <body>
+    @include('read.calendar')
+
     <div class="preview mb-3 rounded-3 p-3 bg-white border border-secondary border-opacity-25">
         <div class="preview-body p-3 rounded items-center d-flex flex-column align-items-center text-center rounded-3">
             <img src="/assets/images/profile.png" alt="" class="mb-2" style="height:48px">
@@ -63,9 +64,15 @@
         </div>
     </div>
     <div class="menu d-flex flex-column rounded border border-secondary border-opacity-25">
-        <a href="" class="text-white active rounded-3"><i class="fi fi-rr-home"></i>Home</a>
+        <a href="/dashboard" class="text-white active rounded-3"><i class="fi fi-rr-home"></i>Home</a>
         {{-- <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a> --}}
-        <a href="/event" class="text-secondary"><i class="fi fi-rr-calendar-day "></i>Event</a>
+        @if (session('account')['role'] == 'Admin')
+            <a href="/event" class="text-secondary"><i class="fi fi-rr-calendar-day "></i>Event</a>
+        @endif
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calendarModal">
+            Launch Calendar Modal
+        </button>
         <a href="/komunitas" class="text-secondary"><i class="fi fi-rr-users"></i>Community</a>
     </div>
 </body>

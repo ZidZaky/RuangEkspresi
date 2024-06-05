@@ -18,9 +18,9 @@ class KomunitasController extends Controller
     public function index()
     {
         $komunitas = Komunitas::all();
-        return view('pages.listKomunitas', compact('komunitas'));
+        return view('pages.list-Komunitas', compact('komunitas'));
     }
-    
+
 
     /**
      * Menampilkan form untuk membuat resource baru.
@@ -57,7 +57,7 @@ class KomunitasController extends Controller
         $komunitasBaru = Komunitas::orderBy('id_komunitas', 'desc')->first();
         $komunitasId = $komunitasBaru->id_komunitas;
             // Ambil ID komunitas yang baru saja disimpan
-         
+
 
             // Debugging: pastikan ID komunitas diambil dengan benar
             if (is_null($komunitasId)) {
@@ -75,7 +75,7 @@ class KomunitasController extends Controller
             return redirect()->route('komunitas.index')->with('success', 'Data komunitas sukses');
 
     }
-    
+
     /**
      * Menampilkan resource yang ditentukan.
      *
@@ -86,7 +86,7 @@ class KomunitasController extends Controller
     {
         // Mencari komunitas berdasarkan ID
         $komunitas = Komunitas::findOrFail($id);
-        return view('pages.listKomunitas', compact('komunitas'));
+        return view('pages.show-komunitas', compact('komunitas'));
     }
 
     /**
@@ -99,17 +99,18 @@ class KomunitasController extends Controller
     {
         // Mengambil semua anggota yang memiliki komunitas_id sesuai dengan $id
         $anggota = Anggota::where('komunitas_id', $id)->get();
-    
+        // $komunitas = Komunitas::where('id_komunitas', $id)->get();
+        // dd($komunitas);
         // Mengembalikan view dengan data anggota
-        return view('pages.listAnggota', compact('anggota'));
+        return view('pages.list-Anggota', ['anggota' => $anggota, 'id_komunitas'=>$id]);
     }
-    
+
     public function edit($id)
     {
         $komunitas = Komunitas::findOrFail($id);
         return view('editkomunitas', compact('komunitas'));
     }
-    
+
     /**
      * Memperbarui resource yang ditentukan di storage.
      *
@@ -124,17 +125,17 @@ class KomunitasController extends Controller
             'nama_komunitas' => 'required|string|max:255',
             'deskripsi' => 'required|string',
         ]);
-    
+
         // Mencari komunitas berdasarkan ID
         $komunitas = Komunitas::findOrFail($id);
         $komunitas->nama_komunitas = $validatedData['nama_komunitas'];
         $komunitas->deskripsi = $validatedData['deskripsi'];
         $komunitas->save();
-    
+
         // Menambahkan flash message dan redirect
-        return redirect()->route('komunitas.index')->with('success', 'Data komunitas berhasil diperbarui');
+        return redirect('/komunitas/detail/'.$id)->with('success', 'Data komunitas berhasil diperbarui');
     }
-    
+
 
     /**
      * Menghapus resource yang ditentukan dari storage.
@@ -146,4 +147,5 @@ class KomunitasController extends Controller
     {
         //
     }
+
 }

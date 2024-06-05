@@ -17,7 +17,7 @@ class AnggotaController extends Controller
     public function index()
     {
         $anggota = Anggota::all();
-        return view('pages.listAnggota', compact('anggota'));
+        return view('pages.list-Anggota', compact('anggota'));
     }
 
     /**
@@ -32,28 +32,48 @@ class AnggotaController extends Controller
         // if (Auth::check()) {
         //     return redirect()->route('komunitas.index')->with('error', 'Anda harus masuk untuk bergabung dengan komunitas');
         // }
-    
+
         // $userId = Auth::id(); // Mengambil ID pengguna yang saat ini masuk
-    
+
         // Memastikan pengguna belum menjadi anggota komunitas ini
-        $existingMember = Anggota::where('id_pengguna', $request->id_pengguna )
-                                  ->where('komunitas_id', $id)
-                                  ->first();
-                                  
+        $existingMember = Anggota::where('id_pengguna', $request->id_pengguna)
+            ->where('komunitas_id', $id)
+            ->first();
+
         if ($existingMember) {
             return redirect()->route('komunitas.index')->with('error', 'Anda sudah menjadi anggota komunitas ini');
         }
-    
+
         // Menambahkan pengguna sebagai anggota komunitas
         Anggota::create([
             'role' => 'Anggota', // Default role
             'id_pengguna' => $request->id_pengguna,
             'komunitas_id' => $id,
         ]);
-    
+
         return redirect()->route('komunitas.index')->with('success', 'Anda berhasil bergabung dengan komunitas');
     }
-    
+
+    public function exit(Request $request, $id)
+    {
+        // Memastikan pengguna terautentikasi
+        // if (Auth::check()) {
+        //     return redirect()->route('komunitas.index')->with('error', 'Anda harus masuk untuk bergabung dengan komunitas');
+        // }
+
+        // $userId = Auth::id(); // Mengambil ID pengguna yang saat ini masuk
+
+        // Memastikan pengguna belum menjadi anggota komunitas ini
+        $existingMember = Anggota::where('id_pengguna', $request->id_pengguna)->first();
+
+        if ($existingMember) {
+            $existingMember->delete();
+            return redirect('/komunitas')->with('success', 'Anda sudah menjadi anggota asing komunitas ini');
+        }
+
+        return redirect('/komunitas')->with('error', 'Anda gagal exit dengan komunitas');
+    }
+
 
     public function edit($id)
     {

@@ -1,49 +1,4 @@
-@extends('layouts.layout')
 
-@section('title')
-    Kalender Event
-@endsection
-
-@section('content')
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calendarModal">
-    Launch Calendar Modal
-</button>  
-
-<!-- Modal -->
-<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h1 class="modal-title fs-5 text-center fw-bold" id="calendarModalLabel">Kalender</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="kalender-container">
-                    <div class="kalender-header">
-                        <div class="search-bar">
-                            <input type="text" placeholder="Search" class="search-input">
-                            <i class="fas fa-search search-icon"></i>
-                            <button class="calendar-button">
-                                <i class="fas fa-calendar-alt calendar-icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <h2>Aktifitas</h2>
-                    <div class="activities-list">
-                        @for($i = 0; $i < 5; $i++)
-                        <div class="activity-item">
-                            <h3 class="activity-title">Festival Budaya</h3>
-                            <p class="activity-date">2 Januari - 2 Januari</p>
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <style>
     .modal-header {
@@ -124,6 +79,44 @@
         color: #666;
     }
 </style>
+
+@php
+    $calendar = \App\Models\Event::all();
+@endphp
+<!-- Modal -->
+<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h1 class="modal-title fs-5 text-center fw-bold" id="calendarModalLabel">Kalender</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="kalender-container">
+                    <div class="kalender-header">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search" class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                            <button class="calendar-button">
+                                <i class="fas fa-calendar-alt calendar-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <h2>Aktifitas</h2>
+                    <div class="activities-list">
+                        @foreach($calendar as $event)
+                        <div class="activity-item">
+                            <h3 class="activity-title">{{$event->nama_event}}</h3>
+                            <p class="activity-date">{{$event->tanggal_mulai}} - {{$event->tanggal_selesai}}</p>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Add Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-@endsection
