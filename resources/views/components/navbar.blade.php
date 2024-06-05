@@ -76,6 +76,8 @@
                     <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                     @if (session('account')['role'] == 'Admin')
                     <li><a class="dropdown-item" href="/account">Manage User</a></li>
+                    <li><a class="dropdown-item" href="/event">Manage Event</a></li>
+                    <li><a class="dropdown-item" href="/komunitas/admin">Manage Komunitas</a></li>
                     @endif
                 </ul>
             </div>

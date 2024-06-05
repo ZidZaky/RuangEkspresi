@@ -1,46 +1,53 @@
-
-
 <style>
     .modal-header {
         position: relative;
     }
+
     .modal-title {
         width: 100%;
     }
+
     .btn-close {
         position: absolute;
         right: 10px;
         top: 10px;
     }
+
     .kalender-container {
         font-family: Arial, sans-serif;
         padding: 20px;
     }
+
     .kalender-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
     }
+
     .search-bar {
         display: flex;
         align-items: center;
         position: relative;
         width: 100%;
     }
+
     .search-input {
-        padding: 8px 36px 8px 28px; /* Adjusted padding for icons */
+        padding: 8px 36px 8px 28px;
+        /* Adjusted padding for icons */
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 4px;
         width: 100%;
     }
+
     .search-icon {
         position: absolute;
         left: 8px;
         font-size: 16px;
         color: #aaa;
     }
+
     .calendar-button {
         background: none;
         border: none;
@@ -50,38 +57,49 @@
         font-size: 16px;
         color: #aaa;
     }
+
     .calendar-icon {
         font-size: 20px;
     }
+
     h2 {
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 10px;
     }
+
     .activities-list {
         display: flex;
         flex-direction: column;
     }
+
     .activity-item {
         background-color: #f0f0f0;
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 10px;
     }
+
     .activity-title {
         margin: 0;
-        font-size: 16px; /* Adjust font size as needed */
-        font-weight: normal; /* Make text not bold */
+        font-size: 16px;
+        /* Adjust font size as needed */
+        font-weight: normal;
+        /* Make text not bold */
     }
+
     .activity-date {
         margin: 0;
-        font-size: 12px; /* Adjust font size as needed */
+        font-size: 12px;
+        /* Adjust font size as needed */
         color: #666;
     }
 </style>
 
 @php
-    $calendar = \App\Models\Event::all();
+    $calendar = \App\Models\Event::orderBy('tanggal_mulai')->get();
+    use Carbon\Carbon;
+
 @endphp
 <!-- Modal -->
 <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
@@ -105,11 +123,15 @@
 
                     <h2>Aktifitas</h2>
                     <div class="activities-list">
-                        @foreach($calendar as $event)
-                        <div class="activity-item">
-                            <h3 class="activity-title">{{$event->nama_event}}</h3>
-                            <p class="activity-date">{{$event->tanggal_mulai}} - {{$event->tanggal_selesai}}</p>
-                        </div>
+                        @foreach ($calendar as $event)
+                            <div class="activity-item">
+                                <h3 class="activity-title">{{ $event->nama_event }}</h3>
+                                <p class="activity-date">
+                                    {{ Carbon::parse($event->tanggal_mulai)->format('F j, Y') }} -
+                                    {{ Carbon::parse($event->tanggal_selesai)->format('F j, Y') }}
+                                </p>
+
+                            </div>
                         @endforeach
                     </div>
                 </div>

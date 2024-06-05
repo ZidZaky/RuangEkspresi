@@ -64,7 +64,7 @@ class AnggotaController extends Controller
         // $userId = Auth::id(); // Mengambil ID pengguna yang saat ini masuk
 
         // Memastikan pengguna belum menjadi anggota komunitas ini
-        $existingMember = Anggota::where('id_pengguna', $request->id_pengguna)->first();
+        $existingMember = Anggota::where('komunitas_id', $id)->where('id_pengguna', $request->id_pengguna)->first();
 
         if ($existingMember) {
             $existingMember->delete();
@@ -98,7 +98,7 @@ class AnggotaController extends Controller
         $anggota->role = $validatedData['role'];
         $anggota->save();
 
-        return redirect()->route('anggota.index')->with('success', 'Peran anggota berhasil diperbarui');
+        return redirect('/komunitas/anggota/'.$request->id_komunitas)->with('success', 'Peran anggota berhasil diperbarui');
     }
 
     /**
@@ -110,8 +110,9 @@ class AnggotaController extends Controller
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
+        $id_komunitas = $anggota->komunitas_id;
         $anggota->delete();
 
-        return redirect()->route('anggota.index')->with('success', 'Anggota berhasil dihapus dari komunitas');
+        return redirect('/komunitas/anggota/'.$id_komunitas)->with('success', 'Anggota berhasil dihapus dari komunitas');
     }
 }

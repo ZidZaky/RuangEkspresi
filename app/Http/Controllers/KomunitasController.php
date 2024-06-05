@@ -21,6 +21,20 @@ class KomunitasController extends Controller
         return view('pages.list-Komunitas', compact('komunitas'));
     }
 
+    public function admin()
+    {
+        $komunitas = Komunitas::all();
+        return view('pages.manage-komunitas', compact('komunitas'));
+    }
+
+    public function adminDelete($id)
+    {
+        $komunitas = Komunitas::findOrFail($id);
+        $komunitas->delete();
+        return redirect('/komunitas/admin');
+
+    }
+
 
     /**
      * Menampilkan form untuk membuat resource baru.

@@ -66,9 +66,6 @@
     <div class="menu d-flex flex-column rounded border border-secondary border-opacity-25">
         <a href="/dashboard" class="text-white active rounded-3"><i class="fi fi-rr-home"></i>Home</a>
         {{-- <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a> --}}
-        @if (session('account')['role'] == 'Admin')
-            <a href="/event" class="text-secondary"><i class="fi fi-rr-calendar-day "></i>Event</a>
-        @endif
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calendarModal">
             Launch Calendar Modal

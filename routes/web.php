@@ -59,6 +59,8 @@ Route::get('/logout', [AccountController::class, 'logout']);
 Route::post('/komunitas/{komunitasId}/join', [AnggotaController::class, 'join'])->name('anggota.join');
 Route::post('/komunitas/{komunitasId}/exit', [AnggotaController::class, 'exit'])->name('anggota.exit');
 Route::get('/komunitas/anggota/{id}', [KomunitasController::class, 'showAnggota']);
+Route::get('/komunitas/admin', [KomunitasController::class, 'admin']);
+Route::POST('/komunitas/{id}/admin/delete', [KomunitasController::class, 'adminDelete']);
 Route::get('/komunitas/event/{id}', [EventController::class, 'showEventbyKomunitas']);
 Route::get('/komunitas/detail/{id}', [KomunitasController::class, 'show']);
 Route::resource('anggota', AnggotaController::class);

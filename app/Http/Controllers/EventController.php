@@ -13,6 +13,7 @@ class EventController extends Controller
         return view('pages/manage-event', ['eventList' => $event]);
     }
 
+
     function search(Request $request) {
         $event = Event::all();
         $search =  $request->search;
@@ -37,7 +38,7 @@ class EventController extends Controller
         // $event->id_komunitas = 1;
         $event->id_komunitas = $request->id_komunitas;
         $event->save();
-        return redirect('/komunitas/event/'.$request->id_komunitas);
+        return redirect('/komunitas/event/'.$request->id_komunitas)->with('success', 'Data event sukses');;
     }
 
     function show($id)
@@ -89,7 +90,9 @@ class EventController extends Controller
     }
 
     function destroy(Event $event) {
+        $id = $event->id_komunitas;
+        // dd($id);
         $event->delete();
-        return redirect('/event');
+        return redirect('/komunitas/detail/'.$id)->with('success', 'Data Event dihapus');;
     }
 }

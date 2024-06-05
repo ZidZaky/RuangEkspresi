@@ -29,7 +29,9 @@
                     <td>{{ $komunitas->deskripsi }}</td>
                     <td>
                         @php
-                            $cek = App\Models\Anggota::where('id_pengguna', session('account')['id'])->first();
+                            $cek = App\Models\Anggota::where('komunitas_id', $komunitas->id_komunitas)
+                                ->where('id_pengguna', session('account')['id'])
+                                ->first();
                         @endphp
                         @if ($cek && ($cek->role == 'Admin' || $cek->role == 'owner'))
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -46,21 +48,26 @@
                         <a href="/komunitas/event/{{ $komunitas->id_komunitas }}" class="btn btn-light">Show Event</a>
                     </td>
                     <td>
-                        @if (!$cek)
-                            <form action="{{ route('anggota.join', $komunitas->id_komunitas) }}" method="POST">
-                                @csrf
-                                <input type="number" name="id_pengguna" id=""
-                                    value="{{ session('account')['id'] }}" hidden>
-                                <button type="submit" class="btn btn-primary">Join</button>
-                            </form>
+                        @if (@$cek->role == 'owner')
+                            <p>You Cant Exit Your Own Komunitas</p>
                         @else
-                            <form action="{{ route('anggota.exit', $komunitas->id_komunitas) }}" method="POST">
-                                @csrf
-                                <input type="number" name="id_pengguna" id=""
-                                    value="{{ session('account')['id'] }}" hidden>
-                                <button type="submit" class="btn btn-danger">Exit</button>
-                            </form>
+                            @if ($cek)
+                                <form action="{{ route('anggota.exit', $komunitas->id_komunitas) }}" method="POST">
+                                    @csrf
+                                    <input type="number" name="id_pengguna" id=""
+                                        value="{{ session('account')['id'] }}" hidden>
+                                    <button type="submit" class="btn btn-danger">Exit</button>
+                                </form>
+                            @else
+                                <form action="{{ route('anggota.join', $komunitas->id_komunitas) }}" method="POST">
+                                    @csrf
+                                    <input type="number" name="id_pengguna" id=""
+                                        value="{{ session('account')['id'] }}" hidden>
+                                    <button type="submit" class="btn btn-primary">Join</button>
+                                </form>
+                            @endif
                         @endif
+
                     </td>
                 </tr>
             </tbody>

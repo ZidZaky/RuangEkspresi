@@ -1,8 +1,9 @@
 @extends('layouts.layout')
 
-@section('title')
-    Admin Manage Event
+@section('sidebar')
+    @include('components.sidebar')
 @endsection
+
 
 @section('content')
 {{-- @include('forms.create-event') --}}

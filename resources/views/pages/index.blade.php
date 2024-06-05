@@ -7,7 +7,6 @@
 @section('content')
     @include('forms.karya-create')
     @include('forms.community-create')
-    @include('forms.event-create')
     <style>
         .post {
             background-color: #fff;

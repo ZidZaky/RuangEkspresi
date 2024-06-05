@@ -54,6 +54,7 @@
                                         <form action="{{ route('anggota.update', $a->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
+                                            <input type="text" name="id_komunitas" id="" value="{{$id_komunitas}}" hidden>
                                             <select name="role" id="role">
                                                 <option value="" selected disabled>Pilih peran</option>
                                                 <option value="Anggota">Anggota</option>

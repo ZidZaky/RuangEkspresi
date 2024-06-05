@@ -8,10 +8,7 @@
 @section('content')
     <div class="container mt-5">
         {{-- Tombol untuk menambah komunitas baru --}}
-        @include('forms.komunitas-create')
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add New Komunitas
-        </button>
+        <h1>Admin Manage Komunitas Page</h1>
 
         {{-- Tabel komunitas --}}
         <table class="table mt-3">
@@ -34,29 +31,10 @@
                             <a href="/komunitas/detail/{{ $k->id_komunitas }}" class="btn btn-warning">Show Detail</a>
                         </td>
                         <td>
-                            @php
-                                $cek = App\Models\Anggota::where('komunitas_id', $k->id_komunitas)
-                                    ->where('id_pengguna', session('account')['id'])
-                                    ->first();
-
-                            @endphp
-                            @if ($cek && $cek->role == 'owner')
-                                <p>You Are Owner Of This Community</p>
-                            @elseif ($cek)
-                                <form action="/komunitas/{{$k->id_komunitas}}/exit" method="POST">
-                                    @csrf
-                                    <input type="number" name="id_pengguna" id=""
-                                        value="{{ session('account')['id'] }}" hidden>
-                                    <button type="submit" class="btn btn-danger">Exit</button>
-                                </form>
-                            @else
-                                <form action="/komunitas/{{$k->id_komunitas}}/join" method="POST">
-                                    @csrf
-                                    <input type="number" name="id_pengguna" id=""
-                                        value="{{ session('account')['id'] }}" hidden>
-                                    <button type="submit" class="btn btn-primary">Join</button>
-                                </form>
-                            @endif
+                            <form action="/komunitas/{{$k->id_komunitas}}/admin/delete" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
