@@ -54,9 +54,12 @@
                     <img src="/assets/images/logo.png" alt="" class="logo" style="height:36px">
                 </a>
 
-                <form action="" class="">
-                    <input type="text" name="" id="" class="form-control" placeholder="Search">
+                <form action="/search" method="GET" class="">
+                    <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
+                
+                
             </div>
 
             <!-- ketika user udah login -->

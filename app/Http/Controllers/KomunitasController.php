@@ -7,7 +7,6 @@ use App\Models\Komunitas;
 use App\Models\Anggota;
 use Illuminate\Support\Facades\DB;
 
-
 class KomunitasController extends Controller
 {
     /**
@@ -32,9 +31,7 @@ class KomunitasController extends Controller
         $komunitas = Komunitas::findOrFail($id);
         $komunitas->delete();
         return redirect('/komunitas/admin');
-
     }
-
 
     /**
      * Menampilkan form untuk membuat resource baru.
@@ -45,6 +42,7 @@ class KomunitasController extends Controller
     {
         return view('forms.komunitas-create');
     }
+
     /**
      * Menyimpan resource baru ke dalam storage.
      *
@@ -58,36 +56,32 @@ class KomunitasController extends Controller
             'nama_komunitas' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'id_pengguna' => 'required|string',
-            // 'id_permohonan' => 'exists:permohonan_komunitas,id_permohonan', // Jika menggunakan id_permohonan
         ]);
 
         // Membuat komunitas baru
         $komunitas = new Komunitas();
         $komunitas->nama_komunitas = $validatedData['nama_komunitas'];
         $komunitas->deskripsi = $validatedData['deskripsi'];
-        $komunitas->id_pengguna = $validatedData['id_pengguna']; // Mengambil ID pengguna dari pengguna yang saat ini masuk
-        // $komunitas->id_permohonan = $validatedData['id_permohonan']; // Jika menggunakan id_permohonan
+        $komunitas->id_pengguna = $validatedData['id_pengguna'];
         $komunitas->save();
+
         $komunitasBaru = Komunitas::orderBy('id_komunitas', 'desc')->first();
         $komunitasId = $komunitasBaru->id_komunitas;
-            // Ambil ID komunitas yang baru saja disimpan
 
+        // Debugging: pastikan ID komunitas diambil dengan benar
+        if (is_null($komunitasId)) {
+            return redirect()->route('komunitas.index')->with('error', 'Gagal mengambil ID komunitas yang baru disimpan');
+        }
 
-            // Debugging: pastikan ID komunitas diambil dengan benar
-            if (is_null($komunitasId)) {
-                return redirect()->route('komunitas.index')->with('error', 'Gagal mengambil ID komunitas yang baru disimpan');
-            }
+        // Menyimpan data ke tabel anggota_komunitas
+        DB::table('anggota_komunitas')->insert([
+            'role' => 'owner',
+            'id_pengguna' => $validatedData['id_pengguna'],
+            'komunitas_id' => $komunitasId
+        ]);
 
-            // Menyimpan data ke tabel anggota_komunitas
-            DB::table('anggota_komunitas')->insert([
-                'role' => 'owner',
-                'id_pengguna' => $validatedData['id_pengguna'],
-                'komunitas_id' => $komunitasId
-            ]);
-
-            // Menambahkan flash message dan redirect
-            return redirect()->route('komunitas.index')->with('success', 'Data komunitas sukses');
-
+        // Menambahkan flash message dan redirect
+        return redirect()->route('komunitas.index')->with('success', 'Data komunitas sukses');
     }
 
     /**
@@ -113,9 +107,6 @@ class KomunitasController extends Controller
     {
         // Mengambil semua anggota yang memiliki komunitas_id sesuai dengan $id
         $anggota = Anggota::where('komunitas_id', $id)->get();
-        // $komunitas = Komunitas::where('id_komunitas', $id)->get();
-        // dd($komunitas);
-        // Mengembalikan view dengan data anggota
         return view('pages.list-Anggota', ['anggota' => $anggota, 'id_komunitas'=>$id]);
     }
 
@@ -150,7 +141,6 @@ class KomunitasController extends Controller
         return redirect('/komunitas/detail/'.$id)->with('success', 'Data komunitas berhasil diperbarui');
     }
 
-
     /**
      * Menghapus resource yang ditentukan dari storage.
      *
@@ -162,4 +152,36 @@ class KomunitasController extends Controller
         //
     }
 
+    /**
+     * Mencari keyword di tabel penggunas, event, dan komunitas.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        // Search in pengguna table
+        $penggunas = DB::table('penggunas')
+            ->where('username', 'like', '%' . $keyword . '%')
+            ->orWhere('email', 'like', '%' . $keyword . '%')
+            ->orWhere('role', 'like', '%' . $keyword . '%')
+            ->orWhere('status', 'like', '%' . $keyword . '%')
+            ->get();
+
+        // Search in event table
+        $events = DB::table('events')
+            ->where('nama_event', 'like', '%' . $keyword . '%')
+            ->orWhere('deskripsi_event', 'like', '%' . $keyword . '%')
+            ->get();
+
+        // Search in komunitas table
+        $komunitas = DB::table('komunitas')
+            ->where('nama_komunitas', 'like', '%' . $keyword . '%')
+            ->orWhere('deskripsi', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('pages.search-results', compact('penggunas', 'events', 'komunitas', 'keyword'));
+    }
 }

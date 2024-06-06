@@ -75,7 +75,7 @@ Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updatePro
 
 
 
-
+Route::get('/search', [KomunitasController::class, 'search']);
 
 
 
@@ -121,9 +121,6 @@ Route::get('/manage-event', function() {
 
 Route::get('/manageAnggotaKomunitas', function() {
     return view('manageAnggotaKomunitas');
-});
-Route::get('/search', function() {
-    return view('search');
 });
 Route::get('/update-event', function() {
     return view('forms/update-event');
