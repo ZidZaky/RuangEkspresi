@@ -139,7 +139,7 @@
         }
     </style>
     <div class="ranking bg-white p-3 rounded">
-        <h5>Top Influencers</h5>
+        <h5>Members Team</h5>
         <hr>
         <div class="list-people d-flex flex-column gap-2">
             <div class="people d-flex gap-3 align-items-center">

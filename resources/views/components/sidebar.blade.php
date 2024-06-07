@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
         body {
             font-family: 'Inter';
             margin: 0;
             padding: 0;
+
+
 
             .preview {
                 width: auto;
@@ -27,26 +27,11 @@
             .menu {
                 width: auto;
                 height: fit-content;
-                background-color: var(--white);
-                padding: 16px;
                 border: var(--line);
 
-                .text-white {
-                    .text-white {
-                        background-color: var(--accent);
-                    }
-
-                    a {
-                        display: flex;
-                        padding: 12px 16px;
-                        text-decoration: none;
-                        gap: 12px;
-                        align-items: center;
-
-                        i {
-                            display: flex;
-                        }
-                    }
+                a:hover {
+                    color: var(--accent);
+                    background-color: var(--bg);
                 }
             }
         }
@@ -63,14 +48,12 @@
             <small class="text-secondary p-0 m-0 fst-italic fw-light" style="font-size: 14px;">@Kevin_Aluminium</small>
         </div>
     </div>
-    <div class="menu d-flex flex-column rounded border border-secondary border-opacity-25">
-        <a href="/dashboard" class="text-white active rounded-3"><i class="fi fi-rr-home"></i>Home</a>
-        {{-- <a type="button" class="btn text-secondary" data-bs-toggle="modal" data-bs-target="#event"><i class="fi fi-rr-calendar-day"></i>Event</a> --}}
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calendarModal">
-            Launch Calendar Modal
-        </button>
-        <a href="/komunitas" class="text-secondary"><i class="fi fi-rr-users"></i>Community</a>
+    <div class="menu d-flex flex-column rounded border border-secondary border-opacity-25 gap-1 bg-white p-3">
+        <a href="/dashboard" class="text-secondary rounded-2 text-decoration-none d-flex align-items-center gap-3 px-3 py-2"><i class="fi fi-rr-home d-flex"></i>Home</a>
+        <hr class="m-0 border border-secondary border-opacity-25">
+        <a type="button" class="text-secondary rounded-3 text-decoration-none d-flex align-items-center gap-3 px-3 py-2" data-bs-toggle="modal" data-bs-target="#calendarModal"><i class="fi fi-rr-calendar-day d-flex"></i>Calender</a>
+        <hr class="m-0 border border-secondary border-opacity-25">
+        <a href="/komunitas" class="text-secondary rounded-3 text-decoration-none d-flex align-items-center gap-3 px-3 py-2"><i class="fi fi-rr-users"></i>Community</a>
     </div>
 </body>
 
