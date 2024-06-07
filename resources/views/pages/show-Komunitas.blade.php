@@ -6,6 +6,12 @@
 
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     @include('forms.komunitas-edit')
     <div class="container mt-5">
         <a href="/komunitas" class="btn btn-danger">Back</a>

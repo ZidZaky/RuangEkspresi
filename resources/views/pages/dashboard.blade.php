@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     @include('forms.karya-create')
     @include('forms.community-create')
     <style>
@@ -106,9 +112,9 @@
                         $komentar = \App\Models\Komentar::where('karya_id', $karya->id_karya)->get();
                         // dd($komentar);
                     @endphp
-                    <i type="button" class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary"  data-bs-toggle="modal"
-                    data-bs-target="#komentar">{{ $komentar->count()}}
-                         </i>
+                    <i type="button" class="fi fi-rr-beacon d-flex gap-2 align-items-center text-secondary"
+                        data-bs-toggle="modal" data-bs-target="#komentar">{{ $komentar->count() }}
+                    </i>
                     {{-- <a  class="btn text-secondary d-flex gap-2 align-items-center p-0">Komentar</a> --}}
 
 
