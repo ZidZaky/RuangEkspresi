@@ -56,11 +56,12 @@
         <div class="post-header d-flex align-items-center mb-3">
             <div class="ms-2">
                 <h4 class="mb-0">Detail Event</h4>
-                <small class="text-muted">{{$event->created_at}}</small>
+                <small class="text-muted">Dibuat Pada Tanggal{{$event->created_at}}</small>
             </div>
         </div>
         <div class="post-body mb-3">
-            <p><strong>{{$event->nama_event}}</strong></p>
+            <h4><strong>{{$event->nama_event}}</h4>
+            <small class="text-muted">Akan dimulai {{$event->tanggal_mulai}} sampai {{$event->tanggal_selesai}}</small>
             <h5 class="mb-0">Deskripsi Event : </h5>
             <p>{{$event->deskripsi_event}}</p>
         </div>
