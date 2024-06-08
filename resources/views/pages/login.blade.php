@@ -37,26 +37,15 @@ Login
             }
 
             form {
-                z-index: 1;
                 width: 450px;
                 padding: 50px;
                 height: fit-content;
-                outline: var(--line);
-                border-radius: var(--br-lg);
-                background-color: var(--white);
 
                 .form-control {
                     width: 350px;
-                    font: var(--body);
-                    border: var(--line);
-                    padding: var(--p-md);
                 }
 
                 .btn {
-                    width: 100%;
-                    font: var(--button);
-                    color: var(--white);
-                    padding: var(--p-md);
                     background-color: var(--accent);
 
                     &:hover {
@@ -72,26 +61,21 @@ Login
 </head>
 
 <body>
-    <form action="/login" method="post" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
+    <form action="/login" method="post" class="d-flex flex-column justify-content-center align-items-center rounded-3 bg-white z-1 needs-validation" novalidate>
         @csrf
         <h1 class="text-center">Sign In</h1>
         <div class="field-set mt-4">
-            <div class="field">
-                <input type="text" name="username" id="" class="form-control" placeholder="Username" required>
-                <div class="invalid-feedback">
-                    Please enter your username!
-                </div>
+            <div class="d-flex flex-column gap-1">
+                <input type="text" name="username" id="" class="form-control px-3 py-2" placeholder="Username" required>
+                <div class="invalid-feedback">Please enter your username!</div>
             </div>
             <div class="field">
-                <input type="password" name="password" id="" class="form-control mt-3" placeholder="Password" required>
-                <div class="invalid-feedback">
-                    Please enter your password!
-                </div>
+                <input type="password" name="password" id="" class="form-control mt-3 px-3 py-2" placeholder="Password" required>
+                <div class="invalid-feedback">Please enter your password!</div>
             </div>
         </div>
-        <button class="btn mt-3" type="submit">Sign In</button>
+        <button class="btn mt-3 py-2 fw-semibold text-white w-100" type="submit">Sign In</button>
         <p class="text-secondary mt-5 text-center">Don't have an account? <a href="/register" class="text-decoration-none">Sign Up Here!</a></p>
-
     </form>
 
 
