@@ -9,18 +9,17 @@ class Karya extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $table = 'karyas'; // Sesuaikan dengan nama tabel Anda jika berbeda
+    protected $primaryKey = 'id_karya'; // Sesuaikan dengan primary key Anda jika berbeda
 
-    // Specify the table name if it's different from the default 'accounts' table
-     protected $table = 'karyas';
-
-    // Specify the primary key column if it's different from the default 'id' column
-    protected $primaryKey = 'id';
-
-    // Specify the columns that are mass assignable
+    // Daftar kolom yang dapat diisi
     protected $fillable = [
-        'judulKarya','tema','deskripsi',
+        'judulKarya',
+        'deskripsi',
+        'jenisKarya',
+        'namaFile',
+        'pengguna_id',
+        'created_at',
+        'updated_at',
     ];
 }

@@ -70,6 +70,11 @@ Route::resource('/account', AccountController::class);
 Route::resource('/karya', KaryaController::class);
 Route::resource('/komunitas', KomunitasController::class);
 Route::resource('/event', EventController::class);
+
+// Route::get('/dashboard', function () {
+//     $karya = Karya::orderBy('created_at', 'desc')->get();
+//     return view('pages.dashboard',['karyas' => $karya]);
+// });
 // Route::resource('/komentar', EventController::class);
 Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
 Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
