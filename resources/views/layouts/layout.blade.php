@@ -16,7 +16,7 @@
             .main {
                 padding: 24px 50px;
                 gap: 24px;
-                height: 100vh;
+                min-height: 100vh;
                 background-color: #EEF1F6;
 
                 .sidebar {
@@ -71,7 +71,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    @include('components.botbar')
+    <!-- @include('components.botbar') -->
 
 </body>
 
