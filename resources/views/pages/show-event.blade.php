@@ -78,8 +78,7 @@
         </div>
         <div class="post-body mb-3">
             <h4><strong>{{ $event->nama_event }}</h4>
-            <small class="text-muted">Akan dimulai {{ $event->tanggal_mulai }} sampai
-                {{ $event->tanggal_selesai }}</small>
+            <small class="text-muted">Akan dimulai {{ $event->tanggal_mulai }} sampai {{ $event->tanggal_selesai }}</small>
             <h5 class="mb-0">Deskripsi Event : </h5>
             <p>{{ $event->deskripsi_event }}</p>
         </div>
