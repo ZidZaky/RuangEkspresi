@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Models\Karya;
+
 
 class AccountController extends Controller
 {
@@ -177,6 +179,11 @@ class AccountController extends Controller
     public function detail($id)
     {
         $pengguna = Account::findOrFail($id);
-        return view('read.detailProfile', ['pengguna' => $pengguna]);
+        $karya = Karya::orderBy('created_at', 'desc')->get();
+        return view('read.detailProfile', [
+            'pengguna' => $pengguna,
+            'karyas' => $karya
+        ]);
     }
+
 }
