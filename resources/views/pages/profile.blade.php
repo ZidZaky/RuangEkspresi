@@ -1,12 +1,16 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="profile bg-white">
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
+    <div class="profile bg-white">
 
-</div>
-
+    </div>
 @endsection
 
 @section('aside')
-
 @endsection

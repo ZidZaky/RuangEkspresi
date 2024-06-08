@@ -37,26 +37,15 @@ Register
             }
 
             form {
-                z-index: 1;
                 width: 450px;
                 padding: 50px;
                 height: fit-content;
-                outline: var(--line);
-                border-radius: var(--br-lg);
-                background-color: var(--white);
 
                 .form-control {
                     width: 350px;
-                    font: var(--body);
-                    border: var(--line);
-                    padding: var(--p-md);
                 }
 
                 .btn {
-                    width: 100%;
-                    font: var(--button);
-                    color: var(--white);
-                    padding: var(--p-md);
                     background-color: var(--accent);
 
                     &:hover {
@@ -71,30 +60,24 @@ Register
 </head>
 
 <body>
-    <form action="/account" method="POST" class="d-flex flex-column justify-content-center align-items-center needs-validation" novalidate>
+    <form action="/account" method="POST" class="d-flex flex-column justify-content-center align-items-center rounded-3 bg-white z-1 needs-validation" novalidate>
         @csrf
         <h1 class="text-center">Sign Up</h1>
         <div class="field-set mt-4">
             <div class="field">
-                <input type="text" name="username" id="" class="form-control" placeholder="Username" required>
-                <div class="invalid-feedback">
-                    Please enter your username!
-                </div>
+                <input type="text" name="username" id="" class="form-control px-3 py-2" placeholder="Username" required>
+                <div class="invalid-feedback">Please enter your username!</div>
             </div>
             <div class="field">
-                <input type="email" name="email" id="" class="form-control mt-3" placeholder="Email" required>
-                <div class="invalid-feedback">
-                    Please enter your email!
-                </div>
+                <input type="email" name="email" id="" class="form-control mt-3 px-3 py-2" placeholder="Email" required>
+                <div class="invalid-feedback">Please enter your email!</div>
             </div>
             <div class="field">
-                <input type="password" name="password" id="" class="form-control mt-3" placeholder="Password" required>
-                <div class="invalid-feedback">
-                    Please enter your password!
-                </div>
+                <input type="password" name="password" id="" class="form-control mt-3 px-3 py-2" placeholder="Password" required>
+                <div class="invalid-feedback">Please enter your password!</div>
             </div>
         </div>
-        <button class="btn mt-3" type="submit">Sign Up</button>
+        <button class="btn mt-3 w-100 fw-semibold text-white py-2" type="submit">Sign Up</button>
         <p class="text-secondary mt-5 text-center">Have an account? <a href="/login" class="text-decoration-none">Sign In Here!</a></p>
 
     </form>

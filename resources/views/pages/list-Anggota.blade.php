@@ -6,7 +6,12 @@
 
 @section('content')
     @include ('forms.komunitas-create')
-
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     <div class="container mt-5">
         <table class="table mt-3">
             <thead>
@@ -26,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <a href="/komunitas/detail/{{$id_komunitas}}" class="btn btn-danger">Back</a>
+                <a href="/komunitas/detail/{{ $id_komunitas }}" class="btn btn-danger">Back</a>
 
                 @foreach ($anggota as $a)
                     @php
@@ -54,7 +59,8 @@
                                         <form action="{{ route('anggota.update', $a->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <input type="text" name="id_komunitas" id="" value="{{$id_komunitas}}" hidden>
+                                            <input type="text" name="id_komunitas" id=""
+                                                value="{{ $id_komunitas }}" hidden>
                                             <select name="role" id="role">
                                                 <option value="" selected disabled>Pilih peran</option>
                                                 <option value="Anggota">Anggota</option>
