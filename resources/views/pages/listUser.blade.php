@@ -3,6 +3,13 @@
 @section('title', 'Daftar Pengguna')
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
+
     <head>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
@@ -62,21 +69,25 @@
                 @foreach ($penggunas as $pengguna)
                     <div class="col-md-4">
                         <div class="user-card">
-                            <img src="{{ asset('storage/' . $pengguna->profile) }}" alt="{{ $pengguna->username }}" width="100">
+                            <img src="{{ asset('storage/' . $pengguna->profile) }}" alt="{{ $pengguna->username }}"
+                                width="100">
                             <h5>{{ $pengguna->name }}</h5>
                             <p>{{ $pengguna->role }}</p>
                             @include('forms.account-status-edit', ['pengguna' => $pengguna])
-                            <a class="edit-btn" data-bs-toggle="modal" data-bs-target="#editAccount-{{ $pengguna->id }}">Edit Status</a>
+                            <a class="edit-btn" data-bs-toggle="modal"
+                                data-bs-target="#editAccount-{{ $pengguna->id }}">Edit Status</a>
                         </div>
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="editAccount-{{ $pengguna->id }}" tabindex="-1" aria-labelledby="editAccountLabel-{{ $pengguna->id }}" aria-hidden="true">
+                    <div class="modal fade" id="editAccount-{{ $pengguna->id }}" tabindex="-1"
+                        aria-labelledby="editAccountLabel-{{ $pengguna->id }}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="editAccountLabel-{{ $pengguna->id }}">Edit Status</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     @include('forms.account-status-edit', ['pengguna' => $pengguna])

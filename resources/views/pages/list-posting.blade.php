@@ -6,6 +6,12 @@
 
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     <div class="container mt-5">
         {{-- Tombol untuk menambah posting baru --}}
         @include('forms.post-create')
@@ -29,12 +35,13 @@
                     <tr>
                         <th scope="row">{{ $p->id }}</th>
                         <td>{{ $p->title }}</td>
-                        <td>{{ $p->deskripsi}}</td>
+                        <td>{{ $p->deskripsi }}</td>
                         <td>
                             <form action="/posting/{{ $p->id }}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure ?')">Delete</button>
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure ?')">Delete</button>
                             </form>
                         </td>
                     </tr>

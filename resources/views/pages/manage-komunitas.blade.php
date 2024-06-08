@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     <div class="container mt-5">
         {{-- Page Title --}}
         <h1 class="text-center">Admin Manage Komunitas Page</h1>
@@ -19,10 +25,12 @@
                                 <p class="card-text">{{ $k->deskripsi }}</p>
                             </div>
                             <div class="d-flex flex-column align-items-end">
-                                <a href="/komunitas/detail/{{ $k->id_komunitas }}" class="btn btn-warning mb-2">Show Detail</a>
-                                <form action="/komunitas/{{$k->id_komunitas}}/admin/delete" method="POST">
+                                <a href="/komunitas/detail/{{ $k->id_komunitas }}" class="btn btn-warning mb-2">Show
+                                    Detail</a>
+                                <form action="/komunitas/{{ $k->id_komunitas }}/admin/delete" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin untuk menghapus komunitas ini?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin untuk menghapus komunitas ini?')">Delete</button>
                                 </form>
                             </div>
                         </div>

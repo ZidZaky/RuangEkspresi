@@ -6,6 +6,12 @@
 
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     <div class="container mt-5">
         {{-- Tombol untuk menambah komunitas baru --}}
         @include('forms.komunitas-create')
@@ -43,14 +49,14 @@
                             @if ($cek && $cek->role == 'owner')
                                 <p>You Are Owner Of This Community</p>
                             @elseif ($cek)
-                                <form action="/komunitas/{{$k->id_komunitas}}/exit" method="POST">
+                                <form action="/komunitas/{{ $k->id_komunitas }}/exit" method="POST">
                                     @csrf
                                     <input type="number" name="id_pengguna" id=""
                                         value="{{ session('account')['id'] }}" hidden>
                                     <button type="submit" class="btn btn-danger">Exit</button>
                                 </form>
                             @else
-                                <form action="/komunitas/{{$k->id_komunitas}}/join" method="POST">
+                                <form action="/komunitas/{{ $k->id_komunitas }}/join" method="POST">
                                     @csrf
                                     <input type="number" name="id_pengguna" id=""
                                         value="{{ session('account')['id'] }}" hidden>
