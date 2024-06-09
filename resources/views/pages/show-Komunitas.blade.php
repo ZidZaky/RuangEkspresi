@@ -6,6 +6,12 @@
 
 
 @section('content')
+    @php
+        if (session('account') == null) {
+            header('Location: login');
+            exit();
+        }
+    @endphp
     @include('forms.komunitas-edit')
     <div class="container mt-5">
         <a href="/komunitas" class="btn btn-danger">Back</a>
@@ -76,42 +82,5 @@
 @endsection
 
 @section('aside')
-    <style>
-        .ranking {
-            hr {
-                border: var(--line);
-            }
-
-            .list-people {
-                img {
-                    height: 40px;
-                }
-
-                .text {
-                    small {
-                        font-size: 12px;
-                    }
-                }
-            }
-        }
-    </style>
-    <div class="ranking bg-white p-3 rounded">
-        <h5>Top Influencers</h5>
-        <hr>
-        <div class="list-people d-flex flex-column gap-2">
-            <div class="people d-flex gap-3 align-items-center">
-                <img src="/assets/images/profile.png" alt="">
-                <p class="fw-medium m-0 align-items-center">Zidan Platinum</p>
-            </div>
-            <div class="people d-flex gap-3 align-items-center">
-                <img src="/assets/images/profile.png" alt="">
-                <p class="fw-medium m-0 align-items-center">Deo Silver</p>
-            </div>
-            <div class="people d-flex gap-3 align-items-center">
-                <img src="/assets/images/profile.png" alt="">
-                <p class="fw-medium m-0 align-items-center">Kevin Aluminium</p>
-            </div>
-        </div>
-
-    </div>
+@include('components.aside')
 @endsection

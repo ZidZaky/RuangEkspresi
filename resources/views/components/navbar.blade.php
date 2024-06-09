@@ -81,6 +81,7 @@
                     <li><a class="dropdown-item" href="/account">Manage User</a></li>
                     <li><a class="dropdown-item" href="/event">Manage Event</a></li>
                     <li><a class="dropdown-item" href="/komunitas/admin">Manage Komunitas</a></li>
+                    <li><a class="dropdown-item" href="/posting">Manage Posting</a></li>
                     @endif
                 </ul>
             </div>

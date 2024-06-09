@@ -10,7 +10,7 @@
         }
     @endphp
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detail Event</title>
+    <title>Posting</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -68,21 +68,29 @@
 </head>
 
 <body>
+
     <!-- Post -->
     <div class="post border rounded-0 p-3">
         <div class="post-header d-flex align-items-center mb-3">
+@if($posting)
             <div class="ms-2">
-                <h4 class="mb-0">Detail Event</h4>
-                <small class="text-muted">Dibuat Pada Tanggal{{ $event->created_at }}</small>
+                <h4 class="mb-0">Posting</h4>
             </div>
         </div>
+@foreach($posting as $p)
         <div class="post-body mb-3">
-            <h4><strong>{{ $event->nama_event }}</h4>
-            <small class="text-muted">Akan dimulai {{ $event->tanggal_mulai }} sampai {{ $event->tanggal_selesai }}</small>
-            <h5 class="mb-0">Deskripsi Event : </h5>
-            <p>{{ $event->deskripsi_event }}</p>
+            <h4>{{ $p->title }}</h4>
+            <h5 class="mb-0">Deskripsi: </h5>
+            <p>{{ $p->deskripsi}}</p>
         </div>
+@endforeach
     </div>
+@else
+<div class="ms-2">
+                <h4 class="mb-0">Postingan Kosong</h4>
+            </div>
+
+@endif
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
