@@ -17,7 +17,7 @@ class PostingController extends Controller
     public function create()
     {
         //
-        return view('');
+        return view('forms.post-create');
     }
 
     public function store(Request $request)
@@ -65,6 +65,18 @@ class PostingController extends Controller
         return view('pages.show-posting', ['posting' => $posting]);
     }
     // Show the form for editing the specified resource
+   
+    function showpostingbyKomunitas($id)
+    {
+        $posting = Posting::where('id', $id)->get();
+        $Komunitas = Komunitas::where('id_komunitas',$id)->first();
+        // $posting = Komunitas::where('id_komunitas',$id)->first();
+        // dd($event);
+
+        return view('pages/list-posting-komunitas',['posting'=>$posting, 'komunitas'=>$Komunitas]);
+    }
+
+
     public function edit($id)
     {
         // $karya = Karya::findOrFail($id);

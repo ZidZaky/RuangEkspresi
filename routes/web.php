@@ -152,4 +152,5 @@ Route::get('/komentar/create', [KomentarController::class, 'create']);
 Route::post('/komentar', [KomentarController::class, 'store']);
 Route::get('/komentar/{id}', [KomentarController::class, 'destroy']);
 Route::get('/komunitas/post/{id}', [PostingController::class, 'show']);
+Route::get('/komunitas/post/{id}', [PostingController::class, 'showpostingbyKomunitas']);
 Route::resource('/posting', PostingController::class);
