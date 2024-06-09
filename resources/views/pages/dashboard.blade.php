@@ -40,10 +40,6 @@ exit();
             }
         }
 
-        hr {
-            border: var(--line);
-        }
-
         .post-body {
 
             img {
@@ -56,7 +52,6 @@ exit();
         .post-footer {
             i {
                 height: fit-content;
-
             }
         }
     }
@@ -76,7 +71,6 @@ exit();
     </div>
 </div>
 
-
 <!-- post ini yang di loop -->
 @foreach ($karyas as $karya)
 @include('forms.create-komentar')
@@ -84,6 +78,7 @@ exit();
 $user = App\Models\Account::where('id', $karya->pengguna_id)->first();
 @endphp
 @include('read.detailKarya')
+
 <button type="button" class="post-item text-secondary bg-white gap-2 rounded-3 p-4 border border-secondary border-opacity-25 w-100 mb-3" data-bs-toggle="modal" data-bs-target="#detailKarya">
 
     <!-- profile -->
@@ -102,7 +97,8 @@ $user = App\Models\Account::where('id', $karya->pengguna_id)->first();
         <p class="text-secondary">Description : <span class="text-dark">{{ $karya->deskripsi }}</span></p>
         <img src="storage/{{ $karya->namaFile }}" alt="" class="rounded-3">
     </div>
-    <hr>
+
+    <hr class="border border-secondary border-opacity-50">
 
     <!-- footer -->
     <div class="post-footer d-flex p-0 m-0 align-items-center">
