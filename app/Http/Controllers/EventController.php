@@ -34,8 +34,6 @@ class EventController extends Controller
         $event->tanggal_selesai = $request->tanggal_selesai;
         $event->deskripsi_event = $request->deskripsi_event;
         $event->id_pengguna = $request->id_pengguna;
-        // $event->id_pengguna = 1;
-        // $event->id_komunitas = 1;
         $event->id_komunitas = $request->id_komunitas;
         $event->save();
         return redirect('/komunitas/event/'.$request->id_komunitas)->with('success', 'Data event sukses');;
@@ -59,15 +57,17 @@ class EventController extends Controller
         return view('pages/list-event-komunitas',['eventList'=>$event, 'komunitas'=>$Komunitas]);
     }
 
-    function edit(Event $event)
+    function edit($id)
     {
+        $event = Event::find($id);
         return view('forms/update-event', [
             'eventList' => $event
         ]);
     }
 
-    function update(Request $request, Event $event)
+    function update(Request $request, $id)
     {
+        $event = Event::find($id);
         $validateData = $request->validate([
             'nama_event' => 'required',
             'tanggal_mulai' => 'required',
@@ -86,7 +86,7 @@ class EventController extends Controller
             'id_komunitas' => $request->id_komunitas
         ]);
 
-        return redirect('/event');
+        return redirect('/komunitas/event'.$validateData['id_komunitas']);
     }
 
     function destroy(Event $event) {

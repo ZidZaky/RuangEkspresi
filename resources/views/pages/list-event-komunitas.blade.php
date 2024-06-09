@@ -58,7 +58,7 @@
                                 onclick="return confirm ('Apakah anda yakin untuk menghapus event ini?')">Delete</button>
                         </form>
                         <br>
-                        <a class=" btn btn-secondary btn-sm" href="/event/{{ $item->id_event }}">Edit</a>
+                        <a class=" btn btn-secondary btn-sm" href="/event/update-event/{{ $item->id_event }}">Edit</a>
                     @endif
                     <br>
                     <br>
