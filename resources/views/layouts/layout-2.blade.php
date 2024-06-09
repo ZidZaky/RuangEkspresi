@@ -29,11 +29,6 @@
                     height: fit-content;
                 }
 
-                .aside {
-                    width: 300px;
-                    height: fit-content;
-                }
-
             }
         }
 
@@ -56,9 +51,6 @@
         </div>
         <div class="content">
             @yield('content')
-        </div>
-        <div class="aside">
-            @yield('aside')
         </div>
     </div>
 
