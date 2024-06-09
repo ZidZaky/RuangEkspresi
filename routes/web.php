@@ -139,6 +139,10 @@ Route::get('/show-event', function() {
     return view('pages/show-event');
 });
 
+Route::get('/show-posting', function() {
+    return view('pages/show-posting');
+});
+
 Route::get('/profile', function() {
     return view('pages.profile');
 });

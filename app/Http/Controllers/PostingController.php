@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posting;
+use App\Models\Komunitas;
 class PostingController extends Controller
 {
     public function index()
@@ -60,10 +61,9 @@ class PostingController extends Controller
     // Display the specified resource
     public function show($id)
     {
-        $posting = Karya::where('id', $id)->first();
-        return view('', ['posting' => $posting]);
+        $posting = Posting::where('komunitas_id', $id)->get();
+        return view('pages.show-posting', ['posting' => $posting]);
     }
-
     // Show the form for editing the specified resource
     public function edit($id)
     {
@@ -99,7 +99,7 @@ class PostingController extends Controller
                 return redirect('/dashboard')->with('error', 'Update failed');
             }
         } else {
-            return redirect('/dashboard')->with('error', 'Karya not found');
+            return redirect('/dashboard')->with('error', 'Posting not found');
         }
     }
 
