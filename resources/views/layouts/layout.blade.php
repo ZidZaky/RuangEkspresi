@@ -36,6 +36,10 @@
 
             }
         }
+
+        .modal-backdrop {
+        opacity: 0.1 !important;
+    }
     </style>
 </head>
 
