@@ -13,11 +13,6 @@
     @endphp
     <h1 class="text-center">Admin Manage Event Page</h1>
 
-    <!-- Button to create new event -->
-    <div class="d-flex mb-3">
-        <a href="event/create" class="btn btn-primary ms-auto">Create Data</a>
-    </div>
-
     <div class="row">
         @foreach ($eventList as $item)
             <div class="col-md-4 mb-4">
