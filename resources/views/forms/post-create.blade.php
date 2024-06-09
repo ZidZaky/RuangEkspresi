@@ -52,6 +52,7 @@
                 <!-- form -->
                 <form action="/posting" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2">
                     @csrf
+                    <input type="text" name="komunitas_id" value="{{$komunitas->id_komunitas}}">
                     <input type="text" name="title" id="" placeholder="title" class="form-control">
                     <input type="text" name="deskripsi" id="" placeholder="Deskripsi" class="form-control">
                     <input type="file" name="foto" id="" class="form-control">

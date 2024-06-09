@@ -27,8 +27,8 @@ class PostingController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'deskripsi' => 'required',
+            'komunitas_id' => 'required', // Validation for the image
             'foto' => 'nullable', // Validation for the image
-            
         ]);
 
         // Handle file upload
@@ -42,7 +42,8 @@ class PostingController extends Controller
         $posting = new Posting();
         $posting->title = $validatedData['title'];
         $posting->deskripsi = $validatedData['deskripsi'];
-        $posting->komunitas_id = 1;
+        // dd($validatedData['komunitas_id']);
+        $posting->komunitas_id = $validatedData['komunitas_id'];
         $posting->foto = $filePath ?? 'null'; // Save the file path to the database
 
         // Save the new Karya to the database
@@ -50,7 +51,7 @@ class PostingController extends Controller
 
         // Redirect to a specific route or return a response
         if ($berhasil) {
-            return redirect('dashboard')->with('success', 'Posting created successfully!');
+            return redirect('/komunitas/post/'.$validatedData['komunitas_id'])->with('success', 'Posting created successfully!');
         } else {
             return redirect('dashboard')->with('error', 'Posting created failed');
         }
@@ -61,14 +62,14 @@ class PostingController extends Controller
     // Display the specified resource
     public function show($id)
     {
-        $posting = Posting::where('komunitas_id', $id)->get();
+        $posting = Posting::where('id', $id)->get();
         return view('pages.show-posting', ['posting' => $posting]);
     }
     // Show the form for editing the specified resource
    
     function showpostingbyKomunitas($id)
     {
-        $posting = Posting::where('id', $id)->get();
+        $posting = Posting::where('komunitas_id', $id)->get();
         $Komunitas = Komunitas::where('id_komunitas',$id)->first();
         // $posting = Komunitas::where('id_komunitas',$id)->first();
         // dd($event);
