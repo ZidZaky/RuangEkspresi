@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="deskripsi" id="tema" value="{{ old('tema', $karya->jenisKarya) }}" class="form-control" placeholder="Type">
+                        <input type="text" name="jenisKarya" id="jenisKarya" value="{{ old('tema', $karya->jenisKarya) }}" class="form-control" placeholder="Type">
                         @error('tema')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror

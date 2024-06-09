@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \App\Models\Karya;
+use App\Models\Komentar;
 
 class KaryaController extends Controller
 {
@@ -79,6 +80,7 @@ class KaryaController extends Controller
     // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
+        // dd($request);
         $valdata = $request->validate([
             'judulKarya' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:1000',
@@ -114,12 +116,17 @@ class KaryaController extends Controller
     {
         // Find the Karya by ID
         $karya = Karya::where('id_karya', $id)->first();
-
+        $komentar = Komentar::where('karya_id', $id)->get();
+        if($komentar){
+            foreach($komentar as $k){
+                $k->delete();
+            }
+        }
         // Check if Karya exists
         if ($karya) {
             // Delete the Karya manually using raw SQL
-            $deleted = DB::delete('DELETE FROM `karyas` WHERE `id_karya` = ?', [$id]);
-
+            // $deleted = DB::delete('DELETE FROM `karyas` WHERE `id_karya` = ?', [$id]);
+            $deleted = $karya->delete();
             // Check if the deletion was successful
             if ($deleted) {
                 // Redirect with a success message
