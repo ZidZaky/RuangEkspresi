@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <a class="btn btn-warning" href="/event/{{ $item->id_event }}">Show</a>
-                        <a class="btn btn-warning" href="/event/update-event/{{ $item->id_event }}">Edit</a>
+                        {{-- <a class="btn btn-warning" href="/event/update-event/{{ $item->id_event }}">Edit</a> --}}
                         <form action="/event/{{ $item->id_event }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')

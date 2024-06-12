@@ -14,10 +14,10 @@
     @endphp
     <div class="container mt-5">
         {{-- Tombol untuk menambah posting baru --}}
-        @include('forms.post-create')
+        {{-- @include('forms.post-create')
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#posting">
             Add New Posting
-        </button>
+        </button> --}}
 
         {{-- Tabel Posting --}}
         <table class="table mt-3">
@@ -37,11 +37,18 @@
                         <td>{{ $p->title }}</td>
                         <td>{{ $p->deskripsi }}</td>
                         <td>
+                            @if ($p->foto)
+                                <img src="/storage/{{ $p->foto }}" alt="" style="max-width: 80px">
+                            @else
+                                <p>Tidak Ada FOto</p>
+                            @endif
+                        </td>
+                        <td>
                             <form action="/posting/{{ $p->id }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure ?')">Delete</button>
+                                    onclick="return confirm('Are you sure to dleete this Posts?')">Delete</button>
                             </form>
                         </td>
                     </tr>

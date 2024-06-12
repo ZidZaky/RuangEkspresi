@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Komunitas;
+use App\Models\Event;
 use App\Models\Anggota;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,13 @@ class KomunitasController extends Controller
     public function adminDelete($id)
     {
         $komunitas = Komunitas::findOrFail($id);
+        $event = Event::where('id_komunitas', $komunitas->id_komunitas)->get();
+        if ($event) {
+            foreach ($event as $e) {
+                $e->delete();
+            }
+        }
+
         $komunitas->delete();
         return redirect('/komunitas/admin');
     }
@@ -107,7 +115,7 @@ class KomunitasController extends Controller
     {
         // Mengambil semua anggota yang memiliki komunitas_id sesuai dengan $id
         $anggota = Anggota::where('komunitas_id', $id)->get();
-        return view('pages.list-Anggota', ['anggota' => $anggota, 'id_komunitas'=>$id]);
+        return view('pages.list-Anggota', ['anggota' => $anggota, 'id_komunitas' => $id]);
     }
 
     public function edit($id)
@@ -138,7 +146,7 @@ class KomunitasController extends Controller
         $komunitas->save();
 
         // Menambahkan flash message dan redirect
-        return redirect('/komunitas/detail/'.$id)->with('success', 'Data komunitas berhasil diperbarui');
+        return redirect('/komunitas/detail/' . $id)->with('success', 'Data komunitas berhasil diperbarui');
     }
 
     /**
