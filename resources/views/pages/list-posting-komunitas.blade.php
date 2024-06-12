@@ -24,9 +24,8 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#posting">
             Add New Post
         </button>
-        <div></div>
     @endif
-
+    <hr>
     {{-- Cuma coba ngeluarin data  --}}
     @foreach ($posting as $item)
         <div class="container" style="border:4px solid black;border-radius:10px;margin-top:5px;">
@@ -46,7 +45,8 @@
                 </div>
                 <div class="col text-end">
                     <br>
-                    <a class=" btn btn-secondary btn-sm" href="/posting/{{ $item->id }}">Show</a>
+                    @include('read.show-posting')
+                    <a class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#postingModal">Show</a>
                     <br>
                     <br>
                     @if ($cek && ($cek->role == 'Admin' || $cek->role == 'owner'))
@@ -57,7 +57,12 @@
                                 onclick="return confirm ('Apakah anda yakin untuk menghapus posting ini?')">Delete</button>
                         </form>
                         <br>
-                        <a class=" btn btn-secondary btn-sm" href="/posting/{{ $item->id }}">Edit</a>
+                        {{-- <a class=" btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editKarya_{{$item->id}}">Edit</a> --}}
+                        {{-- <a class="btn btn-secondary btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#posting_{{$item->id}}">Edit</a> --}}
+                        @include('forms.editPosting')
+
+                        <a class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#posting_{{ $item->id }}">Edit</a>
                     @endif
                     <br>
                     <br>

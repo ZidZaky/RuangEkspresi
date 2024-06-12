@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \App\Models\Karya;
 use App\Models\Komentar;
+use Illuminate\Support\Facades\Storage;
 
 class KaryaController extends Controller
 {
@@ -117,16 +118,26 @@ class KaryaController extends Controller
         // Find the Karya by ID
         $karya = Karya::where('id_karya', $id)->first();
         $komentar = Komentar::where('karya_id', $id)->get();
-        if($komentar){
-            foreach($komentar as $k){
+
+        if ($komentar) {
+            foreach ($komentar as $k) {
                 $k->delete();
             }
         }
+
         // Check if Karya exists
         if ($karya) {
-            // Delete the Karya manually using raw SQL
-            // $deleted = DB::delete('DELETE FROM `karyas` WHERE `id_karya` = ?', [$id]);
+            // Assuming the Karya model has a 'file_path' attribute that stores the file path
+            $filePath = $karya->file_path;
+
+            // Delete the file from the storage if it exists
+            if (Storage::exists($filePath)) {
+                Storage::delete($filePath);
+            }
+
+            // Delete the Karya manually using the Eloquent delete method
             $deleted = $karya->delete();
+
             // Check if the deletion was successful
             if ($deleted) {
                 // Redirect with a success message

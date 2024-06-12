@@ -77,7 +77,8 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn-add" data-dismiss="modal">Tambah Komentar</button>
-                <button type="submit" class="btn-cancel">Cancel</button>
+                {{-- <button type="submit" class="btn-cancel">Cancel</button> --}}
+                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
             </div>
             </form>
         </div>

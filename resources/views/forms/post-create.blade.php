@@ -52,11 +52,13 @@
                 <!-- form -->
                 <form action="/posting" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2">
                     @csrf
-                    <input type="text" name="komunitas_id" value="{{$komunitas->id_komunitas}}">
+                    <input type="text" name="komunitas_id" value="{{$komunitas->id_komunitas}}" hidden>
                     <input type="text" name="title" id="" placeholder="title" class="form-control">
                     <input type="text" name="deskripsi" id="" placeholder="Deskripsi" class="form-control">
                     <input type="file" name="foto" id="" class="form-control">
-                    <button type="submit" class="btn p-2 d-block text-white">Posting</button>
+                    {{-- <button type="submit" class="btn p-2 d-block text-black outlon">Posting</button> --}}
+                    <button type="submit" class="btn btn-danger p-2 text-black">Posting</button>
+
                 </form>
             </div>
         </div>

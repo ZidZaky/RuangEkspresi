@@ -9,7 +9,7 @@
     }
 </style>
 <div class="ranking bg-white p-4 rounded-3 border border-secondary border-opacity-25">
-    <h5>Members Team</h5>
+    <h5>Developer Team</h5>
     <hr class="border border-secondary border-opacity-25">
     <div class="list-people d-flex flex-column gap-2">
         <div class="leader mb-2">

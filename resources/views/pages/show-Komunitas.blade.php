@@ -39,20 +39,22 @@
                                 ->where('id_pengguna', session('account')['id'])
                                 ->first();
                         @endphp
-                        @if ($cek && ($cek->role == 'Admin' || $cek->role == 'owner'))
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        @if ($cek && ($cek->role == 'owner'))
+                            <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal"
                                 data-bs-target="#komunitas-edit{{ $komunitas->id_komunitas }}">
                                 Edit
                             </button>
-                            {{-- <a href="/komunitas/{{ $komunitas->id_komunitas }}/edit" class="btn btn-warning">Edit</a> --}}
                         @endif
                         @if ($cek)
-                            <a href="/komunitas/post/{{ $komunitas->id_komunitas }}" class="btn btn-secondary">Show
-                                Postingan</a>
+                            <a href="/komunitas/post/{{ $komunitas->id_komunitas }}"
+                                class="btn btn-secondary btn-custom">Show Postingan</a>
                         @endif
-                        <a href="/komunitas/anggota/{{ $komunitas->id_komunitas }}" class="btn btn-info">Show Anggota</a>
-                        <a href="/komunitas/event/{{ $komunitas->id_komunitas }}" class="btn btn-light">Show Event</a>
+                        <a href="/komunitas/anggota/{{ $komunitas->id_komunitas }}" class="btn btn-info btn-custom">Show
+                            Anggota</a>
+                        <a href="/komunitas/event/{{ $komunitas->id_komunitas }}" class="btn btn-light btn-custom">Show
+                            Event</a>
                     </td>
+
                     <td>
                         @if (@$cek->role == 'owner')
                             <p>You Cant Exit Your Own Komunitas</p>
@@ -79,8 +81,57 @@
             </tbody>
         </table>
     </div>
+    <style>
+        .btn-custom {
+            margin: 5px;
+            /* Adds space between buttons */
+            border-radius: 8px;
+            /* Rounds the corners */
+            font-weight: bold;
+            /* Makes the text bold */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            /* Adds a transition effect */
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            /* Slightly enlarges the button on hover */
+            opacity: 0.9;
+            /* Reduces opacity slightly on hover */
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            /* Primary button color */
+            border-color: #007bff;
+            /* Primary button border color */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            /* Secondary button color */
+            border-color: #6c757d;
+            /* Secondary button border color */
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            /* Info button color */
+            border-color: #17a2b8;
+            /* Info button border color */
+        }
+
+        .btn-light {
+            background-color: #f8f9fa;
+            /* Light button color */
+            border-color: #f8f9fa;
+            /* Light button border color */
+            color: #212529;
+            /* Light button text color */
+        }
+    </style>
 @endsection
 
 @section('aside')
-@include('components.aside')
+    @include('components.aside')
 @endsection

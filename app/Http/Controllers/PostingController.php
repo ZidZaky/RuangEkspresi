@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posting;
 use App\Models\Komunitas;
+use Illuminate\Support\Facades\DB;
+
 class PostingController extends Controller
 {
     public function index()
@@ -13,7 +15,7 @@ class PostingController extends Controller
         return view('pages.list-posting',['posting'=>$posting]);
     }
 
-   
+
     public function create()
     {
         //
@@ -66,7 +68,7 @@ class PostingController extends Controller
         return view('pages.show-posting', ['posting' => $posting]);
     }
     // Show the form for editing the specified resource
-   
+
     function showpostingbyKomunitas($id)
     {
         $posting = Posting::where('komunitas_id', $id)->get();
@@ -81,7 +83,7 @@ class PostingController extends Controller
     public function edit($id)
     {
         // $karya = Karya::findOrFail($id);
-        $karya = Karya::where('id', $id)->first();
+        $posting = Posting::where('id', $id)->get();
         return view('', ['posting' => $posting]);
     }
 
@@ -91,6 +93,7 @@ class PostingController extends Controller
         $valdata = $request->validate([
             'title' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:255',
+            'komunitas_id' => 'required',
         ]);
 
 
@@ -107,9 +110,9 @@ class PostingController extends Controller
             );
 
             if ($berhasil) {
-                return redirect('/dashboard');
+                return redirect('/komunitas/post/'.$valdata['komunitas_id'])->with('success', 'Update Success');
             } else {
-                return redirect('/dashboard')->with('error', 'Update failed');
+                return redirect('/komunitas/post/'.$valdata['komunitas_id'])->with('error', 'Update failed');
             }
         } else {
             return redirect('/dashboard')->with('error', 'Posting not found');
