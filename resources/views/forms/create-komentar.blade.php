@@ -55,8 +55,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <img class="vector" src="../assets/images/Ellipse 25.png">
+                @if (session('account')['profile'] == null)
+                    <img src="/assets/images/profile.png" alt="profile" style="max-width:50px">
+                @else
+                    <img src="/storage/{{ session('account')['profile'] }}" alt="" style="max-width:50px; margin: 10px;">
+                @endif
                 <!-- Nama User -->
+                {{-- @php
+                    dd(session('account'));
+                @endphp --}}
                 <h2>{{ session('account')['username'] }}</h2>
                 <!-- Tombol Close -->
                 <span class="close-button" data-bs-dismiss="modal" aria-label="Close">&times;</span>

@@ -1,5 +1,9 @@
 <!-- Modal Event -->
-<div class="modal fade" id="editKarya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($karyas as $karya)
+
+
+
+<div class="modal fade" id="editKarya_{{$karya->id_karya}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header d-flex align-items-center gap-3  pb-1 justify-content-start">
@@ -41,3 +45,4 @@
         </div>
     </div>
 </div>
+@endforeach

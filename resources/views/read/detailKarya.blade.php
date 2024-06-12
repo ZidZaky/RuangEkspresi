@@ -70,12 +70,14 @@
                                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fi fi-rr-menu-dots d-flex"></i>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a type="button" class="btn text-secondary d-flex align-items-center gap-2"
-                                            data-bs-toggle="modal" data-bs-target="#editKarya"><i
-                                                class="fi fi-rr-edit d-flex"></i>Edit</a></li>
-                                    <li>
-                                        @if ($karya->pengguna_id == session('account')['id'])
+
+                                @if ($karya->pengguna_id == session('account')['id'])
+                                    <ul class="dropdown-menu">
+
+                                        <li><a type="button" class="btn text-secondary d-flex align-items-center gap-2"
+                                                data-bs-toggle="modal" data-bs-target="#editKarya_{{$karya->id_karya}}"><i
+                                                    class="fi fi-rr-edit d-flex"></i>Edit</a></li>
+                                        <li>
                                             <div>
                                                 <form action="{{ route('karya.destroy', $karya->id_karya) }}"
                                                     method="POST" style="width: 100%;">
@@ -86,10 +88,10 @@
                                                             class="fi fi-rr-trash d-flex"></i>Delete</button>
                                                 </form>
                                             </div>
-                                        @endif
-                                        </a>
-                                    </li>
-                                </ul>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
                             </div>
                         </div>
 
