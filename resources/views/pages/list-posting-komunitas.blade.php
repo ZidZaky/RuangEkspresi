@@ -21,7 +21,7 @@
         // dd($cek);
     @endphp
     @if ($cek && ($cek->role == 'Admin' || $cek->role == 'owner'))
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#posting">
             Add New Post
         </button>
         <div></div>
@@ -46,18 +46,18 @@
                 </div>
                 <div class="col text-end">
                     <br>
-                    <a class=" btn btn-secondary btn-sm" href="/event/{{ $item->id_event }}">Show</a>
+                    <a class=" btn btn-secondary btn-sm" href="/posting/{{ $item->id }}">Show</a>
                     <br>
                     <br>
                     @if ($cek && ($cek->role == 'Admin' || $cek->role == 'owner'))
-                        <form action="/event/{{ $item->id_event }}" method="POST">
+                        <form action="/posting/{{ $item->id }}" method="POST">
                             @csrf
                             @method('delete')
                             <button class="btn btn-danger " type="submit"
-                                onclick="return confirm ('Apakah anda yakin untuk menghapus event ini?')">Delete</button>
+                                onclick="return confirm ('Apakah anda yakin untuk menghapus posting ini?')">Delete</button>
                         </form>
                         <br>
-                        <a class=" btn btn-secondary btn-sm" href="/event/{{ $item->id_event }}">Edit</a>
+                        <a class=" btn btn-secondary btn-sm" href="/posting/{{ $item->id }}">Edit</a>
                     @endif
                     <br>
                     <br>

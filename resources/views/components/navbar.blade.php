@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg border border-opacity-25 ">
         <div class="container-fluid justify-between">
             <div class="d-flex align-items-center">
                 <a class="navbar-brand" href="/dashboard">
@@ -56,10 +56,8 @@
 
                 <form action="/search" method="GET" class="">
                     <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <!-- <button type="submit" class="btn btn-primary">Search</button> -->
                 </form>
-                
-                
             </div>
 
             <!-- ketika user udah login -->

@@ -40,7 +40,7 @@
     @include('read.calendar')
 
     <div class="preview mb-3 rounded-3 p-4 border border-secondary border-opacity-25 d-flex flex-column gap-3 bg-white">
-        <h4 class="m-0 fw-semibold">Build <span>Meaningful</span> Relationships</h4>
+        <h4 class="m-0 fw-semibold">Build <span style="color: #708fff">Meaningful</span> Relationships</h4>
         <p class="m-0 text-secondary ">Connect and grow with like minded people.</p>
     </div>
 

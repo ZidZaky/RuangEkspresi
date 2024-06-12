@@ -39,9 +39,6 @@ Route::get('/dashboard', function () {
 
 //event
 
-Route::get('/update-event', function () {
-    return view('update-event');
-});
 
 //komunitas
 
@@ -79,6 +76,8 @@ Route::resource('/event', EventController::class);
 Route::get('/account/{id}/detailProfile', [AccountController::class, 'detail']);
 Route::POST('/account/{id}/updateProfile', [AccountController::class, 'updateProfile']);
 
+Route::get('/event/update-event/{id}', [EventController::class, 'edit']);
+Route::put('/event/update/{id}', [EventController::class, 'update']);
 
 
 Route::get('/search', [KomunitasController::class, 'search']);
@@ -127,9 +126,6 @@ Route::get('/manage-event', function() {
 
 Route::get('/manageAnggotaKomunitas', function() {
     return view('manageAnggotaKomunitas');
-});
-Route::get('/update-event', function() {
-    return view('forms/update-event');
 });
 
 Route::get('/show-event', function() {
