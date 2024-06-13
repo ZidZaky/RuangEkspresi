@@ -17,23 +17,23 @@
             <div class="modal-body">
                 <form method="POST" action="/event">
                     @csrf
-                    <input type="text" name="id_pengguna" id="" value="{{session('account')['id']}}">
-                    <input type="text" name="id_komunitas" id="" value="{{ $komunitas->id_komunitas }}">
+                    <input type="text" name="id_pengguna" id="" value="{{session('account')['id']}}" hidden>
+                    <input type="text" name="id_komunitas" id="" value="{{ $komunitas->id_komunitas }}" hidden>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Event</label>
-                        <input type="text" class="form-control" id="nama" name="nama_event" placeholder="Tambahkan nama eventmu">
+                        <input type="text" class="form-control" id="nama" name="nama_event" placeholder="Tambahkan nama eventmu" required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi_event" rows="3" placeholder="Tambahkan deskripsi eventmu"></textarea>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi_event" rows="3" placeholder="Tambahkan deskripsi eventmu" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input type="date" class="form-control" id="tanggalMulai" name="tanggal_mulai" placeholder="Tambahkan tanggal mulai eventmu">
+                        <input type="date" class="form-control" id="tanggalMulai" name="tanggal_mulai" placeholder="Tambahkan tanggal mulai eventmu" required>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input type="date" class="form-control" id="tanggalSelesai" name="tanggal_selesai" placeholder="Tambahkan tanggal selesai eventmu">
+                        <input type="date" class="form-control" id="tanggalSelesai" name="tanggal_selesai" placeholder="Tambahkan tanggal selesai eventmu" required>
                     </div>
                     <div class="modal-footer justify-content-end">
                         <button type="submit" class="btn btn-tambah">Tambah</button>

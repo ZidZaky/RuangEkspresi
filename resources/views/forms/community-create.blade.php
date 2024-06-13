@@ -42,8 +42,8 @@
             <div class="modal-body">
                 <!-- form -->
                 <form action="" method="post" class="d-flex flex-column gap-3">
-                    <input type="text" name="" id="" placeholder="Community name" class="form-control">
-                    <textarea name="" id="" placeholder="Description" rows="4" class="form-control"></textarea>
+                    <input type="text" name="" id="" placeholder="Community name" class="form-control" required>
+                    <textarea name="" id="" placeholder="Description" rows="4" class="form-control" required></textarea>
                     <button type="submit" class="btn p-2 d-block text-white">Send</button>
                 </form>
             </div>

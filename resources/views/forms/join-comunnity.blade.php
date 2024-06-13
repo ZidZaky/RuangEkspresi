@@ -101,7 +101,7 @@
         <button class="close-button" onclick="closeNotification()">&times;</button>
         <div class="user-profile">
             <img src="https://picsum.photos/50/50" alt="User Profile">
-            <span>Dhanu W</span>
+            <span>session('account')['profile']</span>
         </div>
 
         <div class="title">Permohonan Masuk Komunitas</div>
